@@ -1,0 +1,98 @@
+==============================
+1. MOST USED SQL COMMANDS
+==============================
+
+    CREATE TABLE – Defines a new table
+        Example: CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(100));
+        Example: CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100)); # INTEGER PRIMARY KEY is
+                                                                                                 a standalone command
+
+    INSERT INTO – Adds records to a table (with placeholders)
+        Example: cursor.execute("INSERT INTO users (id, name) VALUES (?, ?)", (id, name))
+
+    SELECT – Retrieves data from a table
+        Example: cursor.execute("SELECT * FROM users WHERE id = ?", (id,))
+
+    UPDATE – Modifies existing records (with placeholders)
+        Example: cursor.execute("UPDATE users SET name = ? WHERE id = ?", (new_name, user_id))
+
+    DELETE – Removes records from a table (with placeholders)
+        Example: cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
+
+    ALTER TABLE – Modifies table structure
+        Example: ALTER TABLE users ADD COLUMN age INT;
+
+    DROP TABLE – Deletes a table
+        Example: DROP TABLE users;
+
+
+==============================
+2. MOST USED SQL DATA TYPES
+==============================
+
+    INT – Integer value
+        Example: age INT
+
+    VARCHAR(n) – Variable-length string (max n characters)
+        Example: name VARCHAR(100)
+
+    DATE (stored as TEXT in SQLite) – Stores date values
+        Example: birthdate TEXT     # Use "YYYY-MM-DD" format
+
+    FLOAT – Stores decimal numbers
+        Example: price FLOAT
+
+    BOOLEAN (as INTEGER 0/1) – Stores true or false values
+        Example: is_active INTEGER     # Use 1 for True, 0 for False
+
+    TEXT – Large text storage
+        Example: description TEXT
+
+
+==============================
+3. LOGICAL OPERATORS
+==============================
+
+    AND – Returns true if both conditions are met
+        Example: cursor.execute("SELECT * FROM users WHERE age > ? AND is_active = ?", (18, 1))
+
+    OR – Returns true if at least one condition is met
+        Example: cursor.execute("SELECT * FROM users WHERE age < ? OR is_active = ?", (18, 1))
+
+    NOT – Reverses the condition
+        Example: cursor.execute("SELECT * FROM users WHERE NOT is_active")
+
+    BETWEEN – Checks if value is within a range
+        Example: cursor.execute("SELECT * FROM users WHERE age BETWEEN ? AND ?", (20, 30))
+
+    LIKE – Matches patterns in text
+        Example: cursor.execute("SELECT * FROM users WHERE name LIKE ?", ("A%",))
+
+    IN – Checks if value is in a list
+        Example: cursor.execute("SELECT * FROM users WHERE age IN (?, ?, ?)", (20, 25, 30))
+
+    Comparison operators :
+        <, >, =, <=, >=, not eqaual to <>, !=
+
+
+==============================
+4. OTHER USEFUL COMMANDS
+==============================
+
+    ORDER BY – Sorts query results
+        Example: cursor.execute("SELECT * FROM users ORDER BY name ASC")
+
+    GROUP BY – Groups results by a column
+        Example: cursor.execute("SELECT age, COUNT(*) FROM users GROUP BY age")
+
+    HAVING – Filters grouped results (with placeholders)
+        Example: cursor.execute("SELECT age, COUNT(*) FROM users GROUP BY age HAVING COUNT(*) > ?", (5,))
+
+    JOIN – Combines data from multiple tables
+        Example: cursor.execute("SELECT users.name, orders.product FROM users JOIN orders ON users.id = orders.user_id")
+
+    UNION – Combines results from multiple queries
+        Example: cursor.execute("SELECT name FROM users UNION SELECT name FROM employees")
+
+    DISTINCT – Removes duplicate values
+        Example: cursor.execute("SELECT DISTINCT name FROM users")
