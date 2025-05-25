@@ -2,7 +2,7 @@ import datetime
 
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
-    QLineEdit, QComboBox, QTableWidgetItem
+    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView
 
 from main_database import *
 
@@ -97,6 +97,7 @@ class MainWindow(QMainWindow):
         self.delete_button.clicked.connect(self.delete_all)
 
         # Buttons, labels and other
+        self.setWindowTitle("Simple expense manager by Peter Szepesi")
         self.year_line_edit.setText(str(self.today_date.year))
         self.month_line_edit.setText(str(f"{self.today_date.month:02}"))
         self.day_line_edit.setText(str(f"{self.today_date.day:02}"))
@@ -111,6 +112,7 @@ class MainWindow(QMainWindow):
         self.expenses_table.setHorizontalHeaderLabels(["ID", "Description", "Category", "Price", "Date"])
         self.expenses_table.verticalHeader().setVisible(False)
         self.fill_table()
+        #self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def center_window(self):
         window_width = self.width()
@@ -124,29 +126,35 @@ class MainWindow(QMainWindow):
     # Event handling
     def add_entry(self):
 
-        # TODO - Make exception handling
-        create_table(self.cursor, self.table_name)
-        description = self.description_line_edit.text()
-        category = self.category_combo_box.currentText()
-        price = float(self.price_line_edit.text())
-        date = f"{self.year_line_edit.text()}-{self.month_line_edit.text()}-{self.day_line_edit.text()}"
+        try:
+            # TODO - Make exception handling, add month and day formatting - :02
+            create_table(self.cursor, self.table_name)
+            description = self.description_line_edit.text()
+            category = self.category_combo_box.currentText()
+            price = float(self.price_line_edit.text())
+            date = f"{self.year_line_edit.text()}-{self.month_line_edit.text()}-{self.day_line_edit.text()}"
 
-        insert_entry(self.cursor, self.table_name, description, category, price, date)
-        self.db_connection.commit()
-        self.fill_table()
+            insert_entry(self.cursor, self.table_name, description, category, price, date)
+            self.db_connection.commit()
+            self.fill_table()
+        except Exception as e:
+            print(f"Something went wrong during adding entry : {e}")
 
     def fill_table(self):
-        rows = show_all(self.cursor, self.table_name)
-        if rows:
-            self.expenses_table.setRowCount(len(rows))
-            for row_index in range(0, len(rows)):
-                row = rows[row_index]
-                for column_index in range(0, len(row)):
-                    column = row[column_index]
-                    cell = QTableWidgetItem(str(column))
-                    self.expenses_table.setItem(row_index, column_index, cell)
-        else:
-            self.expenses_table.setRowCount(0)
+        try:
+            rows = show_all(self.cursor, self.table_name)
+            if rows:
+                self.expenses_table.setRowCount(len(rows))
+                for row_index in range(0, len(rows)):
+                    row = rows[row_index]
+                    for column_index in range(0, len(row)):
+                        column = row[column_index]
+                        cell = QTableWidgetItem(str(column))
+                        self.expenses_table.setItem(row_index, column_index, cell)
+            else:
+                self.expenses_table.setRowCount(0)
+        except Exception as e:
+            print(f"Something went wrong during filling the table : {e}")
 
     def delete_all(self):
         try:
