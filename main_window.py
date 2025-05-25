@@ -1,3 +1,5 @@
+import datetime
+
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
     QLineEdit, QComboBox
@@ -15,6 +17,7 @@ class MainWindow(QMainWindow):
         self.central_widget = QWidget()
         self.monitor = QGuiApplication.primaryScreen().geometry()
         self.main_instance: Main = main_instance
+        self.today_date = datetime.date.today()
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
@@ -26,13 +29,13 @@ class MainWindow(QMainWindow):
         self.v_box_upper_left = QVBoxLayout()
         self.v_box_upper_middle = QVBoxLayout()
         self.v_box_upper_right = QVBoxLayout()
+        self.h_box_date = QHBoxLayout()
 
         # Database
         self.db_connection = create_connection("Databases\\main.db")
         self.table_name = "expenses"
         self.cursor = self.db_connection.cursor()
         create_table(self.cursor, self.table_name)
-        delete_table(self.cursor, self.table_name)
 
         # Buttons
         self.add_button = QPushButton("Add")
@@ -47,7 +50,9 @@ class MainWindow(QMainWindow):
         self.description_line_edit = QLineEdit()
         self.price_line_edit = QLineEdit()
         self.category_combo_box = QComboBox()
-        self.date_line_edit = QLineEdit()
+        self.year_line_edit = QLineEdit()
+        self.month_line_edit = QLineEdit()
+        self.day_line_edit = QLineEdit()
 
         # Other
         self.expenses_table = QTableWidget()
@@ -64,6 +69,9 @@ class MainWindow(QMainWindow):
 
         #Layout
         self.setCentralWidget(self.central_widget)
+        self.h_box_date.addWidget(self.year_line_edit)
+        self.h_box_date.addWidget(self.month_line_edit)
+        self.h_box_date.addWidget(self.day_line_edit)
         self.v_box_upper_left.addWidget(self.description_label)
         self.v_box_upper_left.addWidget(self.category_label)
         self.v_box_upper_left.addWidget(self.price_label)
@@ -71,7 +79,7 @@ class MainWindow(QMainWindow):
         self.v_box_upper_middle.addWidget(self.description_line_edit)
         self.v_box_upper_middle.addWidget(self.category_combo_box)
         self.v_box_upper_middle.addWidget(self.price_line_edit)
-        self.v_box_upper_middle.addWidget(self.date_line_edit)
+        self.v_box_upper_middle.addLayout(self.h_box_date)
         self.v_box_upper_right.addWidget(self.add_button)
 
         self.h_box_upper.addLayout(self.v_box_upper_left)
@@ -82,7 +90,13 @@ class MainWindow(QMainWindow):
         self.v_box_main.addWidget(self.expenses_table)
         self.central_widget.setLayout(self.v_box_main)
 
+        # Event handling
+        self.add_button.clicked.connect(self.add_entry)
+
         # Buttons, labels and other
+        self.year_line_edit.setText(str(self.today_date.year))
+        self.month_line_edit.setText(str(f"{self.today_date.month:02}"))
+        self.day_line_edit.setText(str(f"{self.today_date.day:02}"))
         self.category_combo_box.addItems([
             "Groceries", "Utilities", "Rent", "Transportation", "Gas",
             "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
@@ -99,3 +113,17 @@ class MainWindow(QMainWindow):
         window_x = int((monitor_width - window_width) / 2)
         window_y = int((monitor_height - window_height) / 2)
         self.setGeometry(window_x, window_y, window_width, window_height)
+
+    # Event handling
+    def add_entry(self):
+
+        # TODO - Make exception handling
+
+        description = self.description_line_edit.text()
+        category = self.category_combo_box.currentText()
+        price = float(self.price_line_edit.text())
+        date = f"{self.year_line_edit.text()}-{self.month_line_edit.text()}-{self.day_line_edit.text()}"
+
+        insert_entry(self.cursor, self.table_name, description, category, price, date)
+        self.db_connection.commit()
+        show_all(self.cursor, self.table_name)
