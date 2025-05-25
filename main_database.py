@@ -53,19 +53,27 @@ def insert_entry(cursor: sqlite3.Cursor, table_name, description: str, category:
     except Exception as e:
         print(f"Something went wrong inserting the entries : {e}")
 
+def update_entry(cursor: sqlite3.Cursor, table_name, column_search, keyword_search, column_update, keyword_update):
+    query = f"UPDATE {table_name} SET {column_update} = ? WHERE {column_search} = ?"
+
+    try:
+        cursor.execute(query, (keyword_update, keyword_search))
+        print(f"Entry {column_search} : {keyword_search} successfully updated to {column_update} : {keyword_update}")
+    except Exception as e:
+        print(f"Something went wrong during updating the entry : {e}")
+
 def show_all(cursor: sqlite3.Cursor, table_name):
     query = f"SELECT * FROM {table_name}"
 
     try:
         cursor.execute(query)
         rows = cursor.fetchall()
-        for i in range(0, len(rows)):
-            print(rows[i])
+        return rows
     except Exception as e:
         print(f"Something went wrong showing the database : {e}")
 
 # Column_s meaning column(s), separate the with comma as in SQL syntax
-def show_defined_columns(cursor: sqlite3.Cursor, table_name, column_s_name):
+def search_defined_columns(cursor: sqlite3.Cursor, table_name, column_s_name):
     query = f"SELECT {column_s_name} FROM {table_name}"
 
     try:
@@ -76,7 +84,7 @@ def show_defined_columns(cursor: sqlite3.Cursor, table_name, column_s_name):
     except Exception as e:
         print(f"Something went wrong during showing the selected entries : {e}")
 
-def show_selected(cursor: sqlite3.Cursor, table_name, column, keyword):
+def search(cursor: sqlite3.Cursor, table_name, column, keyword):
     query = f"SELECT * FROM {table_name} WHERE {column} = ?"
 
     try:
@@ -88,7 +96,7 @@ def show_selected(cursor: sqlite3.Cursor, table_name, column, keyword):
         print(f"Something went wrong showing selected items : {e}")
 
 # Showing based on a condition : id >= 2, or : id > 2 AND id < 5
-def show_based_on_condition(cursor: sqlite3.Cursor, table_name, condition):
+def search_based_on_condition(cursor: sqlite3.Cursor, table_name, condition):
     query = f"SELECT * FROM {table_name} WHERE {condition}"
 
     try:
