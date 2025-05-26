@@ -172,10 +172,44 @@ class MainWindow(QMainWindow):
             print(f"Something went wrong during filling the table : {e}")
 
     def delete_selected(self):
-        # TODO - get column and keyword text
-        column = self.expenses_table.currentColumn()
-        keyword = self.expenses_table.currentItem()
-        print(f"{column}, {keyword}")
+
+        try:
+            selected_column_data = self.expenses_table.selectedItems()
+            if selected_column_data:
+                for i in range(0, len(selected_column_data)):
+                    selected_cell = selected_column_data[i]
+                    row = selected_cell.row()
+                    column = selected_cell.column()
+
+                    cell_text = selected_cell.text()
+                    column_text = self.expenses_table.horizontalHeaderItem(column).text().lower()
+
+                    if column_text == "description" or column_text == "category" or column_text == "date":
+                        delete_entry(self.cursor, self.table_name, column_text, cell_text)
+                    elif column_text == "id":
+                        if cell_text.isdigit():
+                            cell_text == int(cell_text)
+                            delete_entry(self.cursor, self.table_name, column_text, cell_text)
+                        else:
+                            print(f"The selected value : {cell_text} is not a digit")
+                    elif column_text == "price":
+                        try:
+                            cell_text = float(cell_text)
+                            delete_entry(self.cursor, self.table_name, column_text, cell_text)
+                        except Exception as e:
+                            print(f"Something went wrong during deleteing entry and converting price to float : {e}")
+
+            else:
+                print("There is nothing selected")
+        except Exception as e:
+            print(f"Something went wrong deleting selected items : {e}")
+
+        try:
+            self.db_connection.commit()
+            self.fill_table()
+        except Exception as e:
+            print(f"Something went wrong during filling the table : {e}")
+
 
     def delete_all(self):
         try:
