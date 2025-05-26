@@ -107,6 +107,15 @@ def search_based_on_condition(cursor: sqlite3.Cursor, table_name, condition):
     except Exception as e:
         print(f"Something went wrong during showing based on condition : {e}")
 
+def delete_entry(cursor: sqlite3.Cursor, table_name, column, keyword):
+    query = f"DELETE FROM {table_name} WHERE {column} = ?"
+
+    try:
+        cursor.execute(query, (keyword,))
+        print(f"Entry of {column} : {keyword} deleted")
+    except Exception as e:
+        print(f"Something went wrong during deleting the entry : {e}")
+
 def delete_table(cursor: sqlite3.Cursor, table_name):
     query = f"DROP TABLE {table_name}"
 

@@ -1,5 +1,6 @@
 import datetime
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
     QLineEdit, QComboBox, QTableWidgetItem, QHeaderView
@@ -30,6 +31,7 @@ class MainWindow(QMainWindow):
         self.v_box_upper_middle = QVBoxLayout()
         self.v_box_upper_right = QVBoxLayout()
         self.h_box_date = QHBoxLayout()
+        self.h_box_price = QHBoxLayout()
 
         # Database
         self.db_connection = create_connection("Databases\\main.db")
@@ -39,17 +41,21 @@ class MainWindow(QMainWindow):
 
         # Buttons
         self.add_button = QPushButton("Add")
-        self.delete_button = QPushButton("Delete all")
+        self.delete_selected_button = QPushButton("Delete selected")
+        self.delete_all_button = QPushButton("Delete all")
 
         # Labels
         self.description_label = QLabel("Description")
         self.price_label = QLabel("Price")
         self.category_label = QLabel("Category")
         self.date_label = QLabel("Date")
+        self.price_decimal_label = QLabel(".")
+        self.date_format_label = QLabel("YYYY - MM - DD")
 
         # Line edits and combo boxes
         self.description_line_edit = QLineEdit()
         self.price_line_edit = QLineEdit()
+        self.price_decimal_line_edit = QLineEdit()
         self.category_combo_box = QComboBox()
         self.year_line_edit = QLineEdit()
         self.month_line_edit = QLineEdit()
@@ -64,8 +70,7 @@ class MainWindow(QMainWindow):
     def initUI(self):
 
         # Geometry
-        self.setMinimumWidth(self.window_width)
-        self.setMinimumHeight(self.window_height)
+        self.setGeometry(0, 0, self.window_width, self.window_height)
         self.center_window()
 
         #Layout
@@ -73,16 +78,23 @@ class MainWindow(QMainWindow):
         self.h_box_date.addWidget(self.year_line_edit)
         self.h_box_date.addWidget(self.month_line_edit)
         self.h_box_date.addWidget(self.day_line_edit)
+        self.h_box_date.addWidget(self.date_format_label)
+        self.h_box_date.addStretch()
+        self.h_box_price.addWidget(self.price_line_edit, alignment = Qt.AlignLeft)
+        self.h_box_price.addWidget(self.price_decimal_label, alignment = Qt.AlignLeft)
+        self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
+        self.h_box_price.addStretch()
         self.v_box_upper_left.addWidget(self.description_label)
         self.v_box_upper_left.addWidget(self.category_label)
         self.v_box_upper_left.addWidget(self.price_label)
         self.v_box_upper_left.addWidget(self.date_label)
         self.v_box_upper_middle.addWidget(self.description_line_edit)
-        self.v_box_upper_middle.addWidget(self.category_combo_box)
-        self.v_box_upper_middle.addWidget(self.price_line_edit)
+        self.v_box_upper_middle.addWidget(self.category_combo_box, alignment = Qt.AlignLeft)
+        self.v_box_upper_middle.addLayout(self.h_box_price)
         self.v_box_upper_middle.addLayout(self.h_box_date)
         self.v_box_upper_right.addWidget(self.add_button)
-        self.v_box_upper_right.addWidget(self.delete_button)
+        self.v_box_upper_right.addWidget(self.delete_selected_button)
+        self.v_box_upper_right.addWidget(self.delete_all_button)
 
         self.h_box_upper.addLayout(self.v_box_upper_left)
         self.h_box_upper.addLayout(self.v_box_upper_middle)
@@ -94,13 +106,15 @@ class MainWindow(QMainWindow):
 
         # Event handling
         self.add_button.clicked.connect(self.add_entry)
-        self.delete_button.clicked.connect(self.delete_all)
+        self.delete_selected_button.clicked.connect(self.delete_selected)
+        self.delete_all_button.clicked.connect(self.delete_all)
 
         # Buttons, labels and other
         self.setWindowTitle("Simple expense manager by Peter Szepesi")
         self.year_line_edit.setText(str(self.today_date.year))
         self.month_line_edit.setText(str(f"{self.today_date.month:02}"))
         self.day_line_edit.setText(str(f"{self.today_date.day:02}"))
+        self.price_decimal_line_edit.setText("00")
         self.category_combo_box.addItems([
             "Groceries", "Utilities", "Rent", "Transportation", "Gas",
             "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
@@ -112,7 +126,7 @@ class MainWindow(QMainWindow):
         self.expenses_table.setHorizontalHeaderLabels(["ID", "Description", "Category", "Price", "Date"])
         self.expenses_table.verticalHeader().setVisible(False)
         self.fill_table()
-        #self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def center_window(self):
         window_width = self.width()
@@ -131,7 +145,8 @@ class MainWindow(QMainWindow):
             create_table(self.cursor, self.table_name)
             description = self.description_line_edit.text()
             category = self.category_combo_box.currentText()
-            price = float(self.price_line_edit.text())
+            price = float(f"{self.price_line_edit.text()}.{self.price_decimal_line_edit.text()}")
+            price = round(price, 2)
             date = f"{self.year_line_edit.text()}-{self.month_line_edit.text()}-{self.day_line_edit.text()}"
 
             insert_entry(self.cursor, self.table_name, description, category, price, date)
@@ -155,6 +170,12 @@ class MainWindow(QMainWindow):
                 self.expenses_table.setRowCount(0)
         except Exception as e:
             print(f"Something went wrong during filling the table : {e}")
+
+    def delete_selected(self):
+        # TODO - get column and keyword text
+        column = self.expenses_table.currentColumn()
+        keyword = self.expenses_table.currentItem()
+        print(f"{column}, {keyword}")
 
     def delete_all(self):
         try:
