@@ -1,3 +1,5 @@
+# TODO - make the resource path function
+
 import datetime
 
 from PyQt5.QtCore import Qt
@@ -188,7 +190,7 @@ class MainWindow(QMainWindow):
                         delete_entry(self.cursor, self.table_name, column_text, cell_text)
                     elif column_text == "id":
                         if cell_text.isdigit():
-                            cell_text == int(cell_text)
+                            cell_text = int(cell_text)
                             delete_entry(self.cursor, self.table_name, column_text, cell_text)
                         else:
                             print(f"The selected value : {cell_text} is not a digit")
