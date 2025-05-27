@@ -1,6 +1,7 @@
 # TODO - make the resource path function
 
 import datetime
+import sys
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication
@@ -36,7 +37,7 @@ class MainWindow(QMainWindow):
         self.h_box_price = QHBoxLayout()
 
         # Database
-        self.db_connection = create_connection("Databases\\main.db")
+        self.db_connection = create_connection(self.resource_path("Databases\\main.db"))
         self.table_name = "expenses"
         self.cursor = self.db_connection.cursor()
         create_table(self.cursor, self.table_name)
@@ -220,3 +221,9 @@ class MainWindow(QMainWindow):
             self.fill_table()
         except Exception as e:
             print(f"Something went wrong deleting table : {e}")
+
+    def resource_path(self, relative_path):
+        if hasattr(sys, "_MEIPASS"):
+            return os.path.join(sys._MEIPASS, relative_path) # In case of exe return the absolute path
+        else:
+            return os.path.join(os.path.abspath("."), relative_path) # In case of IDE return the relative path
