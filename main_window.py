@@ -22,6 +22,7 @@ class MainWindow(QMainWindow):
         self.monitor = QGuiApplication.primaryScreen().geometry()
         self.main_instance: Main = main_instance
         self.today_date = datetime.date.today()
+        self.log_file = self.resource_path("log.txt")
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
@@ -30,9 +31,10 @@ class MainWindow(QMainWindow):
         # Layout
         self.v_box_main = QVBoxLayout()
         self.h_box_upper = QHBoxLayout()
-        self.v_box_upper_left = QVBoxLayout()
-        self.v_box_upper_middle = QVBoxLayout()
-        self.v_box_upper_right = QVBoxLayout()
+        self.v_box_upper_1 = QVBoxLayout()
+        self.v_box_upper_2 = QVBoxLayout()
+        self.v_box_upper_3 = QVBoxLayout()
+        self.v_box_upper_4 = QVBoxLayout()
         self.h_box_date = QHBoxLayout()
         self.h_box_price = QHBoxLayout()
 
@@ -46,6 +48,7 @@ class MainWindow(QMainWindow):
         self.add_button = QPushButton("Add")
         self.delete_selected_button = QPushButton("Delete selected")
         self.delete_all_button = QPushButton("Delete all")
+        self.refresh_button = QPushButton("Refresh")
 
         # Labels
         self.description_label = QLabel("Description")
@@ -87,21 +90,23 @@ class MainWindow(QMainWindow):
         self.h_box_price.addWidget(self.price_decimal_label, alignment = Qt.AlignLeft)
         self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
         self.h_box_price.addStretch()
-        self.v_box_upper_left.addWidget(self.description_label)
-        self.v_box_upper_left.addWidget(self.category_label)
-        self.v_box_upper_left.addWidget(self.price_label)
-        self.v_box_upper_left.addWidget(self.date_label)
-        self.v_box_upper_middle.addWidget(self.description_line_edit)
-        self.v_box_upper_middle.addWidget(self.category_combo_box, alignment = Qt.AlignLeft)
-        self.v_box_upper_middle.addLayout(self.h_box_price)
-        self.v_box_upper_middle.addLayout(self.h_box_date)
-        self.v_box_upper_right.addWidget(self.add_button)
-        self.v_box_upper_right.addWidget(self.delete_selected_button)
-        self.v_box_upper_right.addWidget(self.delete_all_button)
+        self.v_box_upper_1.addWidget(self.description_label)
+        self.v_box_upper_1.addWidget(self.category_label)
+        self.v_box_upper_1.addWidget(self.price_label)
+        self.v_box_upper_1.addWidget(self.date_label)
+        self.v_box_upper_2.addWidget(self.description_line_edit)
+        self.v_box_upper_2.addWidget(self.category_combo_box, alignment = Qt.AlignLeft)
+        self.v_box_upper_2.addLayout(self.h_box_price)
+        self.v_box_upper_2.addLayout(self.h_box_date)
+        self.v_box_upper_3.addWidget(self.add_button)
+        self.v_box_upper_3.addWidget(self.delete_selected_button)
+        self.v_box_upper_3.addWidget(self.delete_all_button)
+        self.v_box_upper_4.addWidget(self.refresh_button)
 
-        self.h_box_upper.addLayout(self.v_box_upper_left)
-        self.h_box_upper.addLayout(self.v_box_upper_middle)
-        self.h_box_upper.addLayout(self.v_box_upper_right)
+        self.h_box_upper.addLayout(self.v_box_upper_1)
+        self.h_box_upper.addLayout(self.v_box_upper_2)
+        self.h_box_upper.addLayout(self.v_box_upper_3)
+        self.h_box_upper.addLayout(self.v_box_upper_4)
 
         self.v_box_main.addLayout(self.h_box_upper)
         self.v_box_main.addWidget(self.expenses_table)
@@ -111,6 +116,7 @@ class MainWindow(QMainWindow):
         self.add_button.clicked.connect(self.add_entry)
         self.delete_selected_button.clicked.connect(self.delete_selected)
         self.delete_all_button.clicked.connect(self.delete_all)
+        self.refresh_button.clicked.connect(self.refresh)
 
         # Buttons, labels and other
         self.setWindowTitle("Simple expense manager by Peter Szepesi")
@@ -159,6 +165,7 @@ class MainWindow(QMainWindow):
             print(f"Something went wrong during adding entry : {e}")
 
     def fill_table(self):
+        print("Filling table")
         try:
             rows = show_all(self.cursor, self.table_name)
             if rows:
@@ -207,8 +214,16 @@ class MainWindow(QMainWindow):
         except Exception as e:
             print(f"Something went wrong deleting table : {e}")
 
+    def refresh(self):
+        self.fill_table()
+
+    # Resource path
     def resource_path(self, relative_path):
         if hasattr(sys, "_MEIPASS"):
             return os.path.join(sys._MEIPASS, relative_path) # In case of exe return the absolute path
         else:
             return os.path.join(os.path.abspath("."), relative_path) # In case of IDE return the relative path
+
+    def write_log(self, text):
+        # TODO - make the write_log function
+        current_date = datetime.date.today()
