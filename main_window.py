@@ -183,25 +183,10 @@ class MainWindow(QMainWindow):
                     selected_cell = selected_column_data[i]
                     row = selected_cell.row()
                     column = selected_cell.column()
-
-                    cell_text = selected_cell.text()
-                    column_text = self.expenses_table.horizontalHeaderItem(column).text().lower()
-
-                    if column_text == "description" or column_text == "category" or column_text == "date":
-                        delete_entry(self.cursor, self.table_name, column_text, cell_text)
-                    elif column_text == "id":
-                        if cell_text.isdigit():
-                            cell_text = int(cell_text)
-                            delete_entry(self.cursor, self.table_name, column_text, cell_text)
-                        else:
-                            print(f"The selected value : {cell_text} is not a digit")
-                    elif column_text == "price":
-                        try:
-                            cell_text = float(cell_text)
-                            delete_entry(self.cursor, self.table_name, column_text, cell_text)
-                        except Exception as e:
-                            print(f"Something went wrong during deleteing entry and converting price to float : {e}")
-
+                    selected_cell_id = self.expenses_table.item(row, 0).text()
+                    if selected_cell_id.isdigit():
+                        selected_cell_id = int(selected_cell_id)
+                        delete_entry(self.cursor, self.table_name, "id", selected_cell_id)
             else:
                 print("There is nothing selected")
         except Exception as e:
