@@ -1,12 +1,12 @@
-# TODO - make the resource path function
 
 import datetime
+import os.path
 import sys
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
-    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView
+    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame
 
 from main_database import *
 
@@ -22,7 +22,11 @@ class MainWindow(QMainWindow):
         self.monitor = QGuiApplication.primaryScreen().geometry()
         self.main_instance: Main = main_instance
         self.today_date = datetime.date.today()
-        self.log_file = self.resource_path("log.txt")
+        get_main_instance(self)
+        current_date = datetime.date.today()
+        current_time = datetime.datetime.now().strftime("%H:%M:%S")
+        self.log_file = self.create_file_dir("Log\\log.txt")
+        self.write_log(f"\n{current_date}, {current_time}")
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
@@ -37,6 +41,8 @@ class MainWindow(QMainWindow):
         self.v_box_upper_4 = QVBoxLayout()
         self.h_box_date = QHBoxLayout()
         self.h_box_price = QHBoxLayout()
+        self.h_box_filter = QHBoxLayout()
+        self.separator = QFrame()
 
         # Database
         self.db_connection = create_connection(self.resource_path("Databases\\main.db"))
@@ -49,6 +55,7 @@ class MainWindow(QMainWindow):
         self.delete_selected_button = QPushButton("Delete selected")
         self.delete_all_button = QPushButton("Delete all")
         self.refresh_button = QPushButton("Refresh")
+        self.filter_button = QPushButton("Filter")
 
         # Labels
         self.description_label = QLabel("Description")
@@ -57,6 +64,7 @@ class MainWindow(QMainWindow):
         self.date_label = QLabel("Date")
         self.price_decimal_label = QLabel(".")
         self.date_format_label = QLabel("YYYY - MM - DD")
+        self.filter_label = QLabel("Filter by : ")
 
         # Line edits and combo boxes
         self.description_line_edit = QLineEdit()
@@ -66,6 +74,7 @@ class MainWindow(QMainWindow):
         self.year_line_edit = QLineEdit()
         self.month_line_edit = QLineEdit()
         self.day_line_edit = QLineEdit()
+        self.filter_by_combo_box = QComboBox()
 
         # Other
         self.expenses_table = QTableWidget()
@@ -81,6 +90,9 @@ class MainWindow(QMainWindow):
 
         #Layout
         self.setCentralWidget(self.central_widget)
+        self.separator.setFrameShape(QFrame.HLine)
+        self.separator.setFrameShadow(QFrame.Sunken)
+        self.separator.setLineWidth(2)
         self.h_box_date.addWidget(self.year_line_edit)
         self.h_box_date.addWidget(self.month_line_edit)
         self.h_box_date.addWidget(self.day_line_edit)
@@ -90,6 +102,9 @@ class MainWindow(QMainWindow):
         self.h_box_price.addWidget(self.price_decimal_label, alignment = Qt.AlignLeft)
         self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
         self.h_box_price.addStretch()
+        self.h_box_filter.addWidget(self.filter_label)
+        self.h_box_filter.addWidget(self.filter_by_combo_box)
+        self.h_box_filter.addWidget(self.filter_button)
         self.v_box_upper_1.addWidget(self.description_label)
         self.v_box_upper_1.addWidget(self.category_label)
         self.v_box_upper_1.addWidget(self.price_label)
@@ -109,6 +124,8 @@ class MainWindow(QMainWindow):
         self.h_box_upper.addLayout(self.v_box_upper_4)
 
         self.v_box_main.addLayout(self.h_box_upper)
+        self.v_box_main.addWidget(self.separator)
+        self.v_box_main.addLayout(self.h_box_filter)
         self.v_box_main.addWidget(self.expenses_table)
         self.central_widget.setLayout(self.v_box_main)
 
@@ -136,6 +153,7 @@ class MainWindow(QMainWindow):
         self.expenses_table.verticalHeader().setVisible(False)
         self.fill_table()
         self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.filter_by_combo_box.addItems(["ID", "Category", "Price", "Date"])
 
     def center_window(self):
         window_width = self.width()
@@ -156,17 +174,18 @@ class MainWindow(QMainWindow):
             category = self.category_combo_box.currentText()
             price = float(f"{self.price_line_edit.text()}.{self.price_decimal_line_edit.text()}")
             price = round(price, 2)
-            date = f"{self.year_line_edit.text()}-{self.month_line_edit.text()}-{self.day_line_edit.text()}"
+            date = f"{self.year_line_edit.text()}-{int(self.month_line_edit.text()):02}-{int(self.day_line_edit.text()):02}"
 
             insert_entry(self.cursor, self.table_name, description, category, price, date)
             self.db_connection.commit()
             self.fill_table()
         except Exception as e:
-            print(f"Something went wrong during adding entry : {e}")
+            self.write_log(f"Something went wrong during adding entry : {e}")
 
     def fill_table(self):
-        print("Filling table")
         try:
+            self.write_log(f"Filling table")
+            create_table(self.cursor, self.table_name)
             rows = show_all(self.cursor, self.table_name)
             if rows:
                 self.expenses_table.setRowCount(len(rows))
@@ -179,7 +198,7 @@ class MainWindow(QMainWindow):
             else:
                 self.expenses_table.setRowCount(0)
         except Exception as e:
-            print(f"Something went wrong during filling the table : {e}")
+            self.write_log(f"Something went wrong during filling the table : {e}")
 
     def delete_selected(self):
 
@@ -195,15 +214,15 @@ class MainWindow(QMainWindow):
                         selected_cell_id = int(selected_cell_id)
                         delete_entry(self.cursor, self.table_name, "id", selected_cell_id)
             else:
-                print("There is nothing selected")
+                self.write_log("There is nothing selected")
         except Exception as e:
-            print(f"Something went wrong deleting selected items : {e}")
+            self.write_log(f"Something went wrong deleting selected items : {e}")
 
         try:
             self.db_connection.commit()
             self.fill_table()
         except Exception as e:
-            print(f"Something went wrong during filling the table : {e}")
+            self.write_log(f"Something went wrong during filling the table : {e}")
 
 
     def delete_all(self):
@@ -212,7 +231,7 @@ class MainWindow(QMainWindow):
             self.db_connection.commit()
             self.fill_table()
         except Exception as e:
-            print(f"Something went wrong deleting table : {e}")
+            self.write_log(f"Something went wrong deleting table : {e}")
 
     def refresh(self):
         self.fill_table()
@@ -225,5 +244,16 @@ class MainWindow(QMainWindow):
             return os.path.join(os.path.abspath("."), relative_path) # In case of IDE return the relative path
 
     def write_log(self, text):
-        # TODO - make the write_log function
-        current_date = datetime.date.today()
+        with open(self.log_file, "a") as log_file:
+            log_file.write(text)
+            log_file.write("\n")
+
+    def create_file_dir(self, file_path):
+        try:
+            dir_name = os.path.dirname(file_path)
+            if dir_name and not os.path.exists(dir_name):
+                os.makedirs(dir_name)
+        except Exception as e:
+            print(f"Error during creating directory : {e}")
+
+        return file_path
