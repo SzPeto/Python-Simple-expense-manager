@@ -6,7 +6,7 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
-    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame
+    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy
 
 from main_database import *
 
@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
         current_date = datetime.date.today()
         current_time = datetime.datetime.now().strftime("%H:%M:%S")
         self.log_file = self.create_file_dir("Log\\log.txt")
-        self.write_log(f"\n{current_date}, {current_time}")
+        self.write_log_init()
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
@@ -75,6 +75,8 @@ class MainWindow(QMainWindow):
         self.month_line_edit = QLineEdit()
         self.day_line_edit = QLineEdit()
         self.filter_by_combo_box = QComboBox()
+        self.filter_category_combo_box = QComboBox()
+        self.filter_line_edit = QLineEdit()
 
         # Other
         self.expenses_table = QTableWidget()
@@ -104,6 +106,7 @@ class MainWindow(QMainWindow):
         self.h_box_price.addStretch()
         self.h_box_filter.addWidget(self.filter_label)
         self.h_box_filter.addWidget(self.filter_by_combo_box)
+        self.h_box_filter.addWidget(self.filter_line_edit)
         self.h_box_filter.addWidget(self.filter_button)
         self.v_box_upper_1.addWidget(self.description_label)
         self.v_box_upper_1.addWidget(self.category_label)
@@ -134,8 +137,10 @@ class MainWindow(QMainWindow):
         self.delete_selected_button.clicked.connect(self.delete_selected)
         self.delete_all_button.clicked.connect(self.delete_all)
         self.refresh_button.clicked.connect(self.refresh)
+        self.filter_by_combo_box.currentIndexChanged.connect(self.change_filter)
 
         # Buttons, labels and other
+        self.filter_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         self.setWindowTitle("Simple expense manager by Peter Szepesi")
         self.year_line_edit.setText(str(self.today_date.year))
         self.month_line_edit.setText(str(f"{self.today_date.month:02}"))
@@ -148,12 +153,20 @@ class MainWindow(QMainWindow):
             "Travel", "Household Supplies", "Pets", "Childcare", "Savings",
             "Debt Payments", "Personal Care", "Fitness", "Miscellaneous"
         ])
+        self.filter_category_combo_box.addItems([
+            "Groceries", "Utilities", "Rent", "Transportation", "Gas",
+            "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
+            "Subscriptions", "Phone", "Internet", "Education", "Gifts",
+            "Travel", "Household Supplies", "Pets", "Childcare", "Savings",
+            "Debt Payments", "Personal Care", "Fitness", "Miscellaneous"
+        ])
         self.expenses_table.setColumnCount(5)
         self.expenses_table.setHorizontalHeaderLabels(["ID", "Description", "Category", "Price", "Date"])
         self.expenses_table.verticalHeader().setVisible(False)
         self.fill_table()
         self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.filter_by_combo_box.addItems(["ID", "Category", "Price", "Date"])
+        self.filter_line_edit.setPlaceholderText("Enter ID")
 
     def center_window(self):
         window_width = self.width()
@@ -181,6 +194,18 @@ class MainWindow(QMainWindow):
             self.fill_table()
         except Exception as e:
             self.write_log(f"Something went wrong during adding entry : {e}")
+
+    def change_filter(self):
+        filter_text = self.filter_by_combo_box.currentText().lower()
+        if filter_text == "id":
+            self.filter_line_edit.setPlaceholderText("Enter ID")
+            self.replace_widget(self.h_box_filter, 2, self.filter_line_edit)
+        elif filter_text == "category":
+            self.replace_widget(self.h_box_filter, 2, self.filter_category_combo_box)
+        elif filter_text == "price":
+            pass
+        elif filter_text == "date":
+            pass
 
     def fill_table(self):
         try:
@@ -243,9 +268,17 @@ class MainWindow(QMainWindow):
         else:
             return os.path.join(os.path.abspath("."), relative_path) # In case of IDE return the relative path
 
+    def write_log_init(self):
+        with open(self.log_file, "a", encoding = "utf-8") as log_file:
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
+            log_file.write("\n")
+            log_file.write(f"{timestamp} *****************************************************************************")
+            log_file.write("\n")
+
     def write_log(self, text):
-        with open(self.log_file, "a") as log_file:
-            log_file.write(text)
+        with open(self.log_file, "a", encoding = "utf-8") as log_file:
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S - ")
+            log_file.write(f"{timestamp}{text}")
             log_file.write("\n")
 
     def create_file_dir(self, file_path):
@@ -257,3 +290,34 @@ class MainWindow(QMainWindow):
             print(f"Error during creating directory : {e}")
 
         return file_path
+
+    # Replacing widgets and layouts during runtime
+    def replace_widget(self, layout, index, new_widget):
+        item = layout.itemAt(index)
+        if item is None:
+            self.write_log(f"There is no such widget at index : {index} in layout : {layout}")
+            return
+
+        old_widget = item.widget()
+        if old_widget is not None:
+            old_widget.setParent(None) # Remove old widget
+
+        layout.insertWidget(index, new_widget, alignment = Qt.AlignLeft)
+
+    def replace_layout(self, layout, index, new_layout):
+        item = layout.itemAt(index)
+        if item is None:
+            self.write_log(f"There is no such layout at index : {index} in layout : {layout}")
+            return
+
+        old_layout = item.layout()
+        if old_layout is not None:
+            self.remove_layout(old_layout)
+            layout.removeItem(item)
+
+        layout.insertLayout(index, new_layout, alignment=Qt.AlignLeft)
+
+    def remove_layout(self, layout):
+        # TODO - Make remove layout function
+        while layout.count():
+            item = layout.takeAt(0)

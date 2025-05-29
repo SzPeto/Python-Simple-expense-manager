@@ -1,0 +1,7 @@
+
+2025-05-28, 21:48:11
+Directory C:\Users\szjan\AppData\Local\Temp\_MEI152362\Databases succesfully created
+Database connection : C:\Users\szjan\AppData\Local\Temp\_MEI152362\Databases\main.db established
+Table expenses created
+Filling table
+Table expenses created
