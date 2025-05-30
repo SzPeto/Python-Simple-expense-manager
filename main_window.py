@@ -4,9 +4,9 @@ import os.path
 import sys
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QGuiApplication
+from PyQt5.QtGui import QGuiApplication, QIntValidator
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
-    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy, QStackedLayout
+    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy, QStackedLayout, QMessageBox
 
 from main_database import *
 
@@ -27,6 +27,17 @@ class MainWindow(QMainWindow):
         current_time = datetime.datetime.now().strftime("%H:%M:%S")
         self.log_file = self.create_file_dir("Log\\log.txt")
         self.write_log_init()
+        self.categories = [
+            "Groceries", "Utilities", "Rent", "Transportation", "Gas",
+            "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
+            "Subscriptions", "Phone", "Internet", "Education", "Gifts",
+            "Travel", "Household Supplies", "Pets", "Childcare", "Savings",
+            "Debt Payments", "Personal Care", "Fitness", "Miscellaneous"
+        ]
+        self.int_validator = QIntValidator(-2147483648, 2147483647)
+        self.int_day_validator = QIntValidator(1, 31)
+        self.int_month_validator = QIntValidator(1, 12)
+        self.int_year_validator = QIntValidator(1, 8888)
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
@@ -63,7 +74,7 @@ class MainWindow(QMainWindow):
         self.add_button = QPushButton("Add")
         self.delete_selected_button = QPushButton("Delete selected")
         self.delete_all_button = QPushButton("Delete all")
-        self.refresh_button = QPushButton("Refresh")
+        self.refresh_button = QPushButton("Show all")
         self.filter_button = QPushButton("Filter")
 
         # Labels
@@ -88,7 +99,8 @@ class MainWindow(QMainWindow):
         self.day_line_edit = QLineEdit()
         self.filter_by_combo_box = QComboBox()
         self.filter_category_combo_box = QComboBox()
-        self.filter_line_edit_id = QLineEdit()
+        self.filter_line_edit_id_from = QLineEdit()
+        self.filter_line_edit_id_to = QLineEdit()
         self.filter_price_from = QLineEdit()
         self.filter_price_to = QLineEdit()
         self.filter_date_day_from = QLineEdit()
@@ -137,7 +149,8 @@ class MainWindow(QMainWindow):
         self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
         self.h_box_price.addStretch()
             # Constructing the changing filter hbox
-        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id)
+        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_from)
+        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_to)
         self.h_box_filter_changing_category.addWidget(self.filter_category_combo_box)
         self.h_box_filter_changing_price.addWidget(self.filter_price_from)
         self.h_box_filter_changing_price.addWidget(self.filter_dash_label)
@@ -186,6 +199,7 @@ class MainWindow(QMainWindow):
         self.delete_all_button.clicked.connect(self.delete_all)
         self.refresh_button.clicked.connect(self.refresh)
         self.filter_by_combo_box.currentIndexChanged.connect(self.change_filter)
+        self.filter_button.clicked.connect(self.filter_selected)
 
         # Buttons, labels and other
         self.filter_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
@@ -202,27 +216,30 @@ class MainWindow(QMainWindow):
         self.filter_date_day_to.setPlaceholderText("DD")
         self.filter_date_month_to.setPlaceholderText("MM")
         self.filter_date_year_to.setPlaceholderText("YYYY")
-        self.category_combo_box.addItems([
-            "Groceries", "Utilities", "Rent", "Transportation", "Gas",
-            "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
-            "Subscriptions", "Phone", "Internet", "Education", "Gifts",
-            "Travel", "Household Supplies", "Pets", "Childcare", "Savings",
-            "Debt Payments", "Personal Care", "Fitness", "Miscellaneous"
-        ])
-        self.filter_category_combo_box.addItems([
-            "Groceries", "Utilities", "Rent", "Transportation", "Gas",
-            "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
-            "Subscriptions", "Phone", "Internet", "Education", "Gifts",
-            "Travel", "Household Supplies", "Pets", "Childcare", "Savings",
-            "Debt Payments", "Personal Care", "Fitness", "Miscellaneous"
-        ])
+        self.category_combo_box.addItems(self.categories)
+        self.filter_category_combo_box.addItems(self.categories)
         self.expenses_table.setColumnCount(5)
         self.expenses_table.setHorizontalHeaderLabels(["ID", "Description", "Category", "Price", "Date"])
         self.expenses_table.verticalHeader().setVisible(False)
         self.fill_table()
         self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.filter_by_combo_box.addItems(["ID", "Category", "Price", "Date"])
-        self.filter_line_edit_id.setPlaceholderText("Enter ID")
+        self.filter_line_edit_id_from.setPlaceholderText("Id FROM")
+        self.filter_line_edit_id_to.setPlaceholderText("Id TO")
+            # Setting line edit validators
+        self.filter_line_edit_id_from.setValidator(self.int_validator)
+        self.filter_line_edit_id_to.setValidator(self.int_validator)
+        self.day_line_edit.setValidator(self.int_day_validator)
+        self.month_line_edit.setValidator(self.int_month_validator)
+        self.year_line_edit.setValidator(self.int_year_validator)
+        self.price_line_edit.setValidator(self.int_validator)
+        self.price_decimal_line_edit.setValidator(self.int_validator)
+        self.filter_date_day_from.setValidator(self.int_day_validator)
+        self.filter_date_month_from.setValidator(self.int_month_validator)
+        self.filter_date_year_from.setValidator(self.int_year_validator)
+        self.filter_date_day_to.setValidator(self.int_day_validator)
+        self.filter_date_month_to.setValidator(self.int_month_validator)
+        self.filter_date_year_to.setValidator(self.int_year_validator)
 
     def center_window(self):
         window_width = self.width()
@@ -237,7 +254,6 @@ class MainWindow(QMainWindow):
     def add_entry(self):
 
         try:
-            # TODO - Make exception handling, add month and day formatting - :02
             create_table(self.cursor, self.table_name)
             description = self.description_line_edit.text()
             category = self.category_combo_box.currentText()
@@ -262,9 +278,70 @@ class MainWindow(QMainWindow):
         elif filter_text == "date":
             self.stack_filter_changing.setCurrentIndex(3)
 
+    def filter_selected(self):
+        index = self.stack_filter_changing.currentIndex()
+        if index == 0:
+            try:
+                id_from = int(self.filter_line_edit_id_from.text())
+                id_to = int(self.filter_line_edit_id_to.text())
+                if not id_from or not id_to:
+                    self.print_warning_message("Empty field", "Please fill the values!")
+                rows = search_based_on_condition(
+                    self.cursor, self.table_name, f"id >= {id_from} and id <= {id_to}"
+                )
+                self.fill_table_selected(rows)
+            except Exception as e:
+                self.write_log(f"def filter_selected : {e}")
+                self.print_warning_message("Empty", "No results to show, please enter a valid input!")
+
+        elif index == 1:
+            try:
+                category = self.filter_category_combo_box.currentText()
+                rows = search_based_on_condition(
+                    self.cursor, self.table_name, f"category = '{category}'"
+                )
+                self.fill_table_selected(rows)
+            except Exception as e:
+                self.write_log(f"def filter_selected : {e}")
+                self.print_warning_message("Invalid input", f"Something went wrong, (error : {e})")
+        elif index == 2:
+            try:
+                price_from = float(self.filter_price_from.text())
+                price_to = float(self.filter_price_to.text())
+                if not price_from or not price_to:
+                    self.print_warning_message("Empty field", "Please fill the values!")
+                rows = search_based_on_condition(
+                    self.cursor, self.table_name,
+                    f"price >= {price_from} and price <= {price_to}"
+                )
+                self.fill_table_selected(rows)
+            except Exception as e:
+                self.print_warning_message("Empty", "No results to show, please enter a valid input!")
+                self.write_log(f"def filter_selected : exception : {e}")
+        elif index == 3:
+            try:
+                day_from = int(self.filter_date_day_from.text())
+                month_from = int(self.filter_date_month_from.text())
+                year_from = int(self.filter_date_year_from.text())
+                day_to = int(self.filter_date_day_to.text())
+                month_to = int(self.filter_date_month_to.text())
+                year_to = int(self.filter_date_year_to.text())
+                date_from = f"'{year_from}-{month_from:02}-{day_from:02}'"
+                date_to = f"'{year_to}-{month_to:02}-{day_to:02}'"
+                if year_from < 1985 or year_to < 1985:
+                    self.print_warning_message("Wrong year", "Please enter a valid year!")
+                    return
+                rows = search_based_on_condition(
+                    self.cursor, self.table_name,
+                    f"date >= {date_from} and date <= {date_to}"
+                )
+                self.fill_table_selected(rows)
+            except Exception as e:
+                self.print_warning_message("Empty", "No results to show, please enter a valid input!")
+                self.write_log(f"def filter_selected : exception : {e}")
+
     def fill_table(self):
         try:
-            self.write_log(f"Filling table")
             create_table(self.cursor, self.table_name)
             rows = show_all(self.cursor, self.table_name)
             if rows:
@@ -278,7 +355,23 @@ class MainWindow(QMainWindow):
             else:
                 self.expenses_table.setRowCount(0)
         except Exception as e:
-            self.write_log(f"Something went wrong during filling the table : {e}")
+            self.write_log(f"def fill_table : something went wrong during filling the table : {e}")
+
+    def fill_table_selected(self, rows):
+        try:
+            if rows:
+                self.expenses_table.setRowCount(len(rows))
+                for row_index in range(0, len(rows)):
+                    row = rows[row_index]
+                    for column_index in range(0, len(row)):
+                        column = row[column_index]
+                        cell = QTableWidgetItem(str(column))
+                        self.expenses_table.setItem(row_index, column_index, cell)
+            else:
+                self.expenses_table.setRowCount(0)
+                self.print_warning_message("Empty", "No results to show!")
+        except Exception as e:
+            self.write_log(f"def fill_table_selected : something went wrong during filling the table : {e}")
 
     def delete_selected(self):
 
@@ -382,3 +475,10 @@ class MainWindow(QMainWindow):
                 widget.setParent(None)
             if child_layout is not None:
                 self.remove_layout(child_layout)
+
+    # Print warning
+    def print_warning_message(self, title, text):
+        try:
+            QMessageBox.warning(self, title, text)
+        except Exception as e:
+            self.write_log(f"def print_warning_message exception : {e}")

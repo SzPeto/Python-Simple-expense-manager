@@ -210,3 +210,423 @@
 2025-05-30, 14:28:11 - Table expenses created
 2025-05-30, 14:28:12 - Filling table
 2025-05-30, 14:28:12 - Table expenses created
+
+2025-05-30, 14:56:48 *****************************************************************************
+2025-05-30, 14:56:48 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:56:48 - Table expenses created
+2025-05-30, 14:56:50 - Filling table
+2025-05-30, 14:56:50 - Table expenses created
+
+2025-05-30, 14:57:06 *****************************************************************************
+2025-05-30, 14:57:06 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:57:06 - Table expenses created
+2025-05-30, 14:57:07 - Filling table
+2025-05-30, 14:57:07 - Table expenses created
+
+2025-05-30, 15:10:46 *****************************************************************************
+2025-05-30, 15:10:46 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:10:46 - Table expenses created
+2025-05-30, 15:10:48 - Filling table
+2025-05-30, 15:10:48 - Table expenses created
+
+2025-05-30, 15:13:58 *****************************************************************************
+2025-05-30, 15:13:58 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:13:58 - Table expenses created
+2025-05-30, 15:13:58 - Filling table
+2025-05-30, 15:13:58 - Table expenses created
+
+2025-05-30, 15:15:46 *****************************************************************************
+2025-05-30, 15:15:46 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:15:46 - Table expenses created
+2025-05-30, 15:15:47 - Filling table
+2025-05-30, 15:15:47 - Table expenses created
+
+2025-05-30, 15:26:09 *****************************************************************************
+2025-05-30, 15:26:09 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:26:09 - Table expenses created
+2025-05-30, 15:26:11 - Filling table
+2025-05-30, 15:26:11 - Table expenses created
+
+2025-05-30, 15:30:59 *****************************************************************************
+2025-05-30, 15:30:59 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:30:59 - Table expenses created
+2025-05-30, 15:31:00 - Filling table
+2025-05-30, 15:31:00 - Table expenses created
+
+2025-05-30, 15:31:36 *****************************************************************************
+2025-05-30, 15:31:36 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:31:36 - Table expenses created
+2025-05-30, 15:31:36 - Filling table
+2025-05-30, 15:31:36 - Table expenses created
+2025-05-30, 15:31:39 - Table expenses created
+2025-05-30, 15:31:39 - Entries inserted : , Groceries, 0.0, 2025-05-30
+2025-05-30, 15:31:39 - Filling table
+2025-05-30, 15:31:39 - Table expenses created
+
+2025-05-30, 15:32:10 *****************************************************************************
+2025-05-30, 15:32:10 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:32:10 - Table expenses created
+2025-05-30, 15:32:11 - Filling table
+2025-05-30, 15:32:11 - Table expenses created
+
+2025-05-30, 15:33:13 *****************************************************************************
+2025-05-30, 15:33:13 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:33:13 - Table expenses created
+2025-05-30, 15:33:14 - Filling table
+2025-05-30, 15:33:14 - Table expenses created
+
+2025-05-30, 15:34:00 *****************************************************************************
+2025-05-30, 15:34:00 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:34:00 - Table expenses created
+2025-05-30, 15:34:01 - Filling table
+2025-05-30, 15:34:01 - Table expenses created
+
+2025-05-30, 15:36:54 *****************************************************************************
+2025-05-30, 15:36:54 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:36:54 - Table expenses created
+2025-05-30, 15:36:55 - Filling table
+2025-05-30, 15:36:55 - Table expenses created
+
+2025-05-30, 15:40:57 *****************************************************************************
+2025-05-30, 15:40:57 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:40:57 - Table expenses created
+2025-05-30, 15:40:58 - Filling table
+2025-05-30, 15:40:58 - Table expenses created
+
+2025-05-30, 15:41:55 *****************************************************************************
+2025-05-30, 15:41:55 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:41:55 - Table expenses created
+2025-05-30, 15:41:56 - Filling table
+2025-05-30, 15:41:56 - Table expenses created
+
+2025-05-30, 15:45:55 *****************************************************************************
+2025-05-30, 15:45:55 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:45:55 - Table expenses created
+2025-05-30, 15:45:56 - Filling table
+2025-05-30, 15:45:56 - Table expenses created
+
+2025-05-30, 15:46:53 *****************************************************************************
+2025-05-30, 15:46:53 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:46:53 - Table expenses created
+2025-05-30, 15:46:54 - Filling table
+2025-05-30, 15:46:54 - Table expenses created
+
+2025-05-30, 15:48:54 *****************************************************************************
+2025-05-30, 15:48:54 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:48:54 - Table expenses created
+2025-05-30, 15:48:56 - Filling table
+2025-05-30, 15:48:56 - Table expenses created
+2025-05-30, 15:48:57 - def print_warning_message exception : warning(parent: Optional[QWidget], title: Optional[str], text: Optional[str], buttons: Union[QMessageBox.StandardButtons, QMessageBox.StandardButton] = QMessageBox.Ok, defaultButton: QMessageBox.StandardButton = QMessageBox.NoButton): argument 4 has unexpected type 'str'
+2025-05-30, 15:49:03 - def print_warning_message exception : warning(parent: Optional[QWidget], title: Optional[str], text: Optional[str], buttons: Union[QMessageBox.StandardButtons, QMessageBox.StandardButton] = QMessageBox.Ok, defaultButton: QMessageBox.StandardButton = QMessageBox.NoButton): argument 4 has unexpected type 'str'
+
+2025-05-30, 15:49:36 *****************************************************************************
+2025-05-30, 15:49:36 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 15:49:36 - Table expenses created
+2025-05-30, 15:49:37 - Filling table
+2025-05-30, 15:49:37 - Table expenses created
+
+2025-05-30, 16:04:27 *****************************************************************************
+2025-05-30, 16:04:27 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:04:27 - Table expenses created
+2025-05-30, 16:04:28 - Filling table
+2025-05-30, 16:04:28 - Table expenses created
+2025-05-30, 16:04:34 - Table expenses created
+2025-05-30, 16:04:34 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:34 - Filling table
+2025-05-30, 16:04:34 - Table expenses created
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:37 - Filling table
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:37 - Filling table
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:37 - Filling table
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:37 - Filling table
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:37 - Filling table
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:37 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:37 - Filling table
+2025-05-30, 16:04:37 - Table expenses created
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:38 - Filling table
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:38 - Filling table
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:38 - Filling table
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:38 - Filling table
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:38 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:38 - Filling table
+2025-05-30, 16:04:38 - Table expenses created
+2025-05-30, 16:04:39 - Table expenses created
+2025-05-30, 16:04:39 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:39 - Filling table
+2025-05-30, 16:04:39 - Table expenses created
+2025-05-30, 16:04:39 - Table expenses created
+2025-05-30, 16:04:39 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:39 - Filling table
+2025-05-30, 16:04:39 - Table expenses created
+2025-05-30, 16:04:39 - Table expenses created
+2025-05-30, 16:04:39 - Entries inserted : dfg, Groceries, 11.0, 2025-05-30
+2025-05-30, 16:04:39 - Filling table
+2025-05-30, 16:04:39 - Table expenses created
+2025-05-30, 16:04:45 - Table expenses created
+2025-05-30, 16:04:54 - Table expenses created
+2025-05-30, 16:05:02 - Filling table
+2025-05-30, 16:05:02 - Table expenses created
+2025-05-30, 16:05:13 - Table expenses created
+2025-05-30, 16:05:20 - Filling table
+2025-05-30, 16:05:20 - Table expenses created
+2025-05-30, 16:05:25 - Table expenses was deleted
+2025-05-30, 16:05:25 - Filling table
+2025-05-30, 16:05:25 - Table expenses created
+2025-05-30, 16:05:26 - Table expenses created
+
+2025-05-30, 16:07:11 *****************************************************************************
+2025-05-30, 16:07:11 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:07:11 - Table expenses created
+2025-05-30, 16:07:12 - Filling table
+2025-05-30, 16:07:12 - Table expenses created
+2025-05-30, 16:07:15 - Table expenses created
+
+2025-05-30, 16:07:35 *****************************************************************************
+2025-05-30, 16:07:35 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:07:35 - Table expenses created
+2025-05-30, 16:07:36 - Filling table
+2025-05-30, 16:07:36 - Table expenses created
+2025-05-30, 16:07:40 - Table expenses created
+
+2025-05-30, 16:09:55 *****************************************************************************
+2025-05-30, 16:09:55 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:09:55 - Table expenses created
+2025-05-30, 16:09:56 - Table expenses created
+2025-05-30, 16:10:04 - Table expenses created
+2025-05-30, 16:10:04 - Entries inserted : abc, Groceries, 11.11, 2025-05-30
+2025-05-30, 16:10:04 - Table expenses created
+2025-05-30, 16:10:11 - Table expenses created
+2025-05-30, 16:10:11 - Entries inserted : def, Groceries, 22.22, 2025-05-30
+2025-05-30, 16:10:11 - Table expenses created
+2025-05-30, 16:10:17 - Table expenses created
+2025-05-30, 16:10:17 - Entries inserted : ghi, Groceries, 33.33, 2025-05-30
+2025-05-30, 16:10:17 - Table expenses created
+2025-05-30, 16:10:25 - Table expenses created
+2025-05-30, 16:10:25 - Entries inserted : jkl, Groceries, 44.44, 2025-05-30
+2025-05-30, 16:10:25 - Table expenses created
+2025-05-30, 16:10:30 - Table expenses created
+2025-05-30, 16:10:30 - Entries inserted : mno, Groceries, 55.55, 2025-05-30
+2025-05-30, 16:10:30 - Table expenses created
+2025-05-30, 16:10:36 - Table expenses created
+2025-05-30, 16:10:36 - Entries inserted : pqr, Groceries, 66.66, 2025-05-30
+2025-05-30, 16:10:36 - Table expenses created
+2025-05-30, 16:10:42 - Table expenses created
+2025-05-30, 16:10:42 - Entries inserted : stu, Groceries, 77.77, 2025-05-30
+2025-05-30, 16:10:42 - Table expenses created
+2025-05-30, 16:10:59 - Table expenses created
+2025-05-30, 16:10:59 - Entries inserted : yz, Groceries, 12.12, 2025-05-30
+2025-05-30, 16:10:59 - Table expenses created
+2025-05-30, 16:11:09 - Table expenses created
+2025-05-30, 16:11:09 - Entries inserted : sdfg, Groceries, 23.23, 2025-05-30
+2025-05-30, 16:11:09 - Table expenses created
+2025-05-30, 16:11:27 - Table expenses created
+2025-05-30, 16:11:27 - Entries inserted : jkjh, Groceries, 34.34, 2025-05-30
+2025-05-30, 16:11:27 - Table expenses created
+2025-05-30, 16:12:36 - Table expenses created
+2025-05-30, 16:12:36 - Entries inserted : khjh, Groceries, 45.45, 2025-05-30
+2025-05-30, 16:12:36 - Table expenses created
+2025-05-30, 16:12:46 - Table expenses created
+2025-05-30, 16:12:46 - Entries inserted : sdfyg, Groceries, 56.56, 2025-05-30
+2025-05-30, 16:12:46 - Table expenses created
+2025-05-30, 16:13:55 - Table expenses created
+
+2025-05-30, 16:14:19 *****************************************************************************
+2025-05-30, 16:14:19 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:14:19 - Table expenses created
+2025-05-30, 16:14:20 - Table expenses created
+
+2025-05-30, 16:19:34 *****************************************************************************
+2025-05-30, 16:19:34 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:19:34 - Table expenses created
+2025-05-30, 16:19:36 - Table expenses created
+2025-05-30, 16:19:46 - Table expenses created
+2025-05-30, 16:19:46 - Entries inserted : sgsfgdfsg, Utilities, 42.0, 2025-05-30
+2025-05-30, 16:19:46 - Table expenses created
+2025-05-30, 16:19:53 - Table expenses created
+2025-05-30, 16:19:53 - Entries inserted : hg, Insurance, 42.0, 2025-05-30
+2025-05-30, 16:19:53 - Table expenses created
+2025-05-30, 16:20:01 - def search_based_on_condition : Something went wrong during showing based on condition : no such column: Utilities
+2025-05-30, 16:20:29 - def search_based_on_condition : Something went wrong during showing based on condition : no such column: Groceries
+2025-05-30, 16:20:33 - Table expenses created
+
+2025-05-30, 16:21:02 *****************************************************************************
+2025-05-30, 16:21:02 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:21:02 - Table expenses created
+2025-05-30, 16:21:03 - Table expenses created
+2025-05-30, 16:21:07 - def search_based_on_condition : Something went wrong during showing based on condition : no such column: Groceries
+
+2025-05-30, 16:24:15 *****************************************************************************
+2025-05-30, 16:24:15 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:24:15 - Table expenses created
+2025-05-30, 16:24:15 - Table expenses created
+
+2025-05-30, 16:25:06 *****************************************************************************
+2025-05-30, 16:25:06 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:25:06 - Table expenses created
+2025-05-30, 16:25:06 - Table expenses created
+2025-05-30, 16:25:12 - def search_based_on_condition : Something went wrong during showing based on condition : no such column: Groceries
+
+2025-05-30, 16:25:59 *****************************************************************************
+2025-05-30, 16:25:59 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:25:59 - Table expenses created
+2025-05-30, 16:26:00 - Table expenses created
+2025-05-30, 16:26:04 - def search_based_on_condition : Something went wrong during showing based on condition : no such column: Groceries
+
+2025-05-30, 16:27:46 *****************************************************************************
+2025-05-30, 16:27:46 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 16:27:46 - Table expenses created
+2025-05-30, 16:27:47 - Table expenses created
+
+2025-05-30, 18:09:30 *****************************************************************************
+2025-05-30, 18:09:30 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:09:30 - Table expenses created
+2025-05-30, 18:09:32 - Table expenses created
+2025-05-30, 18:09:43 - Table expenses created
+2025-05-30, 18:09:46 - def search_based_on_condition : Something went wrong during showing based on condition : no such column: Groceries
+
+2025-05-30, 18:12:21 *****************************************************************************
+2025-05-30, 18:12:21 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:12:21 - Table expenses created
+2025-05-30, 18:12:22 - Table expenses created
+2025-05-30, 18:12:55 - Table expenses created
+
+2025-05-30, 18:15:17 *****************************************************************************
+2025-05-30, 18:15:17 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:15:17 - Table expenses created
+2025-05-30, 18:15:18 - Table expenses created
+
+2025-05-30, 18:16:52 *****************************************************************************
+2025-05-30, 18:16:52 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:16:52 - Table expenses created
+2025-05-30, 18:16:53 - Table expenses created
+2025-05-30, 18:16:56 - def filter_selected : invalid literal for int() with base 10: 'df'
+
+2025-05-30, 18:24:50 *****************************************************************************
+2025-05-30, 18:24:50 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:24:50 - Table expenses created
+2025-05-30, 18:24:52 - Table expenses created
+2025-05-30, 18:25:04 - def filter_selected : invalid literal for int() with base 10: ''
+
+2025-05-30, 18:30:33 *****************************************************************************
+2025-05-30, 18:30:33 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:30:33 - Table expenses created
+2025-05-30, 18:30:34 - Table expenses created
+
+2025-05-30, 18:31:29 *****************************************************************************
+2025-05-30, 18:31:29 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:31:29 - Table expenses created
+2025-05-30, 18:31:29 - Table expenses created
+
+2025-05-30, 18:32:53 *****************************************************************************
+2025-05-30, 18:32:53 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 18:32:53 - Table expenses created
+2025-05-30, 18:32:53 - Table expenses created
+2025-05-30, 18:33:23 - Table expenses created
+
+2025-05-30, 19:09:12 *****************************************************************************
+2025-05-30, 19:09:12 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:09:12 - Table expenses created
+2025-05-30, 19:09:14 - Table expenses created
+
+2025-05-30, 19:18:26 *****************************************************************************
+2025-05-30, 19:18:26 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:18:26 - Table expenses created
+2025-05-30, 19:18:27 - Table expenses created
+2025-05-30, 19:18:53 - def filter_selected : exception : could not convert string to float: ''
+2025-05-30, 19:19:26 - Table expenses created
+
+2025-05-30, 19:25:18 *****************************************************************************
+2025-05-30, 19:25:18 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:25:18 - Table expenses created
+2025-05-30, 19:25:19 - Table expenses created
+
+2025-05-30, 19:26:00 *****************************************************************************
+2025-05-30, 19:26:00 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:26:00 - Table expenses created
+2025-05-30, 19:26:00 - Table expenses created
+2025-05-30, 19:26:12 - def filter_selected : invalid literal for int() with base 10: ''
+2025-05-30, 19:26:19 - def filter_selected : invalid literal for int() with base 10: ''
+2025-05-30, 19:26:33 - def filter_selected : exception : could not convert string to float: ''
+
+2025-05-30, 19:29:05 *****************************************************************************
+2025-05-30, 19:29:05 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:29:05 - Table expenses created
+2025-05-30, 19:29:06 - Table expenses created
+2025-05-30, 19:29:12 - def filter_selected : invalid literal for int() with base 10: ''
+2025-05-30, 19:29:24 - def filter_selected : exception : could not convert string to float: ''
+
+2025-05-30, 19:42:42 *****************************************************************************
+2025-05-30, 19:42:42 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:42:42 - Table expenses created
+2025-05-30, 19:42:43 - Table expenses created
+
+2025-05-30, 19:47:58 *****************************************************************************
+2025-05-30, 19:47:58 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:47:58 - Table expenses created
+2025-05-30, 19:47:59 - Table expenses created
+
+2025-05-30, 19:51:30 *****************************************************************************
+2025-05-30, 19:51:30 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:51:30 - Table expenses created
+2025-05-30, 19:51:31 - Table expenses created
+2025-05-30, 19:51:33 - Table expenses was deleted
+2025-05-30, 19:51:33 - Table expenses created
+2025-05-30, 19:51:48 - Table expenses created
+2025-05-30, 19:51:48 - Entries inserted : avfdg, Groceries, 11.0, 2025-05-10
+2025-05-30, 19:51:48 - Table expenses created
+2025-05-30, 19:52:06 - Table expenses created
+2025-05-30, 19:52:06 - Entries inserted : hhgg, Groceries, 11.0, 2025-04-10
+2025-05-30, 19:52:06 - Table expenses created
+2025-05-30, 19:52:18 - Table expenses created
+2025-05-30, 19:52:18 - Entries inserted : fghg, Groceries, 22.0, 2025-04-24
+2025-05-30, 19:52:18 - Table expenses created
+2025-05-30, 19:52:26 - Table expenses created
+2025-05-30, 19:52:26 - Entries inserted : fd, Groceries, 33.0, 2025-03-24
+2025-05-30, 19:52:26 - Table expenses created
+2025-05-30, 19:52:37 - Table expenses created
+2025-05-30, 19:52:37 - Entries inserted : fggfgh, Groceries, 44.0, 2025-02-24
+2025-05-30, 19:52:37 - Table expenses created
+2025-05-30, 19:52:46 - Table expenses created
+2025-05-30, 19:52:46 - Entries inserted : gfg, Groceries, 55.0, 2024-02-24
+2025-05-30, 19:52:46 - Table expenses created
+2025-05-30, 19:53:02 - Table expenses created
+2025-05-30, 19:53:02 - Entries inserted : gfg, Groceries, 66.0, 2025-05-26
+2025-05-30, 19:53:02 - Table expenses created
+
+2025-05-30, 19:58:45 *****************************************************************************
+2025-05-30, 19:58:45 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 19:58:45 - Table expenses created
+2025-05-30, 19:58:46 - Table expenses created
+
+2025-05-30, 20:02:02 *****************************************************************************
+2025-05-30, 20:02:02 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 20:02:02 - Table expenses created
+2025-05-30, 20:02:03 - Table expenses created

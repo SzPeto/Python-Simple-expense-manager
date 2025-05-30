@@ -109,10 +109,9 @@ def search_based_on_condition(cursor: sqlite3.Cursor, table_name, condition):
     try:
         cursor.execute(query)
         rows = cursor.fetchall()
-        for i in range(0, len(rows)):
-            print(rows[i])
+        return rows
     except Exception as e:
-        main_instance.write_log(f"Something went wrong during showing based on condition : {e}")
+        main_instance.write_log(f"def search_based_on_condition : Something went wrong during showing based on condition : {e}")
 
 def delete_entry(cursor: sqlite3.Cursor, table_name, column, keyword):
     query = f"DELETE FROM {table_name} WHERE {column} = ?"

@@ -1,7 +1,7 @@
 
-2025-05-28, 21:48:11
-Directory C:\Users\szjan\AppData\Local\Temp\_MEI152362\Databases succesfully created
-Database connection : C:\Users\szjan\AppData\Local\Temp\_MEI152362\Databases\main.db established
-Table expenses created
-Filling table
-Table expenses created
+2025-05-30, 14:37:24 *****************************************************************************
+2025-05-30, 14:37:24 - Directory C:\Users\szjan\AppData\Local\Temp\_MEI19602\Databases succesfully created
+2025-05-30, 14:37:24 - Database connection : C:\Users\szjan\AppData\Local\Temp\_MEI19602\Databases\main.db established
+2025-05-30, 14:37:24 - Table expenses created
+2025-05-30, 14:37:25 - Filling table
+2025-05-30, 14:37:25 - Table expenses created
