@@ -286,6 +286,7 @@ class MainWindow(QMainWindow):
     def filter_selected(self):
         index = self.stack_filter_changing.currentIndex()
         if index == 0:
+            # TODO - Make validation for id
             try:
                 id_from = int(self.filter_line_edit_id_from.text())
                 id_to = int(self.filter_line_edit_id_to.text())
