@@ -259,7 +259,19 @@ class MainWindow(QMainWindow):
             category = self.category_combo_box.currentText()
             price = float(f"{self.price_line_edit.text()}.{self.price_decimal_line_edit.text()}")
             price = round(price, 2)
-            date = f"{self.year_line_edit.text()}-{int(self.month_line_edit.text()):02}-{int(self.day_line_edit.text()):02}"
+            day = int(self.day_line_edit.text())
+            month = int(self.month_line_edit.text())
+            year = int(self.year_line_edit.text())
+            if year < 1985:
+                self.print_warning_message("Wrong year", "Please enter a valid year!")
+                return
+            if month < 1 or month > 12:
+                self.print_warning_message("Wrong month", "Please enter a valid month!")
+                return
+            if day < 1 or day > 31:
+                self.print_warning_message("Wrong day", "Please enter a valid day!")
+                return
+            date = f"{year}-{month:02}-{day:02}"
 
             insert_entry(self.cursor, self.table_name, description, category, price, date)
             self.db_connection.commit()
@@ -328,9 +340,17 @@ class MainWindow(QMainWindow):
                 year_to = int(self.filter_date_year_to.text())
                 date_from = f"'{year_from}-{month_from:02}-{day_from:02}'"
                 date_to = f"'{year_to}-{month_to:02}-{day_to:02}'"
+
                 if year_from < 1985 or year_to < 1985:
                     self.print_warning_message("Wrong year", "Please enter a valid year!")
                     return
+                if month_from < 1 or month_from > 12 or month_to < 1 or month_to > 12:
+                    self.print_warning_message("Wrong month", "Please enter a valid month!")
+                    return
+                if day_from < 1 or day_from > 31 or day_to < 1 or day_to > 31:
+                    self.print_warning_message("Wrong day", "Please enter a valid day!")
+                    return
+
                 rows = search_based_on_condition(
                     self.cursor, self.table_name,
                     f"date >= {date_from} and date <= {date_to}"
