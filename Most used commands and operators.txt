@@ -96,3 +96,97 @@
 
     DISTINCT – Removes duplicate values
         Example: cursor.execute("SELECT DISTINCT name FROM users")
+
+*****************************************************************************************************************
+==============================
+MUST-KNOW SQL FOR JUNIOR DEVS
+==============================
+
+1. CORE SQL COMMANDS
+   ---------------------
+   - SELECT         → Retrieve data from a table
+   - INSERT         → Add new data into a table
+   - UPDATE         → Modify existing records
+   - DELETE         → Remove records
+
+   - WHERE          → Filter rows based on conditions
+   - ORDER BY       → Sort results by column(s)
+   - LIMIT          → Restrict the number of rows returned
+   - DISTINCT       → Return only unique values
+
+   Filtering Operators:
+     - AND / OR / NOT
+     - IN            → e.g. WHERE country IN ('USA', 'UK')
+     - LIKE          → e.g. WHERE name LIKE 'J%'
+
+2. UNDERSTANDING TABLE STRUCTURE
+   -------------------------------
+   - CREATE TABLE   → Define a new table
+   - DROP TABLE     → Delete a table
+   - ALTER TABLE    → Modify an existing table
+
+   Common Data Types:
+     - INTEGER
+     - TEXT / VARCHAR
+     - REAL / FLOAT / DOUBLE
+     - DATE / DATETIME
+     - BOOLEAN
+
+   Keys and Constraints:
+     - PRIMARY KEY   → Uniquely identifies each row
+     - AUTOINCREMENT → Automatically increases numeric ID
+
+3. SIMPLE JOINS
+   ----------------
+   - INNER JOIN     → Only matching rows from both tables
+   - LEFT JOIN      → All rows from left table, + matches from right
+   - RIGHT JOIN     → All rows from right table, + matches from left
+
+   Example:
+     SELECT * FROM orders
+     INNER JOIN customers ON orders.customer_id = customers.id;
+
+4. SIMPLE AGGREGATION
+   ---------------------
+   Aggregate Functions:
+     - COUNT()       → Total number of rows
+     - SUM()         → Total sum of values
+     - AVG()         → Average of values
+     - MIN()         → Smallest value
+     - MAX()         → Largest value
+
+   - GROUP BY        → Groups rows by one or more columns
+   - HAVING          → Filters groups (like WHERE but for grouped data)
+
+   Example:
+     SELECT department, COUNT(*)
+     FROM employees
+     GROUP BY department
+     HAVING COUNT(*) > 5;
+
+5. USING SQL IN CODE (Python)
+   ----------------------------
+   Connecting to a database:
+     - SQLite:
+         import sqlite3
+         conn = sqlite3.connect("database.db")
+     - MySQL:
+         import mysql.connector
+         conn = mysql.connector.connect(
+             host="localhost",
+             user="your_user",
+             password="your_pass",
+             database="your_db"
+         )
+
+   Executing queries:
+     cursor = conn.cursor()
+     cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
+     results = cursor.fetchall()
+
+   Preventing SQL Injection:
+     - Always use parameterized queries (placeholders + tuple of values)
+     - NEVER concatenate raw input into SQL strings
+
+   Safe Example:
+     cursor.execute("INSERT INTO users (name) VALUES (?)", (name,))
