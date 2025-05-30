@@ -210,12 +210,12 @@ class MainWindow(QMainWindow):
         self.price_decimal_line_edit.setText("00")
         self.filter_price_from.setPlaceholderText("Price FROM")
         self.filter_price_to.setPlaceholderText("Price TO")
-        self.filter_date_day_from.setPlaceholderText("DD")
-        self.filter_date_month_from.setPlaceholderText("MM")
-        self.filter_date_year_from.setPlaceholderText("YYYY")
-        self.filter_date_day_to.setPlaceholderText("DD")
-        self.filter_date_month_to.setPlaceholderText("MM")
-        self.filter_date_year_to.setPlaceholderText("YYYY")
+        self.filter_date_day_from.setText("01")
+        self.filter_date_month_from.setText(f"{self.today_date.month:02}")
+        self.filter_date_year_from.setText(f"{self.today_date.year}")
+        self.filter_date_day_to.setText(f"{self.today_date.day:02}")
+        self.filter_date_month_to.setText(f"{self.today_date.month:02}")
+        self.filter_date_year_to.setText(f"{self.today_date.year}")
         self.category_combo_box.addItems(self.categories)
         self.filter_category_combo_box.addItems(self.categories)
         self.expenses_table.setColumnCount(5)
@@ -262,17 +262,10 @@ class MainWindow(QMainWindow):
             day = int(self.day_line_edit.text())
             month = int(self.month_line_edit.text())
             year = int(self.year_line_edit.text())
-            if year < 1985:
-                self.print_warning_message("Wrong year", "Please enter a valid year!")
-                return
-            if month < 1 or month > 12:
-                self.print_warning_message("Wrong month", "Please enter a valid month!")
-                return
-            if day < 1 or day > 31:
-                self.print_warning_message("Wrong day", "Please enter a valid day!")
-                return
             date = f"{year}-{month:02}-{day:02}"
-
+            if not self.is_valid_date(date):
+                self.print_warning_message("Invalid date", "Please enter a valid date!")
+                return
             insert_entry(self.cursor, self.table_name, description, category, price, date)
             self.db_connection.commit()
             self.fill_table()
@@ -338,17 +331,12 @@ class MainWindow(QMainWindow):
                 day_to = int(self.filter_date_day_to.text())
                 month_to = int(self.filter_date_month_to.text())
                 year_to = int(self.filter_date_year_to.text())
+                date_from_validation = f"{year_from}-{month_from:02}-{day_from:02}"
+                date_to_validation = f"{year_to}-{month_to:02}-{day_to:02}"
                 date_from = f"'{year_from}-{month_from:02}-{day_from:02}'"
                 date_to = f"'{year_to}-{month_to:02}-{day_to:02}'"
-
-                if year_from < 1985 or year_to < 1985:
-                    self.print_warning_message("Wrong year", "Please enter a valid year!")
-                    return
-                if month_from < 1 or month_from > 12 or month_to < 1 or month_to > 12:
-                    self.print_warning_message("Wrong month", "Please enter a valid month!")
-                    return
-                if day_from < 1 or day_from > 31 or day_to < 1 or day_to > 31:
-                    self.print_warning_message("Wrong day", "Please enter a valid day!")
+                if not self.is_valid_date(date_from_validation) or not self.is_valid_date(date_to_validation):
+                    self.print_warning_message("Invalid date", "Please enter a valid date")
                     return
 
                 rows = search_based_on_condition(
@@ -502,3 +490,10 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, title, text)
         except Exception as e:
             self.write_log(f"def print_warning_message exception : {e}")
+
+    def is_valid_date(self, date):
+        try:
+            datetime.datetime.strptime(date, "%Y-%m-%d")
+            return True
+        except ValueError:
+            return False
