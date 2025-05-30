@@ -6,7 +6,7 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
-    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy
+    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy, QStackedLayout
 
 from main_database import *
 
@@ -41,7 +41,16 @@ class MainWindow(QMainWindow):
         self.v_box_upper_4 = QVBoxLayout()
         self.h_box_date = QHBoxLayout()
         self.h_box_price = QHBoxLayout()
-        self.h_box_filter = QHBoxLayout()
+        self.h_box_filter_main = QHBoxLayout()
+        self.stack_filter_changing = QStackedLayout()
+        self.filter_page_id = QWidget()
+        self.filter_page_category = QWidget()
+        self.filter_page_price = QWidget()
+        self.filter_page_date = QWidget()
+        self.h_box_filter_changing_id = QHBoxLayout()
+        self.h_box_filter_changing_category = QHBoxLayout()
+        self.h_box_filter_changing_price = QHBoxLayout()
+        self.h_box_filter_changing_date = QHBoxLayout()
         self.separator = QFrame()
 
         # Database
@@ -65,6 +74,9 @@ class MainWindow(QMainWindow):
         self.price_decimal_label = QLabel(".")
         self.date_format_label = QLabel("YYYY - MM - DD")
         self.filter_label = QLabel("Filter by : ")
+        self.filter_dash_label = QLabel("-")
+        self.date_from_label = QLabel("Date FROM:")
+        self.date_to_label = QLabel("Date TO:")
 
         # Line edits and combo boxes
         self.description_line_edit = QLineEdit()
@@ -76,7 +88,15 @@ class MainWindow(QMainWindow):
         self.day_line_edit = QLineEdit()
         self.filter_by_combo_box = QComboBox()
         self.filter_category_combo_box = QComboBox()
-        self.filter_line_edit = QLineEdit()
+        self.filter_line_edit_id = QLineEdit()
+        self.filter_price_from = QLineEdit()
+        self.filter_price_to = QLineEdit()
+        self.filter_date_day_from = QLineEdit()
+        self.filter_date_month_from = QLineEdit()
+        self.filter_date_year_from = QLineEdit()
+        self.filter_date_day_to = QLineEdit()
+        self.filter_date_month_to = QLineEdit()
+        self.filter_date_year_to = QLineEdit()
 
         # Other
         self.expenses_table = QTableWidget()
@@ -95,6 +115,18 @@ class MainWindow(QMainWindow):
         self.separator.setFrameShape(QFrame.HLine)
         self.separator.setFrameShadow(QFrame.Sunken)
         self.separator.setLineWidth(2)
+            # Wrapping the changing filter layouts into QWidgets
+        self.filter_page_id.setLayout(self.h_box_filter_changing_id)
+        self.filter_page_category.setLayout(self.h_box_filter_changing_category)
+        self.filter_page_price.setLayout(self.h_box_filter_changing_price)
+        self.filter_page_date.setLayout(self.h_box_filter_changing_date)
+            # Adding into stack layout
+        self.stack_filter_changing.addWidget(self.filter_page_id)
+        self.stack_filter_changing.addWidget(self.filter_page_category)
+        self.stack_filter_changing.addWidget(self.filter_page_price)
+        self.stack_filter_changing.addWidget(self.filter_page_date)
+        self.stack_filter_changing.setCurrentIndex(1)
+            #
         self.h_box_date.addWidget(self.year_line_edit)
         self.h_box_date.addWidget(self.month_line_edit)
         self.h_box_date.addWidget(self.day_line_edit)
@@ -104,10 +136,26 @@ class MainWindow(QMainWindow):
         self.h_box_price.addWidget(self.price_decimal_label, alignment = Qt.AlignLeft)
         self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
         self.h_box_price.addStretch()
-        self.h_box_filter.addWidget(self.filter_label)
-        self.h_box_filter.addWidget(self.filter_by_combo_box)
-        self.h_box_filter.addWidget(self.filter_line_edit)
-        self.h_box_filter.addWidget(self.filter_button)
+            # Constructing the changing filter hbox
+        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id)
+        self.h_box_filter_changing_category.addWidget(self.filter_category_combo_box)
+        self.h_box_filter_changing_price.addWidget(self.filter_price_from)
+        self.h_box_filter_changing_price.addWidget(self.filter_dash_label)
+        self.h_box_filter_changing_price.addWidget(self.filter_price_to)
+        self.h_box_filter_changing_date.addWidget(self.date_from_label)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_day_from)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_month_from)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_year_from)
+        self.h_box_filter_changing_date.addStretch()
+        self.h_box_filter_changing_date.addWidget(self.date_to_label)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_day_to)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_month_to)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_year_to)
+
+        self.h_box_filter_main.addWidget(self.filter_label)
+        self.h_box_filter_main.addWidget(self.filter_by_combo_box)
+        self.h_box_filter_main.addLayout(self.stack_filter_changing)
+        self.h_box_filter_main.addWidget(self.filter_button)
         self.v_box_upper_1.addWidget(self.description_label)
         self.v_box_upper_1.addWidget(self.category_label)
         self.v_box_upper_1.addWidget(self.price_label)
@@ -128,7 +176,7 @@ class MainWindow(QMainWindow):
 
         self.v_box_main.addLayout(self.h_box_upper)
         self.v_box_main.addWidget(self.separator)
-        self.v_box_main.addLayout(self.h_box_filter)
+        self.v_box_main.addLayout(self.h_box_filter_main)
         self.v_box_main.addWidget(self.expenses_table)
         self.central_widget.setLayout(self.v_box_main)
 
@@ -146,6 +194,14 @@ class MainWindow(QMainWindow):
         self.month_line_edit.setText(str(f"{self.today_date.month:02}"))
         self.day_line_edit.setText(str(f"{self.today_date.day:02}"))
         self.price_decimal_line_edit.setText("00")
+        self.filter_price_from.setPlaceholderText("Price FROM")
+        self.filter_price_to.setPlaceholderText("Price TO")
+        self.filter_date_day_from.setPlaceholderText("DD")
+        self.filter_date_month_from.setPlaceholderText("MM")
+        self.filter_date_year_from.setPlaceholderText("YYYY")
+        self.filter_date_day_to.setPlaceholderText("DD")
+        self.filter_date_month_to.setPlaceholderText("MM")
+        self.filter_date_year_to.setPlaceholderText("YYYY")
         self.category_combo_box.addItems([
             "Groceries", "Utilities", "Rent", "Transportation", "Gas",
             "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
@@ -166,7 +222,7 @@ class MainWindow(QMainWindow):
         self.fill_table()
         self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.filter_by_combo_box.addItems(["ID", "Category", "Price", "Date"])
-        self.filter_line_edit.setPlaceholderText("Enter ID")
+        self.filter_line_edit_id.setPlaceholderText("Enter ID")
 
     def center_window(self):
         window_width = self.width()
@@ -198,14 +254,13 @@ class MainWindow(QMainWindow):
     def change_filter(self):
         filter_text = self.filter_by_combo_box.currentText().lower()
         if filter_text == "id":
-            self.filter_line_edit.setPlaceholderText("Enter ID")
-            self.replace_widget(self.h_box_filter, 2, self.filter_line_edit)
+           self.stack_filter_changing.setCurrentIndex(0)
         elif filter_text == "category":
-            self.replace_widget(self.h_box_filter, 2, self.filter_category_combo_box)
+            self.stack_filter_changing.setCurrentIndex(1)
         elif filter_text == "price":
-            pass
+            self.stack_filter_changing.setCurrentIndex(2)
         elif filter_text == "date":
-            pass
+            self.stack_filter_changing.setCurrentIndex(3)
 
     def fill_table(self):
         try:
@@ -318,6 +373,12 @@ class MainWindow(QMainWindow):
         layout.insertLayout(index, new_layout, alignment=Qt.AlignLeft)
 
     def remove_layout(self, layout):
-        # TODO - Make remove layout function
         while layout.count():
             item = layout.takeAt(0)
+            widget = item.widget()
+            child_layout = item.layout()
+
+            if widget is not None:
+                widget.setParent(None)
+            if child_layout is not None:
+                self.remove_layout(child_layout)

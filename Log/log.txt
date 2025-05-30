@@ -102,3 +102,111 @@
 2025-05-29, 21:53:55 - Table expenses created
 2025-05-29, 21:53:56 - Filling table
 2025-05-29, 21:53:56 - Table expenses created
+
+2025-05-30, 11:06:26 *****************************************************************************
+2025-05-30, 11:06:26 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 11:06:26 - Table expenses created
+2025-05-30, 11:06:27 - Filling table
+2025-05-30, 11:06:27 - Table expenses created
+
+2025-05-30, 11:11:05 *****************************************************************************
+2025-05-30, 11:11:05 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 11:11:05 - Table expenses created
+
+2025-05-30, 13:09:52 *****************************************************************************
+2025-05-30, 13:09:52 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 13:09:52 - Table expenses created
+2025-05-30, 13:09:54 - Filling table
+2025-05-30, 13:09:54 - Table expenses created
+
+2025-05-30, 13:10:54 *****************************************************************************
+2025-05-30, 13:10:54 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 13:10:54 - Table expenses created
+2025-05-30, 13:10:54 - Filling table
+2025-05-30, 13:10:54 - Table expenses created
+
+2025-05-30, 13:18:27 *****************************************************************************
+2025-05-30, 13:18:27 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 13:18:27 - Table expenses created
+
+2025-05-30, 13:19:27 *****************************************************************************
+2025-05-30, 13:19:27 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 13:19:27 - Table expenses created
+2025-05-30, 13:19:28 - Filling table
+2025-05-30, 13:19:28 - Table expenses created
+
+2025-05-30, 13:30:07 *****************************************************************************
+2025-05-30, 13:30:07 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 13:30:07 - Table expenses created
+2025-05-30, 13:30:08 - Filling table
+2025-05-30, 13:30:08 - Table expenses created
+
+2025-05-30, 13:53:04 *****************************************************************************
+2025-05-30, 13:53:04 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 13:53:04 - Table expenses created
+2025-05-30, 13:53:05 - Filling table
+2025-05-30, 13:53:05 - Table expenses created
+
+2025-05-30, 13:56:19 *****************************************************************************
+2025-05-30, 13:56:19 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 13:56:19 - Table expenses created
+2025-05-30, 13:56:19 - Filling table
+2025-05-30, 13:56:19 - Table expenses created
+
+2025-05-30, 14:05:43 *****************************************************************************
+2025-05-30, 14:05:43 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:05:43 - Table expenses created
+2025-05-30, 14:05:43 - Filling table
+2025-05-30, 14:05:43 - Table expenses created
+
+2025-05-30, 14:07:59 *****************************************************************************
+2025-05-30, 14:07:59 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:07:59 - Table expenses created
+2025-05-30, 14:08:00 - Filling table
+2025-05-30, 14:08:00 - Table expenses created
+
+2025-05-30, 14:09:40 *****************************************************************************
+2025-05-30, 14:09:40 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:09:40 - Table expenses created
+2025-05-30, 14:09:41 - Filling table
+2025-05-30, 14:09:41 - Table expenses created
+
+2025-05-30, 14:11:49 *****************************************************************************
+2025-05-30, 14:11:49 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:11:49 - Table expenses created
+2025-05-30, 14:11:50 - Filling table
+2025-05-30, 14:11:50 - Table expenses created
+
+2025-05-30, 14:12:40 *****************************************************************************
+2025-05-30, 14:12:40 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:12:40 - Table expenses created
+2025-05-30, 14:12:40 - Filling table
+2025-05-30, 14:12:40 - Table expenses created
+
+2025-05-30, 14:16:15 *****************************************************************************
+2025-05-30, 14:16:15 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:16:15 - Table expenses created
+2025-05-30, 14:16:16 - Filling table
+2025-05-30, 14:16:16 - Table expenses created
+
+2025-05-30, 14:20:00 *****************************************************************************
+2025-05-30, 14:20:00 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:20:00 - Table expenses created
+2025-05-30, 14:20:01 - Filling table
+2025-05-30, 14:20:01 - Table expenses created
+
+2025-05-30, 14:26:14 *****************************************************************************
+2025-05-30, 14:26:14 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:26:14 - Table expenses created
+
+2025-05-30, 14:27:20 *****************************************************************************
+2025-05-30, 14:27:20 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:27:20 - Table expenses created
+2025-05-30, 14:27:21 - Filling table
+2025-05-30, 14:27:21 - Table expenses created
+
+2025-05-30, 14:28:11 *****************************************************************************
+2025-05-30, 14:28:11 - Database connection : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\Databases\main.db established
+2025-05-30, 14:28:11 - Table expenses created
+2025-05-30, 14:28:12 - Filling table
+2025-05-30, 14:28:12 - Table expenses created
