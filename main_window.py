@@ -92,6 +92,7 @@ class MainWindow(QMainWindow):
         self.filter_dash_label = QLabel("-")
         self.date_from_label = QLabel("Date FROM:")
         self.date_to_label = QLabel("Date TO:")
+        self.sum_label = QLabel("")
 
         # Line edits and combo boxes
         self.description_line_edit = QLineEdit()
@@ -199,6 +200,7 @@ class MainWindow(QMainWindow):
         self.v_box_main.addLayout(self.h_box_filter_main)
         self.v_box_main.addLayout(self.h_box_filter_2)
         self.v_box_main.addWidget(self.expenses_table)
+        self.v_box_main.addWidget(self.sum_label, alignment = Qt.AlignRight)
         self.central_widget.setLayout(self.v_box_main)
 
         # Event handling
@@ -253,6 +255,24 @@ class MainWindow(QMainWindow):
         self.filter_date_year_to.setValidator(self.int_year_validator)
         self.filter_line_edit_id_from.setValidator(self.int_validator)
         self.filter_line_edit_id_to.setValidator(self.int_validator)
+
+        # Object names for QSS styling
+        self.sum_label.setObjectName("sumLabel")
+
+        # Styling
+        self.setStyleSheet("""
+            
+            MainWindow{
+                background-color: rgb(235, 235, 255);
+            }
+            
+            QLabel#sumLabel{
+                font-size: 25px;
+                font-family: Segoe UI;
+                background-color: white;
+            }
+        
+        """)
 
     def center_window(self):
         window_width = self.width()
@@ -557,4 +577,4 @@ class MainWindow(QMainWindow):
         for i in range(0, self.expenses_table.rowCount()):
             cell = self.expenses_table.item(i, 3).text()
             sum += float(cell)
-        print(sum)
+        self.sum_label.setText(f"Total : {sum}")
