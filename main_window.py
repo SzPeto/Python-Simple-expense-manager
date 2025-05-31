@@ -53,6 +53,7 @@ class MainWindow(QMainWindow):
         self.h_box_date = QHBoxLayout()
         self.h_box_price = QHBoxLayout()
         self.h_box_filter_main = QHBoxLayout()
+        self.h_box_filter_2 = QHBoxLayout()
         self.stack_filter_changing = QStackedLayout()
         self.filter_page_id = QWidget()
         self.filter_page_category = QWidget()
@@ -63,6 +64,7 @@ class MainWindow(QMainWindow):
         self.h_box_filter_changing_price = QHBoxLayout()
         self.h_box_filter_changing_date = QHBoxLayout()
         self.separator = QFrame()
+        self.stack_filter_changing_qwidget = QWidget()
 
         # Database
         self.db_connection = create_connection(self.resource_path("Databases\\main.db"))
@@ -74,8 +76,9 @@ class MainWindow(QMainWindow):
         self.add_button = QPushButton("Add")
         self.delete_selected_button = QPushButton("Delete selected")
         self.delete_all_button = QPushButton("Delete all")
-        self.refresh_button = QPushButton("Show all")
-        self.filter_button = QPushButton("Filter")
+        self.refresh_button = QPushButton("Refresh")
+        self.filter_button = QPushButton("Filter results")
+        self.clear_filters_button = QPushButton("Clear all filters")
 
         # Labels
         self.description_label = QLabel("Description")
@@ -138,6 +141,7 @@ class MainWindow(QMainWindow):
         self.stack_filter_changing.addWidget(self.filter_page_price)
         self.stack_filter_changing.addWidget(self.filter_page_date)
         self.stack_filter_changing.setCurrentIndex(1)
+        self.stack_filter_changing_qwidget.setLayout(self.stack_filter_changing)
             #
         self.h_box_date.addWidget(self.year_line_edit)
         self.h_box_date.addWidget(self.month_line_edit)
@@ -167,8 +171,10 @@ class MainWindow(QMainWindow):
 
         self.h_box_filter_main.addWidget(self.filter_label)
         self.h_box_filter_main.addWidget(self.filter_by_combo_box)
-        self.h_box_filter_main.addLayout(self.stack_filter_changing)
+        self.h_box_filter_main.addWidget(self.stack_filter_changing_qwidget)
         self.h_box_filter_main.addWidget(self.filter_button)
+        self.h_box_filter_2.addWidget(self.clear_filters_button)
+        self.stack_filter_changing_qwidget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         self.v_box_upper_1.addWidget(self.description_label)
         self.v_box_upper_1.addWidget(self.category_label)
         self.v_box_upper_1.addWidget(self.price_label)
@@ -190,6 +196,7 @@ class MainWindow(QMainWindow):
         self.v_box_main.addLayout(self.h_box_upper)
         self.v_box_main.addWidget(self.separator)
         self.v_box_main.addLayout(self.h_box_filter_main)
+        self.v_box_main.addLayout(self.h_box_filter_2)
         self.v_box_main.addWidget(self.expenses_table)
         self.central_widget.setLayout(self.v_box_main)
 
@@ -200,6 +207,7 @@ class MainWindow(QMainWindow):
         self.refresh_button.clicked.connect(self.refresh)
         self.filter_by_combo_box.currentIndexChanged.connect(self.change_filter)
         self.filter_button.clicked.connect(self.filter_selected)
+        self.clear_filters_button.clicked.connect(self.refresh)
 
         # Buttons, labels and other
         self.filter_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
@@ -240,6 +248,8 @@ class MainWindow(QMainWindow):
         self.filter_date_day_to.setValidator(self.int_day_validator)
         self.filter_date_month_to.setValidator(self.int_month_validator)
         self.filter_date_year_to.setValidator(self.int_year_validator)
+        self.filter_line_edit_id_from.setValidator(self.int_validator)
+        self.filter_line_edit_id_to.setValidator(self.int_validator)
 
     def center_window(self):
         window_width = self.width()
@@ -286,7 +296,7 @@ class MainWindow(QMainWindow):
     def filter_selected(self):
         index = self.stack_filter_changing.currentIndex()
         if index == 0:
-            # TODO - Make validation for id
+            # TODO - make validation for id
             try:
                 id_from = int(self.filter_line_edit_id_from.text())
                 id_to = int(self.filter_line_edit_id_to.text())
