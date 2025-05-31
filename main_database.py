@@ -3,10 +3,12 @@ import sqlite3
 
 main_instance = None
 
+# Getting the instance of main_window
 def get_main_instance(main_window):
     global main_instance
     main_instance = main_window
 
+# Creating the connection and tables
 def create_connection(db_name):
 
     dir_name = os.path.dirname(db_name)
@@ -50,6 +52,7 @@ def add_column(cursor: sqlite3.Cursor, table_name, column_name, column_name_data
     except Exception as e:
         main_instance.write_log(f"Something went wrong adding a column : {e}")
 
+# Inserting and updating the entries
 def insert_entry(cursor: sqlite3.Cursor, table_name, description: str, category: str, price: float, date: str):
     query = f"INSERT INTO {table_name} (description, category, price, date) VALUES (?, ?, ?, ?)"
 
@@ -69,6 +72,7 @@ def update_entry(cursor: sqlite3.Cursor, table_name, column_search, keyword_sear
     except Exception as e:
         main_instance.write_log(f"Something went wrong during updating the entry : {e}")
 
+# Search functions, fetching the rows, showing all
 def show_all(cursor: sqlite3.Cursor, table_name):
     query = f"SELECT * FROM {table_name}"
 
@@ -79,7 +83,7 @@ def show_all(cursor: sqlite3.Cursor, table_name):
     except Exception as e:
         main_instance.write_log(f"Something went wrong showing the database : {e}")
 
-# Column_s meaning column(s), separate the with comma as in SQL syntax
+    # Column_s meaning column(s), separate the with comma as in SQL syntax
 def search_defined_columns(cursor: sqlite3.Cursor, table_name, column_s_name):
     query = f"SELECT {column_s_name} FROM {table_name}"
 
@@ -102,7 +106,7 @@ def search(cursor: sqlite3.Cursor, table_name, column, keyword):
     except Exception as e:
         main_instance.write_log(f"Something went wrong showing selected items : {e}")
 
-# Showing based on a condition : id >= 2, or : id > 2 AND id < 5
+    # Showing based on a condition : id >= 2, or : id > 2 AND id < 5
 def search_based_on_condition(cursor: sqlite3.Cursor, table_name, condition):
     query = f"SELECT * FROM {table_name} WHERE {condition}"
 
@@ -113,6 +117,16 @@ def search_based_on_condition(cursor: sqlite3.Cursor, table_name, condition):
     except Exception as e:
         main_instance.write_log(f"def search_based_on_condition : Something went wrong during showing based on condition : {e}")
 
+# Ordering the table
+def order_by(cursor: sqlite3.Cursor, table_name, column, direction):
+    query = f"SELECT * FROM {table_name} ORDER BY {column} {direction}"
+
+    cursor.execute(query)
+    rows = cursor.fetchall()
+
+    return rows
+
+# Deleting functions
 def delete_entry(cursor: sqlite3.Cursor, table_name, column, keyword):
     query = f"DELETE FROM {table_name} WHERE {column} = ?"
 

@@ -126,7 +126,7 @@ MUST-KNOW SQL FOR JUNIOR DEVS
    - ALTER TABLE    → Modify an existing table
 
    Common Data Types:
-     - INTEGER
+     - INTEGER /INT
      - TEXT / VARCHAR
      - REAL / FLOAT / DOUBLE
      - DATE / DATETIME

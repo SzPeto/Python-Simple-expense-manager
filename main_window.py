@@ -38,6 +38,7 @@ class MainWindow(QMainWindow):
         self.int_day_validator = QIntValidator(1, 31)
         self.int_month_validator = QIntValidator(1, 12)
         self.int_year_validator = QIntValidator(1, 8888)
+        self.is_asc = True
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
@@ -208,6 +209,7 @@ class MainWindow(QMainWindow):
         self.filter_by_combo_box.currentIndexChanged.connect(self.change_filter)
         self.filter_button.clicked.connect(self.filter_selected)
         self.clear_filters_button.clicked.connect(self.refresh)
+        #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
 
         # Buttons, labels and other
         self.filter_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
@@ -234,6 +236,7 @@ class MainWindow(QMainWindow):
         self.filter_by_combo_box.addItems(["ID", "Category", "Price", "Date"])
         self.filter_line_edit_id_from.setPlaceholderText("Id FROM")
         self.filter_line_edit_id_to.setPlaceholderText("Id TO")
+        self.expenses_table.setSortingEnabled(True)
             # Setting line edit validators
         self.filter_line_edit_id_from.setValidator(self.int_validator)
         self.filter_line_edit_id_to.setValidator(self.int_validator)
@@ -260,7 +263,7 @@ class MainWindow(QMainWindow):
         window_y = int((monitor_height - window_height) / 2)
         self.setGeometry(window_x, window_y, window_width, window_height)
 
-    # Event handling
+    # Event handling ******************************************************************
     def add_entry(self):
 
         try:
@@ -296,7 +299,6 @@ class MainWindow(QMainWindow):
     def filter_selected(self):
         index = self.stack_filter_changing.currentIndex()
         if index == 0:
-            # TODO - make validation for id
             try:
                 id_from = int(self.filter_line_edit_id_from.text())
                 id_to = int(self.filter_line_edit_id_to.text())
@@ -369,12 +371,26 @@ class MainWindow(QMainWindow):
                     row = rows[row_index]
                     for column_index in range(0, len(row)):
                         column = row[column_index]
-                        cell = QTableWidgetItem(str(column))
+
+                        if column_index == 0:
+                            cell = QTableWidgetItem()
+                            cell.setData(Qt.EditRole, int(column))
+                            cell.setText(f"{int(column)}")
+                        elif column_index == 3:
+                            cell = QTableWidgetItem()
+                            cell.setData(Qt.EditRole, float(column))
+                            cell.setText(f"{float(column):.2f}")
+                        else:
+                            cell = QTableWidgetItem(str(column))
+
                         self.expenses_table.setItem(row_index, column_index, cell)
+
             else:
                 self.expenses_table.setRowCount(0)
         except Exception as e:
             self.write_log(f"def fill_table : something went wrong during filling the table : {e}")
+
+        self.count_prices()
 
     def fill_table_selected(self, rows):
         try:
@@ -384,13 +400,38 @@ class MainWindow(QMainWindow):
                     row = rows[row_index]
                     for column_index in range(0, len(row)):
                         column = row[column_index]
-                        cell = QTableWidgetItem(str(column))
+                        if column_index == 0:
+                            cell = QTableWidgetItem()
+                            cell.setData(Qt.EditRole, int(column))
+                            cell.setText(f"{int(column)}")
+                        elif column_index == 3:
+                            cell = QTableWidgetItem()
+                            cell.setData(Qt.EditRole, float(column))
+                            cell.setText(f"{float(column):.2f}")
+                        else:
+                            cell = QTableWidgetItem(str(column))
+
                         self.expenses_table.setItem(row_index, column_index, cell)
             else:
                 self.expenses_table.setRowCount(0)
                 self.print_warning_message("Empty", "No results to show!")
         except Exception as e:
             self.write_log(f"def fill_table_selected : something went wrong during filling the table : {e}")
+
+        self.count_prices()
+
+    def order_table(self, index):
+        # self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table) - automatically passes
+        # the column index
+        column = self.expenses_table.horizontalHeaderItem(index).text().lower()
+        if self.is_asc:
+            rows = order_by(self.cursor, self.table_name, column, "ASC")
+            self.is_asc = False
+        else:
+            rows = order_by(self.cursor, self.table_name, column, "DESC")
+            self.is_asc = True
+
+        self.fill_table_selected(rows)
 
     def delete_selected(self):
 
@@ -502,9 +543,18 @@ class MainWindow(QMainWindow):
         except Exception as e:
             self.write_log(f"def print_warning_message exception : {e}")
 
+    # Date validator
     def is_valid_date(self, date):
         try:
             datetime.datetime.strptime(date, "%Y-%m-%d")
             return True
         except ValueError:
             return False
+
+    # Showing the sum of prices
+    def count_prices(self):
+        sum: float = 0
+        for i in range(0, self.expenses_table.rowCount()):
+            cell = self.expenses_table.item(i, 3).text()
+            sum += float(cell)
+        print(sum)
