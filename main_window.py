@@ -4,9 +4,10 @@ import os.path
 import sys
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QGuiApplication, QIntValidator
+from PyQt5.QtGui import QGuiApplication, QIntValidator, QColor
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
-    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy, QStackedLayout, QMessageBox
+    QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy, QStackedLayout, QMessageBox, \
+    QGraphicsDropShadowEffect
 
 from main_database import *
 
@@ -45,7 +46,7 @@ class MainWindow(QMainWindow):
         self.window_height = int(self.monitor.height() * 0.85)
 
         # Layout
-        self.v_box_main = QVBoxLayout()
+        self.v_box_main = QVBoxLayout() # The main layout, level 0
         self.h_box_upper = QHBoxLayout()
         self.v_box_upper_1 = QVBoxLayout()
         self.v_box_upper_2 = QVBoxLayout()
@@ -64,8 +65,12 @@ class MainWindow(QMainWindow):
         self.h_box_filter_changing_category = QHBoxLayout()
         self.h_box_filter_changing_price = QHBoxLayout()
         self.h_box_filter_changing_date = QHBoxLayout()
-        self.separator = QFrame()
+        self.separator_1 = QFrame()
+        self.separator_2 = QFrame()
         self.stack_filter_changing_qwidget = QWidget()
+        self.h_box_buttons = QHBoxLayout()
+        self.v_box_buttons_1 = QVBoxLayout()
+        self.v_box_buttons_2 = QVBoxLayout()
 
         # Database
         self.db_connection = create_connection(self.resource_path("Databases\\main.db"))
@@ -129,22 +134,16 @@ class MainWindow(QMainWindow):
 
         #Layout
         self.setCentralWidget(self.central_widget)
-        self.separator.setFrameShape(QFrame.HLine)
-        self.separator.setFrameShadow(QFrame.Sunken)
-        self.separator.setLineWidth(2)
-            # Wrapping the changing filter layouts into QWidgets
-        self.filter_page_id.setLayout(self.h_box_filter_changing_id)
-        self.filter_page_category.setLayout(self.h_box_filter_changing_category)
-        self.filter_page_price.setLayout(self.h_box_filter_changing_price)
-        self.filter_page_date.setLayout(self.h_box_filter_changing_date)
-            # Adding into stack layout
-        self.stack_filter_changing.addWidget(self.filter_page_id)
-        self.stack_filter_changing.addWidget(self.filter_page_category)
-        self.stack_filter_changing.addWidget(self.filter_page_price)
-        self.stack_filter_changing.addWidget(self.filter_page_date)
-        self.stack_filter_changing.setCurrentIndex(1)
-        self.stack_filter_changing_qwidget.setLayout(self.stack_filter_changing)
-            #
+        self.separator_1.setFrameShape(QFrame.HLine)
+        self.separator_1.setFrameShadow(QFrame.Sunken)
+        self.separator_1.setLineWidth(2)
+        self.separator_2.setFrameShape(QFrame.HLine)
+        self.separator_2.setFrameShadow(QFrame.Sunken)
+        self.separator_2.setLineWidth(2)
+            # Level 4
+        self.v_box_buttons_1.addWidget(self.delete_selected_button)
+        self.v_box_buttons_1.addWidget(self.delete_all_button)
+        self.v_box_buttons_2.addWidget(self.refresh_button)
         self.h_box_date.addWidget(self.year_line_edit)
         self.h_box_date.addWidget(self.month_line_edit)
         self.h_box_date.addWidget(self.day_line_edit)
@@ -170,12 +169,9 @@ class MainWindow(QMainWindow):
         self.h_box_filter_changing_date.addWidget(self.filter_date_day_to)
         self.h_box_filter_changing_date.addWidget(self.filter_date_month_to)
         self.h_box_filter_changing_date.addWidget(self.filter_date_year_to)
-
-        self.h_box_filter_main.addWidget(self.filter_label)
-        self.h_box_filter_main.addWidget(self.filter_by_combo_box)
-        self.h_box_filter_main.addWidget(self.stack_filter_changing_qwidget)
-        self.h_box_filter_main.addWidget(self.filter_button)
-        self.h_box_filter_2.addWidget(self.clear_filters_button)
+            # Level 3
+        self.h_box_buttons.addLayout(self.v_box_buttons_1)
+        self.h_box_buttons.addLayout(self.v_box_buttons_2)
         self.stack_filter_changing_qwidget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         self.v_box_upper_1.addWidget(self.description_label)
         self.v_box_upper_1.addWidget(self.category_label)
@@ -186,19 +182,35 @@ class MainWindow(QMainWindow):
         self.v_box_upper_2.addLayout(self.h_box_price)
         self.v_box_upper_2.addLayout(self.h_box_date)
         self.v_box_upper_3.addWidget(self.add_button)
-        self.v_box_upper_3.addWidget(self.delete_selected_button)
-        self.v_box_upper_3.addWidget(self.delete_all_button)
-        self.v_box_upper_4.addWidget(self.refresh_button)
-
+        self.v_box_upper_3.addLayout(self.h_box_buttons)
+                    # Wrapping the changing filter layouts into QWidgets
+        self.filter_page_id.setLayout(self.h_box_filter_changing_id)
+        self.filter_page_category.setLayout(self.h_box_filter_changing_category)
+        self.filter_page_price.setLayout(self.h_box_filter_changing_price)
+        self.filter_page_date.setLayout(self.h_box_filter_changing_date)
+                    # Adding into stack layout
+        self.stack_filter_changing.addWidget(self.filter_page_id)
+        self.stack_filter_changing.addWidget(self.filter_page_category)
+        self.stack_filter_changing.addWidget(self.filter_page_price)
+        self.stack_filter_changing.addWidget(self.filter_page_date)
+        self.stack_filter_changing.setCurrentIndex(1)
+        self.stack_filter_changing_qwidget.setLayout(self.stack_filter_changing)
+            # Level 2
         self.h_box_upper.addLayout(self.v_box_upper_1)
         self.h_box_upper.addLayout(self.v_box_upper_2)
         self.h_box_upper.addLayout(self.v_box_upper_3)
-        self.h_box_upper.addLayout(self.v_box_upper_4)
-
+        #self.h_box_upper.addLayout(self.v_box_upper_4)
+        self.h_box_filter_main.addWidget(self.filter_label)
+        self.h_box_filter_main.addWidget(self.filter_by_combo_box)
+        self.h_box_filter_main.addWidget(self.stack_filter_changing_qwidget)
+        self.h_box_filter_main.addWidget(self.filter_button)
+        self.h_box_filter_2.addWidget(self.clear_filters_button)
+            # Level 1
         self.v_box_main.addLayout(self.h_box_upper)
-        self.v_box_main.addWidget(self.separator)
+        self.v_box_main.addWidget(self.separator_1)
         self.v_box_main.addLayout(self.h_box_filter_main)
         self.v_box_main.addLayout(self.h_box_filter_2)
+        self.v_box_main.addWidget(self.separator_2)
         self.v_box_main.addWidget(self.expenses_table)
         self.v_box_main.addWidget(self.sum_label, alignment = Qt.AlignRight)
         self.central_widget.setLayout(self.v_box_main)
@@ -260,6 +272,12 @@ class MainWindow(QMainWindow):
         self.sum_label.setObjectName("sumLabel")
 
         # Styling
+        self.shadow = QGraphicsDropShadowEffect()
+        self.shadow.setBlurRadius(15)
+        self.shadow.setColor(QColor(0, 0, 0, 160))  # Semi-transparent black
+        self.shadow.setOffset(3, 3)
+        self.sum_label.setGraphicsEffect(self.shadow)
+            # Setting the stylesheet
         self.setStyleSheet("""
             
             MainWindow{
@@ -270,6 +288,16 @@ class MainWindow(QMainWindow):
                 font-size: 25px;
                 font-family: Segoe UI;
                 background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+                background-color: qlineargradient(
+                    x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgb(255, 255, 255),  /* Top of gradient */
+                    stop:1 rgb(235, 235, 235)   /* Bottom of gradient */
+                );
+                border: 1px solid rgb(214, 214, 214);
+                font-weight: bold;
+                color: rgb(111, 111, 111);
             }
         
         """)
