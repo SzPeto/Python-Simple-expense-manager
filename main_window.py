@@ -24,8 +24,6 @@ class MainWindow(QMainWindow):
         self.main_instance: Main = main_instance
         self.today_date = datetime.date.today()
         get_main_instance(self)
-        current_date = datetime.date.today()
-        current_time = datetime.datetime.now().strftime("%H:%M:%S")
         self.log_file = self.create_file_dir("Log\\log.txt")
         self.write_log_init()
         self.categories = [
@@ -73,7 +71,7 @@ class MainWindow(QMainWindow):
         self.v_box_buttons_2 = QVBoxLayout()
 
         # Database
-        self.db_connection = create_connection(self.resource_path("Databases\\main.db"))
+        self.db_connection = create_connection("Databases\\main.db")
         self.table_name = "expenses"
         self.cursor = self.db_connection.cursor()
         create_table(self.cursor, self.table_name)
@@ -154,21 +152,21 @@ class MainWindow(QMainWindow):
         self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
         self.h_box_price.addStretch()
             # Constructing the changing filter hbox
-        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_from)
-        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_to)
+        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_from, alignment = Qt.AlignLeft)
+        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_to, alignment = Qt.AlignLeft)
         self.h_box_filter_changing_category.addWidget(self.filter_category_combo_box)
         self.h_box_filter_changing_price.addWidget(self.filter_price_from)
         self.h_box_filter_changing_price.addWidget(self.filter_dash_label)
         self.h_box_filter_changing_price.addWidget(self.filter_price_to)
         self.h_box_filter_changing_date.addWidget(self.date_from_label)
-        self.h_box_filter_changing_date.addWidget(self.filter_date_day_from)
-        self.h_box_filter_changing_date.addWidget(self.filter_date_month_from)
         self.h_box_filter_changing_date.addWidget(self.filter_date_year_from)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_month_from)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_day_from)
         self.h_box_filter_changing_date.addStretch()
         self.h_box_filter_changing_date.addWidget(self.date_to_label)
-        self.h_box_filter_changing_date.addWidget(self.filter_date_day_to)
-        self.h_box_filter_changing_date.addWidget(self.filter_date_month_to)
         self.h_box_filter_changing_date.addWidget(self.filter_date_year_to)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_month_to)
+        self.h_box_filter_changing_date.addWidget(self.filter_date_day_to)
             # Level 3
         self.h_box_buttons.addLayout(self.v_box_buttons_1)
         self.h_box_buttons.addLayout(self.v_box_buttons_2)
@@ -270,13 +268,22 @@ class MainWindow(QMainWindow):
 
         # Object names for QSS styling
         self.sum_label.setObjectName("sumLabel")
+        self.add_button.setObjectName("addButton")
+        self.price_decimal_label.setObjectName("priceDecimalLabel")
 
         # Styling
-        self.shadow = QGraphicsDropShadowEffect()
-        self.shadow.setBlurRadius(15)
-        self.shadow.setColor(QColor(0, 0, 0, 160))  # Semi-transparent black
-        self.shadow.setOffset(3, 3)
-        self.sum_label.setGraphicsEffect(self.shadow)
+        self.shadow_sum_label = QGraphicsDropShadowEffect()
+        self.shadow_sum_label.setBlurRadius(15)
+        self.shadow_sum_label.setColor(QColor(0, 0, 0, 160))  # Semi-transparent black
+        self.shadow_sum_label.setOffset(3, 3)
+        self.sum_label.setGraphicsEffect(self.shadow_sum_label)
+        self.price_line_edit.setMaximumWidth(80)
+        self.price_decimal_line_edit.setMaximumWidth(40)
+        self.year_line_edit.setMaximumWidth(60)
+        self.month_line_edit.setMaximumWidth(40)
+        self.day_line_edit.setMaximumWidth(40)
+        self.filter_line_edit_id_from.setMaximumWidth(120)
+        self.filter_line_edit_id_to.setMaximumWidth(120)
             # Setting the stylesheet
         self.setStyleSheet("""
             
@@ -284,8 +291,83 @@ class MainWindow(QMainWindow):
                 background-color: rgb(235, 235, 255);
             }
             
+            QLabel{
+                font-family: Segoe UI;
+                font-size: 16px;
+            }
+            
+            QLabel#priceDecimalLabel{
+                font-size: 20px;
+                font-weight: bold;
+            }
+            
+            QPushButton {
+                background-color: qlineargradient(
+                    x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgb(255, 255, 255),  /* Top of gradient */
+                    stop:1 rgb(235, 235, 235)   /* Bottom of gradient */
+                );
+                color: rgb(51, 51, 51);
+                border: 1px solid rgb(204, 204, 204);
+                border-radius: 8px;
+                padding: 6px 12px;
+                font-family: Segoe UI;
+                font-size: 16px;
+            }
+            QPushButton:hover {
+                background-color: qlineargradient(
+                    x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgb(245, 245, 245),  /* Top of gradient */
+                    stop:1 rgb(225, 225, 225)   /* Bottom of gradient */
+                );
+            }
+            QPushButton:pressed {
+                background-color: qlineargradient(
+                    x1:0, y1:0, x2:0, y2:1,
+                    stop:0 rgb(230, 230, 230),  /* Top of gradient */
+                    stop:1 rgb(210, 210, 210)   /* Bottom of gradient */
+                );
+            }
+            
+            QLineEdit {
+                background-color: rgb(255, 255, 255);
+                color: rgb(33, 33, 33);
+                border: 1px solid rgb(204, 204, 204);
+                border-radius: 6px;
+                padding: 4px 8px;
+                font-family: Segoe UI;
+                font-size: 16px;
+            }
+            QLineEdit:focus {
+                border: 1px solid rgb(100, 149, 237);
+                background-color: rgb(250, 250, 250);
+            }
+            
+            QComboBox {
+                background-color: rgb(250, 250, 250);
+                color: rgb(33, 33, 33);
+                border: 1px solid rgb(204, 204, 204);
+                border-radius: 6px;
+                padding: 4px 8px;
+                font-family: Segoe UI;
+                font-size: 16px;
+            }
+            QComboBox:hover {
+                border: 1px solid rgb(180, 180, 180);
+            }
+            QComboBox:focus {
+                border: 1px solid rgb(100, 149, 237); /* Cornflower Blue */
+                background-color: rgb(250, 250, 250);
+            }
+            QComboBox QAbstractItemView {
+                background-color: rgb(255, 255, 255);
+                border: 1px solid rgb(204, 204, 204);
+                selection-background-color: rgb(230, 230, 230);
+                selection-color: rgb(33, 33, 33);
+            }
+            
             QLabel#sumLabel{
-                font-size: 25px;
+                font-size: 30px;
                 font-family: Segoe UI;
                 background-color: white;
                 padding: 10px;
@@ -298,6 +380,10 @@ class MainWindow(QMainWindow):
                 border: 1px solid rgb(214, 214, 214);
                 font-weight: bold;
                 color: rgb(111, 111, 111);
+            }
+            
+            QPushButton#addButton{
+                font-size: 25px;
             }
         
         """)

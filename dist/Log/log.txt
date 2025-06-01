@@ -1,19 +1,24 @@
 
-2025-05-30, 21:49:06 *****************************************************************************
-2025-05-30, 21:49:06 - Directory C:\Users\szjan\AppData\Local\Temp\_MEI138642\Databases succesfully created
-2025-05-30, 21:49:06 - Database connection : C:\Users\szjan\AppData\Local\Temp\_MEI138642\Databases\main.db established
-2025-05-30, 21:49:06 - Table expenses created
-2025-05-30, 21:49:08 - Table expenses created
-2025-05-30, 21:49:39 - Table expenses created
-2025-05-30, 21:49:39 - Entries inserted : sdfg, Groceries, 0.0, 2025-05-30
-2025-05-30, 21:49:39 - Table expenses created
-2025-05-30, 21:49:48 - Table expenses created
-2025-05-30, 21:49:48 - Entries inserted : fghe, Groceries, 11.0, 2025-05-30
-2025-05-30, 21:49:48 - Table expenses created
-2025-05-30, 21:50:03 - Table expenses created
-2025-05-30, 21:50:03 - Entries inserted : fghehh, Groceries, 22.0, 2025-05-01
-2025-05-30, 21:50:03 - Table expenses created
-2025-05-30, 21:50:15 - Table expenses created
-2025-05-30, 21:50:21 - Table expenses created
-2025-05-30, 21:50:37 - def filter_selected : exception : could not convert string to float: 'njk'
-2025-05-30, 21:51:19 - Table expenses created
+2025-06-01, 12:28:38 *****************************************************************************
+2025-06-01, 12:28:38 - Directory Databases succesfully created
+2025-06-01, 12:28:38 - Database connection : Databases\main.db established
+2025-06-01, 12:28:38 - Table expenses created
+2025-06-01, 12:28:39 - Table expenses created
+2025-06-01, 12:28:48 - Table expenses created
+2025-06-01, 12:28:48 - Entries inserted : wrrt, Groceries, 74.44, 2025-06-01
+2025-06-01, 12:28:48 - Table expenses created
+
+2025-06-01, 12:28:55 *****************************************************************************
+2025-06-01, 12:28:55 - Database connection : Databases\main.db established
+2025-06-01, 12:28:55 - Table expenses created
+2025-06-01, 12:28:55 - Table expenses created
+
+2025-06-01, 12:31:28 *****************************************************************************
+2025-06-01, 12:31:28 - Database connection : Databases\main.db established
+2025-06-01, 12:31:28 - Table expenses created
+2025-06-01, 12:31:28 - Table expenses created
+
+2025-06-01, 13:03:03 *****************************************************************************
+2025-06-01, 13:03:03 - Database connection : Databases\main.db established
+2025-06-01, 13:03:03 - Table expenses created
+2025-06-01, 13:03:03 - Table expenses created
