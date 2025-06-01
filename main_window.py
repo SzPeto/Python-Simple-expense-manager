@@ -49,7 +49,6 @@ class MainWindow(QMainWindow):
         self.v_box_upper_1 = QVBoxLayout()
         self.v_box_upper_2 = QVBoxLayout()
         self.v_box_upper_3 = QVBoxLayout()
-        self.v_box_upper_4 = QVBoxLayout()
         self.h_box_date = QHBoxLayout()
         self.h_box_price = QHBoxLayout()
         self.h_box_filter_main = QHBoxLayout()
@@ -151,9 +150,9 @@ class MainWindow(QMainWindow):
         self.h_box_price.addWidget(self.price_decimal_label, alignment = Qt.AlignLeft)
         self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
         self.h_box_price.addStretch()
-            # Constructing the changing filter hbox
-        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_from, alignment = Qt.AlignLeft)
-        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_to, alignment = Qt.AlignLeft)
+                    # Constructing the changing filter hbox
+        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_from)
+        self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_to)
         self.h_box_filter_changing_category.addWidget(self.filter_category_combo_box)
         self.h_box_filter_changing_price.addWidget(self.filter_price_from)
         self.h_box_filter_changing_price.addWidget(self.filter_dash_label)
@@ -197,7 +196,6 @@ class MainWindow(QMainWindow):
         self.h_box_upper.addLayout(self.v_box_upper_1)
         self.h_box_upper.addLayout(self.v_box_upper_2)
         self.h_box_upper.addLayout(self.v_box_upper_3)
-        #self.h_box_upper.addLayout(self.v_box_upper_4)
         self.h_box_filter_main.addWidget(self.filter_label)
         self.h_box_filter_main.addWidget(self.filter_by_combo_box)
         self.h_box_filter_main.addWidget(self.stack_filter_changing_qwidget)
@@ -282,8 +280,6 @@ class MainWindow(QMainWindow):
         self.year_line_edit.setMaximumWidth(60)
         self.month_line_edit.setMaximumWidth(40)
         self.day_line_edit.setMaximumWidth(40)
-        self.filter_line_edit_id_from.setMaximumWidth(120)
-        self.filter_line_edit_id_to.setMaximumWidth(120)
             # Setting the stylesheet
         self.setStyleSheet("""
             
@@ -384,6 +380,35 @@ class MainWindow(QMainWindow):
             
             QPushButton#addButton{
                 font-size: 25px;
+            }
+            
+            QTableWidget {
+                background-color: rgb(255, 255, 255);
+                alternate-background-color: rgb(248, 248, 248);
+                color: rgb(33, 33, 33);
+                gridline-color: rgb(220, 220, 220);
+                font-family: Segoe UI;
+                font-size: 16px;
+                border: 1px solid rgb(204, 204, 204);
+                border-radius: 6px;
+            }
+        
+            QHeaderView::section {
+                background-color: rgb(245, 245, 245);
+                color: rgb(80, 80, 80);
+                padding: 6px;
+                border: 1px solid rgb(204, 204, 204);
+                font-weight: bold;
+            }
+        
+            QTableWidget::item {
+                padding: 6px;
+                border: none;
+            }
+        
+            QTableWidget::item:selected {
+                background-color: rgb(220, 235, 252);
+                color: rgb(0, 0, 0);
             }
         
         """)
