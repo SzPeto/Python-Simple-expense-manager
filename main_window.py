@@ -24,6 +24,7 @@ class MainWindow(QMainWindow):
         self.monitor = QGuiApplication.primaryScreen().geometry()
         self.main_instance: Main = main_instance
         self.today_date = datetime.date.today()
+        self.is_first_filter = True
         get_main_instance(self)
         self.log_file = self.create_file_dir("Log\\log.txt")
         self.write_log_init()
@@ -228,6 +229,7 @@ class MainWindow(QMainWindow):
         self.refresh_button.clicked.connect(self.refresh)
         self.filter_by_combo_box.currentIndexChanged.connect(self.change_filter)
         self.filter_button.clicked.connect(self.filter_selected)
+        self.filter_month_month_combo_box.currentIndexChanged.connect(self.filter_selected)
         self.clear_filters_button.clicked.connect(self.refresh)
         #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
 
@@ -287,6 +289,7 @@ class MainWindow(QMainWindow):
         self.sum_label.setObjectName("sumLabel")
         self.add_button.setObjectName("addButton")
         self.price_decimal_label.setObjectName("priceDecimalLabel")
+        self.filter_month_month_combo_box.setObjectName("filterMonthMonthComboBox")
 
         # Styling
         self.shadow_sum_label = QGraphicsDropShadowEffect()
@@ -329,6 +332,7 @@ class MainWindow(QMainWindow):
                 font-family: Segoe UI;
                 font-size: 16px;
             }
+            
             QPushButton:hover {
                 background-color: qlineargradient(
                     x1:0, y1:0, x2:0, y2:1,
@@ -361,6 +365,7 @@ class MainWindow(QMainWindow):
                 font-family: Segoe UI;
                 font-size: 16px;
             }
+            
             QLineEdit:focus {
                 border: 1px solid rgb(100, 149, 237);
                 background-color: rgb(250, 250, 250);
@@ -375,18 +380,25 @@ class MainWindow(QMainWindow):
                 font-family: Segoe UI;
                 font-size: 16px;
             }
+            
             QComboBox:hover {
                 border: 1px solid rgb(180, 180, 180);
             }
+            
             QComboBox:focus {
                 border: 1px solid rgb(100, 149, 237); /* Cornflower Blue */
                 background-color: rgb(250, 250, 250);
             }
+            
             QComboBox QAbstractItemView {
                 background-color: rgb(255, 255, 255);
                 border: 1px solid rgb(204, 204, 204);
                 selection-background-color: rgb(230, 230, 230);
                 selection-color: rgb(33, 33, 33);
+            }
+            
+            QComboBox#filterMonthMonthComboBox{
+                font-size: 20px;
             }
             
             QLabel#sumLabel{
@@ -483,7 +495,17 @@ class MainWindow(QMainWindow):
     def filter_selected(self):
         index = self.stack_filter_changing.currentIndex()
         if index == 0:
-            pass
+            try:
+                year = self.filter_month_year_combo_box.currentText()
+                month = f"{int(self.filter_month_month_combo_box.currentIndex() + 1):02}"
+                rows = search_based_on_condition(
+                    self.cursor, self.table_name,
+                    f"date >= '{year}-{month}-01' AND date <= '{year}-{month}-31'"
+                )
+                self.fill_table_selected(rows)
+            except Exception as e:
+                self.write_log(f"def filter_selected : {e}")
+                self.print_warning_message("Empty", "No results to show, please enter a valid input!")
         elif index == 1:
             try:
                 id_from = int(self.filter_line_edit_id_from.text())
@@ -579,6 +601,7 @@ class MainWindow(QMainWindow):
         self.count_prices()
 
     def fill_table_selected(self, rows):
+        # TODO - remove the first start warning
         try:
             if rows:
                 self.expenses_table.setRowCount(len(rows))
