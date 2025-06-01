@@ -1,1 +1,1 @@
-pyinstaller --noconsole --add-data "icon.png;." --onefile Main.py
+pyinstaller --noconsole --add-data "icon.png;." --add-data "add.png;." --add-data "filter.png;." --onefile Main.py

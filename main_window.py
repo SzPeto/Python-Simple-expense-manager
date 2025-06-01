@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
 
         # Master
         self.central_widget = QWidget()
-        self.icon = QIcon(self.resource_path("icon.png"))
+        self.main_icon = QIcon(self.resource_path("icon.png"))
         self.monitor = QGuiApplication.primaryScreen().geometry()
         self.main_instance: Main = main_instance
         self.today_date = datetime.date.today()
@@ -73,6 +73,8 @@ class MainWindow(QMainWindow):
         self.h_box_buttons = QHBoxLayout()
         self.v_box_buttons_1 = QVBoxLayout()
         self.v_box_buttons_2 = QVBoxLayout()
+        self.h_box_add_title = QHBoxLayout()
+        self.h_box_filter_title = QHBoxLayout()
 
         # Database
         self.db_connection = create_connection("Databases\\main.db")
@@ -100,6 +102,10 @@ class MainWindow(QMainWindow):
         self.date_from_label = QLabel("Date FROM:")
         self.date_to_label = QLabel("Date TO:")
         self.sum_label = QLabel("")
+        self.add_label = QLabel("Add entry into table")
+        self.filter_label = QLabel("Filter results")
+        self.add_icon_label = QLabel()
+        self.filter_icon_label = QLabel()
 
         # Line edits and combo boxes
         self.description_line_edit = QLineEdit()
@@ -126,6 +132,14 @@ class MainWindow(QMainWindow):
 
         # Other
         self.expenses_table = QTableWidget()
+        self.main_icon = QIcon(self.resource_path("icon.png"))
+        self.add_icon = QIcon(self.resource_path("add.png"))
+        self.filter_icon = QIcon(self.resource_path("filter.png"))
+        self.add_icon_pixmap = self.add_icon.pixmap(40, 40)
+        self.filter_icon_pixmap = self.filter_icon.pixmap(40, 40)
+        self.write_log(f"Resource path : {self.resource_path("icon.png")}")
+        self.write_log(f"Resource path : {self.resource_path("add.png")}")
+        self.write_log(f"Resource path : {self.resource_path("filter.png")}")
 
         # Method calls
         self.initUI()
@@ -212,9 +226,15 @@ class MainWindow(QMainWindow):
         self.h_box_filter_main.addWidget(self.stack_filter_changing_qwidget)
         self.h_box_filter_main.addWidget(self.filter_button)
         self.h_box_filter_2.addWidget(self.clear_filters_button)
+        self.h_box_add_title.addWidget(self.add_icon_label, alignment = Qt.AlignLeft)
+        #self.h_box_add_title.addWidget(self.add_label, alignment = Qt.AlignLeft)
+        self.h_box_filter_title.addWidget(self.filter_icon_label, alignment = Qt.AlignLeft)
+        #self.h_box_filter_title.addWidget(self.filter_label, alignment = Qt.AlignLeft)
             # Level 1
+        self.v_box_main.addLayout(self.h_box_add_title)
         self.v_box_main.addLayout(self.h_box_upper)
         self.v_box_main.addWidget(self.separator_1)
+        self.v_box_main.addLayout(self.h_box_filter_title)
         self.v_box_main.addLayout(self.h_box_filter_main)
         self.v_box_main.addLayout(self.h_box_filter_2)
         self.v_box_main.addWidget(self.separator_2)
@@ -234,7 +254,9 @@ class MainWindow(QMainWindow):
         #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
 
         # Buttons, labels and other
-        self.setWindowIcon(self.icon)
+        self.add_icon_label.setMaximumWidth(50)
+        self.filter_icon_label.setMaximumWidth(50)
+        self.setWindowIcon(self.main_icon)
         self.filter_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         self.setWindowTitle("Simple expense manager by Peter Szepesi")
         self.year_line_edit.setText(str(self.today_date.year))
@@ -244,6 +266,8 @@ class MainWindow(QMainWindow):
         self.filter_price_from.setPlaceholderText("Price FROM")
         self.filter_price_to.setPlaceholderText("Price TO")
         self.filter_date_day_from.setText("01")
+        self.add_icon_label.setPixmap(self.add_icon_pixmap)
+        self.filter_icon_label.setPixmap(self.filter_icon_pixmap)
         self.filter_date_month_from.setText(f"{self.today_date.month:02}")
         self.filter_date_year_from.setText(f"{self.today_date.year}")
         self.filter_date_day_to.setText(f"{self.today_date.day:02}")
@@ -254,7 +278,6 @@ class MainWindow(QMainWindow):
         self.expenses_table.setColumnCount(5)
         self.expenses_table.setHorizontalHeaderLabels(["ID", "Description", "Category", "Price", "Date"])
         self.expenses_table.verticalHeader().setVisible(False)
-        self.fill_table()
         self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.filter_by_combo_box.addItems(["Month", "ID", "Category", "Price", "Date"])
         self.filter_line_edit_id_from.setPlaceholderText("Id FROM")
@@ -448,6 +471,9 @@ class MainWindow(QMainWindow):
         
         """)
 
+        # Filling the table with all results
+        self.fill_table()
+
     def center_window(self):
         window_width = self.width()
         window_height = self.height()
@@ -601,7 +627,6 @@ class MainWindow(QMainWindow):
         self.count_prices()
 
     def fill_table_selected(self, rows):
-        # TODO - remove the first start warning
         try:
             if rows:
                 self.expenses_table.setRowCount(len(rows))
@@ -623,7 +648,10 @@ class MainWindow(QMainWindow):
                         self.expenses_table.setItem(row_index, column_index, cell)
             else:
                 self.expenses_table.setRowCount(0)
-                self.print_warning_message("Empty", "No results to show!")
+                if not self.is_first_filter:
+                    self.print_warning_message("Empty", "No results to show!")
+                if self.is_first_filter:
+                    self.is_first_filter = False
         except Exception as e:
             self.write_log(f"def fill_table_selected : something went wrong during filling the table : {e}")
 
