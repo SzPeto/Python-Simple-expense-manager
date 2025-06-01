@@ -258,9 +258,13 @@ class MainWindow(QMainWindow):
         self.filter_line_edit_id_from.setPlaceholderText("Id FROM")
         self.filter_line_edit_id_to.setPlaceholderText("Id TO")
         self.filter_month_year_combo_box.addItems(self.get_years())
+        self.filter_month_year_combo_box.setCurrentIndex(len(self.filter_month_year_combo_box) - 1)
+        self.filter_month_year_combo_box.setMaximumWidth(80)
         self.filter_month_month_combo_box.addItems([
-            "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
+            "January", "February", "March", "April", "May", "June", "July", "August", "September",
+            "October", "November", "December"
         ])
+        self.filter_month_month_combo_box.setCurrentIndex(int(self.today.month) - 1)
         self.expenses_table.setSortingEnabled(True)
             # Setting line edit validators
         self.filter_line_edit_id_from.setValidator(self.int_validator)
@@ -332,12 +336,20 @@ class MainWindow(QMainWindow):
                     stop:1 rgb(225, 225, 225)   /* Bottom of gradient */
                 );
             }
+            
             QPushButton:pressed {
                 background-color: qlineargradient(
                     x1:0, y1:0, x2:0, y2:1,
                     stop:0 rgb(230, 230, 230),  /* Top of gradient */
                     stop:1 rgb(210, 210, 210)   /* Bottom of gradient */
                 );
+                border: 1px inset rgb(144, 144, 144);
+            }
+            
+            QPushButton#addButton{
+                font-size: 25px;
+                font-weight: bold;
+                color: rgb(111, 111, 111);
             }
             
             QLineEdit {
@@ -391,10 +403,6 @@ class MainWindow(QMainWindow):
                 border: 1px solid rgb(214, 214, 214);
                 font-weight: bold;
                 color: rgb(111, 111, 111);
-            }
-            
-            QPushButton#addButton{
-                font-size: 25px;
             }
             
             QTableWidget {
@@ -475,6 +483,8 @@ class MainWindow(QMainWindow):
     def filter_selected(self):
         index = self.stack_filter_changing.currentIndex()
         if index == 0:
+            pass
+        elif index == 1:
             try:
                 id_from = int(self.filter_line_edit_id_from.text())
                 id_to = int(self.filter_line_edit_id_to.text())
@@ -488,7 +498,7 @@ class MainWindow(QMainWindow):
                 self.write_log(f"def filter_selected : {e}")
                 self.print_warning_message("Empty", "No results to show, please enter a valid input!")
 
-        elif index == 1:
+        elif index == 2:
             try:
                 category = self.filter_category_combo_box.currentText()
                 rows = search_based_on_condition(
@@ -498,7 +508,7 @@ class MainWindow(QMainWindow):
             except Exception as e:
                 self.write_log(f"def filter_selected : {e}")
                 self.print_warning_message("Invalid input", f"Something went wrong, (error : {e})")
-        elif index == 2:
+        elif index == 3:
             try:
                 price_from = float(self.filter_price_from.text())
                 price_to = float(self.filter_price_to.text())
@@ -512,7 +522,7 @@ class MainWindow(QMainWindow):
             except Exception as e:
                 self.print_warning_message("Empty", "No results to show, please enter a valid input!")
                 self.write_log(f"def filter_selected : exception : {e}")
-        elif index == 3:
+        elif index == 4:
             try:
                 day_from = int(self.filter_date_day_from.text())
                 month_from = int(self.filter_date_month_from.text())
