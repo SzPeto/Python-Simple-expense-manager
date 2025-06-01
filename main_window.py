@@ -794,7 +794,7 @@ class MainWindow(QMainWindow):
         for i in range(0, self.expenses_table.rowCount()):
             cell = self.expenses_table.item(i, 3).text()
             sum += float(cell)
-        self.sum_label.setText(f"Total : {sum}")
+        self.sum_label.setText(f"Total : {sum:.2f}")
 
     def get_years(self):
         years = []

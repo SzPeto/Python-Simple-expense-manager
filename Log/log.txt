@@ -1983,3 +1983,23 @@
 2025-06-01, 21:20:36 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
 2025-06-01, 21:20:37 - Table expenses created
 2025-06-01, 21:20:43 - Table expenses created
+
+2025-06-01, 21:47:23 *****************************************************************************
+2025-06-01, 21:47:23 - Database connection : Databases\main.db established
+2025-06-01, 21:47:23 - Table expenses created
+2025-06-01, 21:47:23 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-01, 21:47:23 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-01, 21:47:23 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-01, 21:47:25 - Table expenses created
+
+2025-06-01, 21:52:23 *****************************************************************************
+2025-06-01, 21:52:23 - Database connection : Databases\main.db established
+2025-06-01, 21:52:23 - Table expenses created
+2025-06-01, 21:52:23 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-01, 21:52:23 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-01, 21:52:23 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-01, 21:52:24 - Table expenses created
+2025-06-01, 21:52:41 - Table expenses created
+2025-06-01, 21:52:41 - Entries inserted : ddg, Groceries, 12.6, 2025-06-01
+2025-06-01, 21:52:41 - Table expenses created
+2025-06-01, 21:53:09 - Table expenses created
