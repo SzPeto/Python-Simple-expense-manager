@@ -4,7 +4,7 @@ import os.path
 import sys
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QGuiApplication, QIntValidator, QColor
+from PyQt5.QtGui import QGuiApplication, QIntValidator, QColor, QIcon
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
     QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy, QStackedLayout, QMessageBox, \
     QGraphicsDropShadowEffect
@@ -20,12 +20,14 @@ class MainWindow(QMainWindow):
 
         # Master
         self.central_widget = QWidget()
+        self.icon = QIcon(self.resource_path("icon.png"))
         self.monitor = QGuiApplication.primaryScreen().geometry()
         self.main_instance: Main = main_instance
         self.today_date = datetime.date.today()
         get_main_instance(self)
         self.log_file = self.create_file_dir("Log\\log.txt")
         self.write_log_init()
+        self.today = datetime.datetime.today()
         self.categories = [
             "Groceries", "Utilities", "Rent", "Transportation", "Gas",
             "Dining Out", "Health", "Insurance", "Clothing", "Entertainment",
@@ -54,10 +56,12 @@ class MainWindow(QMainWindow):
         self.h_box_filter_main = QHBoxLayout()
         self.h_box_filter_2 = QHBoxLayout()
         self.stack_filter_changing = QStackedLayout()
+        self.filter_page_month = QWidget()
         self.filter_page_id = QWidget()
         self.filter_page_category = QWidget()
         self.filter_page_price = QWidget()
         self.filter_page_date = QWidget()
+        self.h_box_filter_changing_month = QHBoxLayout()
         self.h_box_filter_changing_id = QHBoxLayout()
         self.h_box_filter_changing_category = QHBoxLayout()
         self.h_box_filter_changing_price = QHBoxLayout()
@@ -116,6 +120,8 @@ class MainWindow(QMainWindow):
         self.filter_date_day_to = QLineEdit()
         self.filter_date_month_to = QLineEdit()
         self.filter_date_year_to = QLineEdit()
+        self.filter_month_year_combo_box = QComboBox()
+        self.filter_month_month_combo_box = QComboBox()
 
         # Other
         self.expenses_table = QTableWidget()
@@ -151,6 +157,8 @@ class MainWindow(QMainWindow):
         self.h_box_price.addWidget(self.price_decimal_line_edit, alignment = Qt.AlignLeft)
         self.h_box_price.addStretch()
                     # Constructing the changing filter hbox
+        self.h_box_filter_changing_month.addWidget(self.filter_month_year_combo_box)
+        self.h_box_filter_changing_month.addWidget(self.filter_month_month_combo_box)
         self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_from)
         self.h_box_filter_changing_id.addWidget(self.filter_line_edit_id_to)
         self.h_box_filter_changing_category.addWidget(self.filter_category_combo_box)
@@ -181,16 +189,18 @@ class MainWindow(QMainWindow):
         self.v_box_upper_3.addWidget(self.add_button)
         self.v_box_upper_3.addLayout(self.h_box_buttons)
                     # Wrapping the changing filter layouts into QWidgets
+        self.filter_page_month.setLayout(self.h_box_filter_changing_month)
         self.filter_page_id.setLayout(self.h_box_filter_changing_id)
         self.filter_page_category.setLayout(self.h_box_filter_changing_category)
         self.filter_page_price.setLayout(self.h_box_filter_changing_price)
         self.filter_page_date.setLayout(self.h_box_filter_changing_date)
                     # Adding into stack layout
+        self.stack_filter_changing.addWidget(self.filter_page_month)
         self.stack_filter_changing.addWidget(self.filter_page_id)
         self.stack_filter_changing.addWidget(self.filter_page_category)
         self.stack_filter_changing.addWidget(self.filter_page_price)
         self.stack_filter_changing.addWidget(self.filter_page_date)
-        self.stack_filter_changing.setCurrentIndex(1)
+        self.stack_filter_changing.setCurrentIndex(0)
         self.stack_filter_changing_qwidget.setLayout(self.stack_filter_changing)
             # Level 2
         self.h_box_upper.addLayout(self.v_box_upper_1)
@@ -222,6 +232,7 @@ class MainWindow(QMainWindow):
         #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
 
         # Buttons, labels and other
+        self.setWindowIcon(self.icon)
         self.filter_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         self.setWindowTitle("Simple expense manager by Peter Szepesi")
         self.year_line_edit.setText(str(self.today_date.year))
@@ -243,9 +254,13 @@ class MainWindow(QMainWindow):
         self.expenses_table.verticalHeader().setVisible(False)
         self.fill_table()
         self.expenses_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
-        self.filter_by_combo_box.addItems(["ID", "Category", "Price", "Date"])
+        self.filter_by_combo_box.addItems(["Month", "ID", "Category", "Price", "Date"])
         self.filter_line_edit_id_from.setPlaceholderText("Id FROM")
         self.filter_line_edit_id_to.setPlaceholderText("Id TO")
+        self.filter_month_year_combo_box.addItems(self.get_years())
+        self.filter_month_month_combo_box.addItems([
+            "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
+        ])
         self.expenses_table.setSortingEnabled(True)
             # Setting line edit validators
         self.filter_line_edit_id_from.setValidator(self.int_validator)
@@ -367,7 +382,7 @@ class MainWindow(QMainWindow):
                 font-family: Segoe UI;
                 background-color: white;
                 padding: 10px;
-                border-radius: 10px;
+                border-radius: 4px;
                 background-color: qlineargradient(
                     x1:0, y1:0, x2:0, y2:1,
                     stop:0 rgb(255, 255, 255),  /* Top of gradient */
@@ -446,14 +461,16 @@ class MainWindow(QMainWindow):
 
     def change_filter(self):
         filter_text = self.filter_by_combo_box.currentText().lower()
-        if filter_text == "id":
-           self.stack_filter_changing.setCurrentIndex(0)
-        elif filter_text == "category":
+        if filter_text == "month":
+            self.stack_filter_changing.setCurrentIndex(0)
+        elif filter_text == "id":
             self.stack_filter_changing.setCurrentIndex(1)
-        elif filter_text == "price":
+        elif filter_text == "category":
             self.stack_filter_changing.setCurrentIndex(2)
-        elif filter_text == "date":
+        elif filter_text == "price":
             self.stack_filter_changing.setCurrentIndex(3)
+        elif filter_text == "date":
+            self.stack_filter_changing.setCurrentIndex(4)
 
     def filter_selected(self):
         index = self.stack_filter_changing.currentIndex()
@@ -717,3 +734,12 @@ class MainWindow(QMainWindow):
             cell = self.expenses_table.item(i, 3).text()
             sum += float(cell)
         self.sum_label.setText(f"Total : {sum}")
+
+    def get_years(self):
+        years = []
+        current_year = self.today.year
+        length = int(current_year - 1990 + 1)
+        for i in range(0, length):
+            years.append(str(1990 + i))
+
+        return years

@@ -1525,3 +1525,119 @@
 2025-06-01, 14:54:57 - Database connection : Databases\main.db established
 2025-06-01, 14:54:57 - Table expenses created
 2025-06-01, 14:54:58 - Table expenses created
+
+2025-06-01, 14:55:26 *****************************************************************************
+2025-06-01, 14:55:26 - Database connection : Databases\main.db established
+2025-06-01, 14:55:26 - Table expenses created
+2025-06-01, 14:55:27 - Table expenses created
+
+2025-06-01, 14:56:38 *****************************************************************************
+2025-06-01, 14:56:38 - Database connection : Databases\main.db established
+2025-06-01, 14:56:38 - Table expenses created
+2025-06-01, 14:56:39 - Table expenses created
+
+2025-06-01, 14:56:58 *****************************************************************************
+2025-06-01, 14:56:58 - Database connection : Databases\main.db established
+2025-06-01, 14:56:58 - Table expenses created
+2025-06-01, 14:56:59 - Table expenses created
+
+2025-06-01, 14:57:41 *****************************************************************************
+2025-06-01, 14:57:41 - Database connection : Databases\main.db established
+2025-06-01, 14:57:41 - Table expenses created
+2025-06-01, 14:57:42 - Table expenses created
+
+2025-06-01, 14:58:14 *****************************************************************************
+2025-06-01, 14:58:14 - Database connection : Databases\main.db established
+2025-06-01, 14:58:14 - Table expenses created
+2025-06-01, 14:58:15 - Table expenses created
+
+2025-06-01, 14:58:28 *****************************************************************************
+2025-06-01, 14:58:28 - Database connection : Databases\main.db established
+2025-06-01, 14:58:28 - Table expenses created
+2025-06-01, 14:58:28 - Table expenses created
+
+2025-06-01, 14:58:48 *****************************************************************************
+2025-06-01, 14:58:48 - Database connection : Databases\main.db established
+2025-06-01, 14:58:48 - Table expenses created
+2025-06-01, 14:58:48 - Table expenses created
+
+2025-06-01, 14:59:20 *****************************************************************************
+2025-06-01, 14:59:20 - Database connection : Databases\main.db established
+2025-06-01, 14:59:20 - Table expenses created
+2025-06-01, 14:59:20 - Table expenses created
+2025-06-01, 15:00:32 - Table expenses created
+
+2025-06-01, 15:01:50 *****************************************************************************
+2025-06-01, 15:01:50 - Database connection : Databases\main.db established
+2025-06-01, 15:01:50 - Table expenses created
+2025-06-01, 15:01:50 - Table expenses created
+
+2025-06-01, 15:02:12 *****************************************************************************
+2025-06-01, 15:02:12 - Database connection : Databases\main.db established
+2025-06-01, 15:02:12 - Table expenses created
+2025-06-01, 15:02:12 - Table expenses created
+
+2025-06-01, 15:02:31 *****************************************************************************
+2025-06-01, 15:02:31 - Database connection : Databases\main.db established
+2025-06-01, 15:02:31 - Table expenses created
+2025-06-01, 15:02:32 - Table expenses created
+
+2025-06-01, 15:13:09 *****************************************************************************
+2025-06-01, 15:13:09 - Database connection : Databases\main.db established
+2025-06-01, 15:13:09 - Table expenses created
+2025-06-01, 15:13:10 - Table expenses created
+
+2025-06-01, 15:13:48 *****************************************************************************
+2025-06-01, 15:13:48 - Database connection : Databases\main.db established
+2025-06-01, 15:13:48 - Table expenses created
+2025-06-01, 15:13:49 - Table expenses created
+
+2025-06-01, 15:14:22 *****************************************************************************
+2025-06-01, 15:14:22 - Database connection : Databases\main.db established
+2025-06-01, 15:14:22 - Table expenses created
+2025-06-01, 15:14:22 - Table expenses created
+
+2025-06-01, 15:20:01 *****************************************************************************
+2025-06-01, 15:20:01 - Database connection : Databases\main.db established
+2025-06-01, 15:20:01 - Table expenses created
+2025-06-01, 15:20:02 - Table expenses created
+
+2025-06-01, 15:21:00 *****************************************************************************
+2025-06-01, 15:21:00 - Database connection : Databases\main.db established
+2025-06-01, 15:21:00 - Table expenses created
+2025-06-01, 15:21:01 - Table expenses created
+
+2025-06-01, 16:27:42 *****************************************************************************
+2025-06-01, 16:27:42 - Database connection : Databases\main.db established
+2025-06-01, 16:27:42 - Table expenses created
+2025-06-01, 16:27:43 - Table expenses created
+
+2025-06-01, 16:31:15 *****************************************************************************
+2025-06-01, 16:31:15 - Database connection : Databases\main.db established
+2025-06-01, 16:31:15 - Table expenses created
+2025-06-01, 16:31:16 - Table expenses created
+
+2025-06-01, 16:31:37 *****************************************************************************
+2025-06-01, 16:31:37 - Database connection : Databases\main.db established
+2025-06-01, 16:31:37 - Table expenses created
+2025-06-01, 16:31:37 - Table expenses created
+
+2025-06-01, 16:31:54 *****************************************************************************
+2025-06-01, 16:31:54 - Database connection : Databases\main.db established
+2025-06-01, 16:31:54 - Table expenses created
+2025-06-01, 16:31:55 - Table expenses created
+
+2025-06-01, 16:34:56 *****************************************************************************
+2025-06-01, 16:34:56 - Database connection : Databases\main.db established
+2025-06-01, 16:34:56 - Table expenses created
+2025-06-01, 16:34:57 - Table expenses created
+
+2025-06-01, 16:37:45 *****************************************************************************
+2025-06-01, 16:37:45 - Database connection : Databases\main.db established
+2025-06-01, 16:37:45 - Table expenses created
+2025-06-01, 16:37:45 - Table expenses created
+
+2025-06-01, 16:38:14 *****************************************************************************
+2025-06-01, 16:38:14 - Database connection : Databases\main.db established
+2025-06-01, 16:38:14 - Table expenses created
+2025-06-01, 16:38:15 - Table expenses created
