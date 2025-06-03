@@ -2823,3 +2823,13 @@
 2025-06-03, 18:38:39 - Table expenses created
 2025-06-03, 18:38:39 - Table expenses created
 2025-06-03, 18:38:39 - Table expenses created
+
+2025-06-03, 18:44:48 *****************************************************************************
+2025-06-03, 18:44:48 - Database connection : Databases\main.db established
+2025-06-03, 18:44:48 - Table expenses created
+2025-06-03, 18:44:48 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:44:48 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:44:48 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:44:48 - Table expenses created
+2025-06-03, 18:44:48 - Table expenses created
+2025-06-03, 18:44:48 - Table expenses created
