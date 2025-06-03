@@ -135,11 +135,13 @@ class MainWindow(QMainWindow):
         self.main_icon = QIcon(self.resource_path("icon.png"))
         self.add_icon = QIcon(self.resource_path("add.png"))
         self.filter_icon = QIcon(self.resource_path("filter.png"))
-        self.add_icon_pixmap = self.add_icon.pixmap(40, 40)
-        self.filter_icon_pixmap = self.filter_icon.pixmap(40, 40)
+        self.add_icon_pixmap = self.add_icon.pixmap(50, 50)
+        self.filter_icon_pixmap = self.filter_icon.pixmap(50, 50)
         self.write_log(f"Resource path : {self.resource_path("icon.png")}")
         self.write_log(f"Resource path : {self.resource_path("add.png")}")
         self.write_log(f"Resource path : {self.resource_path("filter.png")}")
+            # After updating an entry, call the function fill_table if 1, filter if 2
+        self.previous_operation = 0
 
         # Method calls
         self.initUI()
@@ -251,6 +253,7 @@ class MainWindow(QMainWindow):
         self.filter_button.clicked.connect(self.filter_selected)
         self.filter_month_month_combo_box.currentIndexChanged.connect(self.filter_selected)
         self.clear_filters_button.clicked.connect(self.refresh)
+        self.expenses_table.itemChanged.connect(self.update_selected)
         #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
 
         # Buttons, labels and other
@@ -594,8 +597,10 @@ class MainWindow(QMainWindow):
             except Exception as e:
                 self.print_warning_message("Empty", "No results to show, please enter a valid input!")
                 self.write_log(f"def filter_selected : exception : {e}")
+        self.previous_operation = 2
 
     def fill_table(self):
+        self.expenses_table.blockSignals(True)
         try:
             create_table(self.cursor, self.table_name)
             rows = show_all(self.cursor, self.table_name)
@@ -606,6 +611,7 @@ class MainWindow(QMainWindow):
                     for column_index in range(0, len(row)):
                         column = row[column_index]
 
+                        # Column index 0 and 3 should be int and float for sorting purposes
                         if column_index == 0:
                             cell = QTableWidgetItem()
                             cell.setData(Qt.EditRole, int(column))
@@ -621,12 +627,15 @@ class MainWindow(QMainWindow):
 
             else:
                 self.expenses_table.setRowCount(0)
+            self.previous_operation = 1
         except Exception as e:
             self.write_log(f"def fill_table : something went wrong during filling the table : {e}")
 
         self.count_prices()
+        self.expenses_table.blockSignals(False)
 
     def fill_table_selected(self, rows):
+        self.expenses_table.blockSignals(True)
         try:
             if rows:
                 self.expenses_table.setRowCount(len(rows))
@@ -634,6 +643,8 @@ class MainWindow(QMainWindow):
                     row = rows[row_index]
                     for column_index in range(0, len(row)):
                         column = row[column_index]
+
+                        # Column index 0 and 3 should be int and float for sorting purposes
                         if column_index == 0:
                             cell = QTableWidgetItem()
                             cell.setData(Qt.EditRole, int(column))
@@ -656,6 +667,7 @@ class MainWindow(QMainWindow):
             self.write_log(f"def fill_table_selected : something went wrong during filling the table : {e}")
 
         self.count_prices()
+        self.expenses_table.blockSignals(False)
 
     def order_table(self, index):
         # self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table) - automatically passes
@@ -684,15 +696,15 @@ class MainWindow(QMainWindow):
                         selected_cell_id = int(selected_cell_id)
                         delete_entry(self.cursor, self.table_name, "id", selected_cell_id)
             else:
-                self.write_log("There is nothing selected")
+                self.write_log("def delete_selected : There is nothing selected")
         except Exception as e:
-            self.write_log(f"Something went wrong deleting selected items : {e}")
+            self.write_log(f"def delete_selected : something went wrong deleting selected items : {e}")
 
         try:
             self.db_connection.commit()
             self.fill_table()
         except Exception as e:
-            self.write_log(f"Something went wrong during filling the table : {e}")
+            self.write_log(f"def delete_selected : something went wrong during filling the table : {e}")
 
 
     def delete_all(self):
@@ -705,6 +717,23 @@ class MainWindow(QMainWindow):
 
     def refresh(self):
         self.fill_table()
+
+    def update_selected(self):
+        # TODO - Fix the bug, after changing the value, the whole table is printed
+        clicked_cell = self.expenses_table.selectedItems()[0]
+        row = clicked_cell.row()
+        column = clicked_cell.column()
+        column_search = "id"
+        keyword_search = self.expenses_table.item(row, 0).text()
+        column_update = self.expenses_table.horizontalHeaderItem(column).text().lower()
+        keyword_update = self.expenses_table.item(row, column).text()
+        update_entry(self.cursor, self.table_name, column_search, keyword_search, column_update, keyword_update)
+        print(column_search, keyword_search, column_update, keyword_update)
+        self.db_connection.commit()
+        if self.previous_operation == 1:
+            self.fill_table()
+        elif self.previous_operation == 2:
+            self.filter_selected()
 
     # Resource path
     def resource_path(self, relative_path):
