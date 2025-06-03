@@ -60,3 +60,43 @@
 2025-06-03, 18:44:22 - Table expenses created
 2025-06-03, 18:44:22 - Table expenses created
 2025-06-03, 18:44:22 - Table expenses created
+
+2025-06-03, 18:46:45 *****************************************************************************
+2025-06-03, 18:46:45 - Database connection : Databases\main.db established
+2025-06-03, 18:46:46 - Table expenses created
+2025-06-03, 18:46:46 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI113602\icon.png
+2025-06-03, 18:46:46 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI113602\add.png
+2025-06-03, 18:46:46 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI113602\filter.png
+2025-06-03, 18:46:47 - Table expenses created
+2025-06-03, 18:46:47 - Table expenses created
+2025-06-03, 18:46:47 - Table expenses created
+
+2025-06-03, 18:52:05 *****************************************************************************
+2025-06-03, 18:52:05 - Database connection : Databases\main.db established
+2025-06-03, 18:52:05 - Table expenses created
+2025-06-03, 18:52:05 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI162442\icon.png
+2025-06-03, 18:52:05 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI162442\add.png
+2025-06-03, 18:52:05 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI162442\filter.png
+2025-06-03, 18:52:05 - Table expenses created
+2025-06-03, 18:52:05 - Table expenses created
+2025-06-03, 18:52:05 - Table expenses created
+
+2025-06-03, 19:40:35 *****************************************************************************
+2025-06-03, 19:40:35 - Database connection : Databases\main.db established
+2025-06-03, 19:40:35 - Table expenses created
+2025-06-03, 19:40:35 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI9082\icon.png
+2025-06-03, 19:40:35 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI9082\add.png
+2025-06-03, 19:40:35 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI9082\filter.png
+2025-06-03, 19:40:37 - Table expenses created
+2025-06-03, 19:40:37 - Table expenses created
+2025-06-03, 19:40:37 - Table expenses created
+
+2025-06-03, 21:10:42 *****************************************************************************
+2025-06-03, 21:10:42 - Database connection : Databases\main.db established
+2025-06-03, 21:10:42 - Table expenses created
+2025-06-03, 21:10:42 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI112242\icon.png
+2025-06-03, 21:10:42 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI112242\add.png
+2025-06-03, 21:10:42 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI112242\filter.png
+2025-06-03, 21:10:44 - Table expenses created
+2025-06-03, 21:10:44 - Table expenses created
+2025-06-03, 21:10:44 - Table expenses created

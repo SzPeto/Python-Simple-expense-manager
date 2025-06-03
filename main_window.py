@@ -222,7 +222,7 @@ class MainWindow(QMainWindow):
         self.stack_filter_changing.addWidget(self.filter_page_price)
         self.stack_filter_changing.addWidget(self.filter_page_date)
         self.stack_filter_changing.setCurrentIndex(0)
-        self.stack_filter_changing_qwidget.setLayout(self.stack_filter_changing)
+        self.stack_filter_changing_qwidget.setLayout(self.stack_filter_changing) # Wrapping the stack into QWidget
             # Level 2
         self.h_box_upper.addLayout(self.v_box_upper_1)
         self.h_box_upper.addLayout(self.v_box_upper_2)
