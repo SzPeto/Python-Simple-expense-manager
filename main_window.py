@@ -142,6 +142,7 @@ class MainWindow(QMainWindow):
         self.write_log(f"Resource path : {self.resource_path("filter.png")}")
             # After updating an entry, call the function fill_table if 1, filter if 2
         self.previous_operation = 0
+        self.shadow_sum_label = QGraphicsDropShadowEffect()
 
         # Method calls
         self.initUI()
@@ -316,9 +317,9 @@ class MainWindow(QMainWindow):
         self.add_button.setObjectName("addButton")
         self.price_decimal_label.setObjectName("priceDecimalLabel")
         self.filter_month_month_combo_box.setObjectName("filterMonthMonthComboBox")
+        self.v_box_upper_2.setObjectName("vBoxUpper2")
 
         # Styling
-        self.shadow_sum_label = QGraphicsDropShadowEffect()
         self.shadow_sum_label.setBlurRadius(15)
         self.shadow_sum_label.setColor(QColor(0, 0, 0, 160))  # Semi-transparent black
         self.shadow_sum_label.setOffset(3, 3)
@@ -424,7 +425,10 @@ class MainWindow(QMainWindow):
             }
             
             QComboBox#filterMonthMonthComboBox{
-                font-size: 20px;
+                font-size: 23px;
+                border: 2px solid rgb(204, 204, 204);
+                background-color: rgb(240, 248, 255);
+                
             }
             
             QLabel#sumLabel{
@@ -476,6 +480,7 @@ class MainWindow(QMainWindow):
 
         # Filling the table with all results
         self.fill_table()
+        self.filter_month_month_combo_box.setCurrentIndex(0)
 
     def center_window(self):
         window_width = self.width()
@@ -505,6 +510,9 @@ class MainWindow(QMainWindow):
             insert_entry(self.cursor, self.table_name, description, category, price, date)
             self.db_connection.commit()
             self.fill_table()
+            self.description_line_edit.setText("")
+            self.price_line_edit.setText("")
+            self.price_decimal_line_edit.setText("00")
         except Exception as e:
             self.write_log(f"Something went wrong during adding entry : {e}")
 
