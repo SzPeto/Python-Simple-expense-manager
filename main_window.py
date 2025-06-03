@@ -103,7 +103,7 @@ class MainWindow(QMainWindow):
         self.date_to_label = QLabel("Date TO:")
         self.sum_label = QLabel("")
         self.add_label = QLabel("Add entry into table")
-        self.filter_label = QLabel("Filter results")
+        self.filter_label = QLabel("Filter by : ")
         self.add_icon_label = QLabel()
         self.filter_icon_label = QLabel()
 
@@ -289,7 +289,7 @@ class MainWindow(QMainWindow):
         self.filter_month_year_combo_box.setCurrentIndex(len(self.filter_month_year_combo_box) - 1)
         self.filter_month_year_combo_box.setMaximumWidth(80)
         self.filter_month_month_combo_box.addItems([
-            "January", "February", "March", "April", "May", "June", "July", "August", "September",
+            "All", "January", "February", "March", "April", "May", "June", "July", "August", "September",
             "October", "November", "December"
         ])
         self.filter_month_month_combo_box.setCurrentIndex(int(self.today.month) - 1)
@@ -526,12 +526,15 @@ class MainWindow(QMainWindow):
         if index == 0:
             try:
                 year = self.filter_month_year_combo_box.currentText()
-                month = f"{int(self.filter_month_month_combo_box.currentIndex() + 1):02}"
-                rows = search_based_on_condition(
-                    self.cursor, self.table_name,
-                    f"date >= '{year}-{month}-01' AND date <= '{year}-{month}-31'"
-                )
-                self.fill_table_selected(rows)
+                month = f"{int(self.filter_month_month_combo_box.currentIndex()):02}"
+                if month == "00":
+                    self.fill_table()
+                else:
+                    rows = search_based_on_condition(
+                        self.cursor, self.table_name,
+                        f"date >= '{year}-{month}-01' AND date <= '{year}-{month}-31'"
+                    )
+                    self.fill_table_selected(rows)
             except Exception as e:
                 self.write_log(f"def filter_selected : {e}")
                 self.print_warning_message("Empty", "No results to show, please enter a valid input!")
