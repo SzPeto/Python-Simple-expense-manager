@@ -2,6 +2,7 @@
 import datetime
 import os.path
 import sys
+import webbrowser
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication, QIntValidator, QColor, QIcon
@@ -20,7 +21,6 @@ class MainWindow(QMainWindow):
 
         # Master
         self.central_widget = QWidget()
-        self.main_icon = QIcon(self.resource_path("icon.png"))
         self.monitor = QGuiApplication.primaryScreen().geometry()
         self.main_instance: Main = main_instance
         self.today_date = datetime.date.today()
@@ -41,10 +41,11 @@ class MainWindow(QMainWindow):
         self.int_month_validator = QIntValidator(1, 12)
         self.int_year_validator = QIntValidator(1, 8888)
         self.is_asc = True
+        self.icon_size = 40
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
-        self.window_height = int(self.monitor.height() * 0.85)
+        self.window_height = int(self.monitor.height() * 0.88)
 
         # Layout
         self.v_box_main = QVBoxLayout() # The main layout, level 0
@@ -69,12 +70,13 @@ class MainWindow(QMainWindow):
         self.h_box_filter_changing_date = QHBoxLayout()
         self.separator_1 = QFrame()
         self.separator_2 = QFrame()
+        self.separator_3 = QFrame()
         self.stack_filter_changing_qwidget = QWidget()
         self.h_box_buttons = QHBoxLayout()
-        self.v_box_buttons_1 = QVBoxLayout()
-        self.v_box_buttons_2 = QVBoxLayout()
         self.h_box_add_title = QHBoxLayout()
         self.h_box_filter_title = QHBoxLayout()
+        self.h_box_table_buttons = QHBoxLayout()
+        self.h_box_sum = QHBoxLayout()
 
         # Database
         self.db_connection = create_connection("Databases\\main.db")
@@ -89,6 +91,7 @@ class MainWindow(QMainWindow):
         self.refresh_button = QPushButton("Refresh")
         self.filter_button = QPushButton("Filter results")
         self.clear_filters_button = QPushButton("Clear all filters")
+        self.support_me_button = QPushButton("Support me")
 
         # Labels
         self.description_label = QLabel("Description")
@@ -106,6 +109,7 @@ class MainWindow(QMainWindow):
         self.filter_label = QLabel("Filter by : ")
         self.add_icon_label = QLabel()
         self.filter_icon_label = QLabel()
+        self.sum_icon_label = QLabel()
 
         # Line edits and combo boxes
         self.description_line_edit = QLineEdit()
@@ -135,8 +139,10 @@ class MainWindow(QMainWindow):
         self.main_icon = QIcon(self.resource_path("icon.png"))
         self.add_icon = QIcon(self.resource_path("add.png"))
         self.filter_icon = QIcon(self.resource_path("filter.png"))
-        self.add_icon_pixmap = self.add_icon.pixmap(50, 50)
-        self.filter_icon_pixmap = self.filter_icon.pixmap(50, 50)
+        self.sum_icon = QIcon(self.resource_path("sum.png"))
+        self.add_icon_pixmap = self.add_icon.pixmap(self.icon_size, self.icon_size)
+        self.filter_icon_pixmap = self.filter_icon.pixmap(self.icon_size, self.icon_size)
+        self.sum_icon_pixmap = self.sum_icon.pixmap(self.icon_size, self.icon_size)
         self.write_log(f"Resource path : {self.resource_path("icon.png")}")
         self.write_log(f"Resource path : {self.resource_path("add.png")}")
         self.write_log(f"Resource path : {self.resource_path("filter.png")}")
@@ -161,10 +167,10 @@ class MainWindow(QMainWindow):
         self.separator_2.setFrameShape(QFrame.HLine)
         self.separator_2.setFrameShadow(QFrame.Sunken)
         self.separator_2.setLineWidth(2)
+        self.separator_3.setFrameShape(QFrame.HLine)
+        self.separator_3.setFrameShadow(QFrame.Sunken)
+        self.separator_3.setLineWidth(2)
             # Level 4
-        self.v_box_buttons_1.addWidget(self.delete_selected_button)
-        self.v_box_buttons_1.addWidget(self.delete_all_button)
-        self.v_box_buttons_2.addWidget(self.refresh_button)
         self.h_box_date.addWidget(self.year_line_edit)
         self.h_box_date.addWidget(self.month_line_edit)
         self.h_box_date.addWidget(self.day_line_edit)
@@ -193,8 +199,6 @@ class MainWindow(QMainWindow):
         self.h_box_filter_changing_date.addWidget(self.filter_date_month_to)
         self.h_box_filter_changing_date.addWidget(self.filter_date_day_to)
             # Level 3
-        self.h_box_buttons.addLayout(self.v_box_buttons_1)
-        self.h_box_buttons.addLayout(self.v_box_buttons_2)
         self.stack_filter_changing_qwidget.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         self.v_box_upper_1.addWidget(self.description_label)
         self.v_box_upper_1.addWidget(self.category_label)
@@ -204,8 +208,7 @@ class MainWindow(QMainWindow):
         self.v_box_upper_2.addWidget(self.category_combo_box, alignment = Qt.AlignLeft)
         self.v_box_upper_2.addLayout(self.h_box_price)
         self.v_box_upper_2.addLayout(self.h_box_date)
-        self.v_box_upper_3.addWidget(self.add_button)
-        self.v_box_upper_3.addLayout(self.h_box_buttons)
+        self.v_box_upper_3.addWidget(self.add_button, alignment = Qt.AlignTop)
                     # Wrapping the changing filter layouts into QWidgets
         self.filter_page_month.setLayout(self.h_box_filter_changing_month)
         self.filter_page_id.setLayout(self.h_box_filter_changing_id)
@@ -233,6 +236,12 @@ class MainWindow(QMainWindow):
         #self.h_box_add_title.addWidget(self.add_label, alignment = Qt.AlignLeft)
         self.h_box_filter_title.addWidget(self.filter_icon_label, alignment = Qt.AlignLeft)
         #self.h_box_filter_title.addWidget(self.filter_label, alignment = Qt.AlignLeft)
+        self.h_box_table_buttons.addWidget(self.delete_all_button)
+        self.h_box_table_buttons.addWidget(self.delete_selected_button)
+        self.h_box_table_buttons.addWidget(self.refresh_button)
+        self.h_box_sum.addWidget(self.sum_icon_label, alignment = Qt.AlignLeft)
+        self.h_box_sum.addWidget(self.support_me_button)
+        self.h_box_sum.addWidget(self.sum_label, alignment = Qt.AlignRight)
             # Level 1
         self.v_box_main.addLayout(self.h_box_add_title)
         self.v_box_main.addLayout(self.h_box_upper)
@@ -242,7 +251,9 @@ class MainWindow(QMainWindow):
         self.v_box_main.addLayout(self.h_box_filter_2)
         self.v_box_main.addWidget(self.separator_2)
         self.v_box_main.addWidget(self.expenses_table)
-        self.v_box_main.addWidget(self.sum_label, alignment = Qt.AlignRight)
+        self.v_box_main.addLayout(self.h_box_table_buttons)
+        self.v_box_main.addWidget(self.separator_3)
+        self.v_box_main.addLayout(self.h_box_sum)
         self.central_widget.setLayout(self.v_box_main)
 
         # Event handling
@@ -256,10 +267,14 @@ class MainWindow(QMainWindow):
         self.clear_filters_button.clicked.connect(self.refresh)
         self.expenses_table.itemChanged.connect(self.update_selected)
         #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
+        self.support_me_button.clicked.connect(self.support_me)
 
         # Buttons, labels and other
+        self.add_button.setMinimumWidth(240)
         self.add_icon_label.setMaximumWidth(50)
         self.filter_icon_label.setMaximumWidth(50)
+        self.sum_icon_label.setMaximumWidth(50)
+        self.support_me_button.setMaximumWidth(120)
         self.setWindowIcon(self.main_icon)
         self.filter_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
         self.setWindowTitle("Simple expense manager by Peter Szepesi")
@@ -272,6 +287,7 @@ class MainWindow(QMainWindow):
         self.filter_date_day_from.setText("01")
         self.add_icon_label.setPixmap(self.add_icon_pixmap)
         self.filter_icon_label.setPixmap(self.filter_icon_pixmap)
+        self.sum_icon_label.setPixmap(self.sum_icon_pixmap)
         self.filter_date_month_from.setText(f"{self.today_date.month:02}")
         self.filter_date_year_from.setText(f"{self.today_date.year}")
         self.filter_date_day_to.setText(f"{self.today_date.day:02}")
@@ -609,6 +625,9 @@ class MainWindow(QMainWindow):
                 self.print_warning_message("Empty", "No results to show, please enter a valid input!")
                 self.write_log(f"def filter_selected : exception : {e}")
         self.previous_operation = 2
+
+    def support_me(self):
+        webbrowser.open("https://www.paypal.me/szpeto")
 
     def fill_table(self):
         self.expenses_table.blockSignals(True)

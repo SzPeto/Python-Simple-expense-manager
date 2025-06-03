@@ -2608,3 +2608,218 @@
 2025-06-03, 17:50:38 - Table expenses created
 2025-06-03, 17:50:38 - Table expenses created
 2025-06-03, 17:50:42 - Table expenses created
+
+2025-06-03, 17:58:50 *****************************************************************************
+2025-06-03, 17:58:50 - Database connection : Databases\main.db established
+2025-06-03, 17:58:50 - Table expenses created
+2025-06-03, 17:58:50 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 17:58:50 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 17:58:50 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 17:58:52 - Table expenses created
+2025-06-03, 17:58:52 - Table expenses created
+2025-06-03, 17:58:52 - Table expenses created
+
+2025-06-03, 18:07:02 *****************************************************************************
+2025-06-03, 18:07:02 - Database connection : Databases\main.db established
+2025-06-03, 18:07:02 - Table expenses created
+2025-06-03, 18:07:02 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:07:02 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:07:02 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:07:03 - Table expenses created
+2025-06-03, 18:07:03 - Table expenses created
+2025-06-03, 18:07:03 - Table expenses created
+
+2025-06-03, 18:09:29 *****************************************************************************
+2025-06-03, 18:09:29 - Database connection : Databases\main.db established
+2025-06-03, 18:09:29 - Table expenses created
+2025-06-03, 18:09:29 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:09:29 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:09:29 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:09:30 - Table expenses created
+2025-06-03, 18:09:30 - Table expenses created
+2025-06-03, 18:09:30 - Table expenses created
+
+2025-06-03, 18:09:47 *****************************************************************************
+2025-06-03, 18:09:47 - Database connection : Databases\main.db established
+2025-06-03, 18:09:47 - Table expenses created
+2025-06-03, 18:09:47 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:09:47 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:09:47 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:09:48 - Table expenses created
+2025-06-03, 18:09:48 - Table expenses created
+2025-06-03, 18:09:48 - Table expenses created
+
+2025-06-03, 18:11:18 *****************************************************************************
+2025-06-03, 18:11:18 - Database connection : Databases\main.db established
+2025-06-03, 18:11:18 - Table expenses created
+2025-06-03, 18:11:18 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:11:18 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:11:18 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:11:19 - Table expenses created
+2025-06-03, 18:11:19 - Table expenses created
+2025-06-03, 18:11:19 - Table expenses created
+
+2025-06-03, 18:16:08 *****************************************************************************
+2025-06-03, 18:16:08 - Database connection : Databases\main.db established
+2025-06-03, 18:16:08 - Table expenses created
+2025-06-03, 18:16:08 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:16:08 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:16:08 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:16:10 - Table expenses created
+2025-06-03, 18:16:10 - Table expenses created
+2025-06-03, 18:16:10 - Table expenses created
+
+2025-06-03, 18:17:44 *****************************************************************************
+2025-06-03, 18:17:44 - Database connection : Databases\main.db established
+2025-06-03, 18:17:44 - Table expenses created
+2025-06-03, 18:17:44 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:17:44 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:17:44 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:17:45 - Table expenses created
+2025-06-03, 18:17:45 - Table expenses created
+2025-06-03, 18:17:45 - Table expenses created
+
+2025-06-03, 18:22:13 *****************************************************************************
+2025-06-03, 18:22:13 - Database connection : Databases\main.db established
+2025-06-03, 18:22:13 - Table expenses created
+2025-06-03, 18:22:13 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:22:13 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:22:13 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:22:14 - Table expenses created
+2025-06-03, 18:22:14 - Table expenses created
+2025-06-03, 18:22:14 - Table expenses created
+
+2025-06-03, 18:22:43 *****************************************************************************
+2025-06-03, 18:22:43 - Database connection : Databases\main.db established
+2025-06-03, 18:22:43 - Table expenses created
+2025-06-03, 18:22:43 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:22:43 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:22:43 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:22:44 - Table expenses created
+2025-06-03, 18:22:44 - Table expenses created
+2025-06-03, 18:22:44 - Table expenses created
+
+2025-06-03, 18:27:30 *****************************************************************************
+2025-06-03, 18:27:30 - Database connection : Databases\main.db established
+2025-06-03, 18:27:30 - Table expenses created
+2025-06-03, 18:27:30 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:27:30 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:27:30 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:27:31 - Table expenses created
+2025-06-03, 18:27:31 - Table expenses created
+2025-06-03, 18:27:31 - Table expenses created
+
+2025-06-03, 18:28:15 *****************************************************************************
+2025-06-03, 18:28:15 - Database connection : Databases\main.db established
+2025-06-03, 18:28:15 - Table expenses created
+2025-06-03, 18:28:15 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:28:15 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:28:15 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:28:16 - Table expenses created
+2025-06-03, 18:28:16 - Table expenses created
+2025-06-03, 18:28:16 - Table expenses created
+
+2025-06-03, 18:28:26 *****************************************************************************
+2025-06-03, 18:28:26 - Database connection : Databases\main.db established
+2025-06-03, 18:28:26 - Table expenses created
+2025-06-03, 18:28:26 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:28:26 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:28:26 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:28:27 - Table expenses created
+2025-06-03, 18:28:27 - Table expenses created
+2025-06-03, 18:28:27 - Table expenses created
+
+2025-06-03, 18:28:49 *****************************************************************************
+2025-06-03, 18:28:49 - Database connection : Databases\main.db established
+2025-06-03, 18:28:49 - Table expenses created
+2025-06-03, 18:28:49 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:28:49 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:28:49 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:28:49 - Table expenses created
+2025-06-03, 18:28:49 - Table expenses created
+2025-06-03, 18:28:49 - Table expenses created
+2025-06-03, 18:28:57 - Entry of id : 6 deleted
+2025-06-03, 18:28:57 - Entry of id : 7 deleted
+2025-06-03, 18:28:57 - Table expenses created
+2025-06-03, 18:28:58 - Entry of id : 8 deleted
+2025-06-03, 18:28:58 - Entry of id : 9 deleted
+2025-06-03, 18:28:58 - Table expenses created
+2025-06-03, 18:29:00 - Entry of id : 10 deleted
+2025-06-03, 18:29:00 - Entry of id : 11 deleted
+2025-06-03, 18:29:00 - Table expenses created
+2025-06-03, 18:29:09 - Table expenses created
+2025-06-03, 18:29:15 - Table expenses created
+
+2025-06-03, 18:31:11 *****************************************************************************
+2025-06-03, 18:31:11 - Database connection : Databases\main.db established
+2025-06-03, 18:31:11 - Table expenses created
+2025-06-03, 18:31:11 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:31:11 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:31:11 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+
+2025-06-03, 18:31:58 *****************************************************************************
+2025-06-03, 18:31:58 - Database connection : Databases\main.db established
+2025-06-03, 18:31:58 - Table expenses created
+2025-06-03, 18:31:58 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:31:58 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:31:58 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+
+2025-06-03, 18:32:20 *****************************************************************************
+2025-06-03, 18:32:20 - Database connection : Databases\main.db established
+2025-06-03, 18:32:20 - Table expenses created
+2025-06-03, 18:32:20 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:32:20 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:32:20 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:32:21 - Table expenses created
+2025-06-03, 18:32:21 - Table expenses created
+2025-06-03, 18:32:21 - Table expenses created
+
+2025-06-03, 18:32:39 *****************************************************************************
+2025-06-03, 18:32:39 - Database connection : Databases\main.db established
+2025-06-03, 18:32:39 - Table expenses created
+2025-06-03, 18:32:39 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:32:39 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:32:39 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:32:40 - Table expenses created
+2025-06-03, 18:32:40 - Table expenses created
+2025-06-03, 18:32:40 - Table expenses created
+
+2025-06-03, 18:33:28 *****************************************************************************
+2025-06-03, 18:33:28 - Database connection : Databases\main.db established
+2025-06-03, 18:33:28 - Table expenses created
+2025-06-03, 18:33:28 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:33:28 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:33:28 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:33:28 - Table expenses created
+2025-06-03, 18:33:28 - Table expenses created
+2025-06-03, 18:33:28 - Table expenses created
+
+2025-06-03, 18:33:36 *****************************************************************************
+2025-06-03, 18:33:36 - Database connection : Databases\main.db established
+2025-06-03, 18:33:36 - Table expenses created
+2025-06-03, 18:33:36 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:33:36 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:33:36 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:33:38 - Table expenses created
+2025-06-03, 18:33:38 - Table expenses created
+2025-06-03, 18:33:38 - Table expenses created
+
+2025-06-03, 18:35:10 *****************************************************************************
+2025-06-03, 18:35:10 - Database connection : Databases\main.db established
+2025-06-03, 18:35:10 - Table expenses created
+2025-06-03, 18:35:10 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:35:10 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:35:10 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:35:11 - Table expenses created
+2025-06-03, 18:35:11 - Table expenses created
+2025-06-03, 18:35:11 - Table expenses created
+
+2025-06-03, 18:38:38 *****************************************************************************
+2025-06-03, 18:38:38 - Database connection : Databases\main.db established
+2025-06-03, 18:38:38 - Table expenses created
+2025-06-03, 18:38:38 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-03, 18:38:38 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-03, 18:38:38 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-03, 18:38:39 - Table expenses created
+2025-06-03, 18:38:39 - Table expenses created
+2025-06-03, 18:38:39 - Table expenses created
