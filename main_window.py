@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPu
     QGraphicsDropShadowEffect, QMenuBar, QMenu, QAction
 
 from main_database import *
+from about_dialog import AboutDialog
 
 
 class MainWindow(QMainWindow):
@@ -42,6 +43,7 @@ class MainWindow(QMainWindow):
         self.int_year_validator = QIntValidator(1, 8888)
         self.is_asc = True
         self.icon_size = 40
+        self.about_dialog = AboutDialog()
 
         # Geometry
         self.window_width = int(self.monitor.width() * 0.5)
@@ -266,7 +268,7 @@ class MainWindow(QMainWindow):
 
         # Menu
         self.file_menu.addAction(self.exit_action)
-        self.about_menu.addActions([self.about_action, self.read_me_action])
+        self.about_menu.addActions([self.about_action])
         self.menu_bar.addMenu(self.file_menu)
         self.menu_bar.addMenu(self.about_menu)
         self.setMenuBar(self.menu_bar)
@@ -285,6 +287,7 @@ class MainWindow(QMainWindow):
         #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
         self.support_me_button.clicked.connect(self.support_me)
         self.exit_action.triggered.connect(self.exit)
+        self.about_action.triggered.connect(self.show_about)
 
         # Buttons, labels and other
         self.add_button.setMinimumWidth(240)
@@ -712,6 +715,9 @@ class MainWindow(QMainWindow):
 
     def exit(self):
         sys.exit(0)
+
+    def show_about(self):
+        self.about_dialog.exec_()
 
     # Logging and printing warning messages ****************************************************************
     def write_log_init(self):
