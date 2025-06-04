@@ -667,7 +667,7 @@ class MainWindow(QMainWindow):
         reply = QMessageBox.question(
             self,
             "Are you sure?",
-            "Are you sure you want to delete selected entries?",
+            "Are you sure you want to delete the selected entries?",
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No
         )
