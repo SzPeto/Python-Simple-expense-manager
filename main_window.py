@@ -8,7 +8,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QGuiApplication, QIntValidator, QColor, QIcon
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QTableWidget, QWidget, QPushButton, QHBoxLayout, QLabel, \
     QLineEdit, QComboBox, QTableWidgetItem, QHeaderView, QFrame, QSizePolicy, QStackedLayout, QMessageBox, \
-    QGraphicsDropShadowEffect
+    QGraphicsDropShadowEffect, QMenuBar, QMenu, QAction
 
 from main_database import *
 
@@ -83,6 +83,14 @@ class MainWindow(QMainWindow):
         self.table_name = "expenses"
         self.cursor = self.db_connection.cursor()
         create_table(self.cursor, self.table_name)
+
+        # Menu
+        self.menu_bar = QMenuBar()
+        self.file_menu = QMenu("File")
+        self.about_menu = QMenu("About")
+        self.exit_action = QAction("Exit")
+        self.about_action = QAction("About")
+        self.read_me_action = QAction("Read me")
 
         # Buttons
         self.add_button = QPushButton("Add")
@@ -256,6 +264,14 @@ class MainWindow(QMainWindow):
         self.v_box_main.addLayout(self.h_box_sum)
         self.central_widget.setLayout(self.v_box_main)
 
+        # Menu
+        self.file_menu.addAction(self.exit_action)
+        self.about_menu.addActions([self.about_action, self.read_me_action])
+        self.menu_bar.addMenu(self.file_menu)
+        self.menu_bar.addMenu(self.about_menu)
+        self.setMenuBar(self.menu_bar)
+
+
         # Event handling
         self.add_button.clicked.connect(self.add_entry)
         self.delete_selected_button.clicked.connect(self.delete_selected)
@@ -268,6 +284,7 @@ class MainWindow(QMainWindow):
         self.expenses_table.itemChanged.connect(self.update_selected)
         #self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table)
         self.support_me_button.clicked.connect(self.support_me)
+        self.exit_action.triggered.connect(self.exit)
 
         # Buttons, labels and other
         self.add_button.setMinimumWidth(240)
@@ -629,6 +646,94 @@ class MainWindow(QMainWindow):
     def support_me(self):
         webbrowser.open("https://www.paypal.me/szpeto")
 
+    def order_table(self, index):
+        # self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table) - automatically passes
+        # the column index
+        column = self.expenses_table.horizontalHeaderItem(index).text().lower()
+        if self.is_asc:
+            rows = order_by(self.cursor, self.table_name, column, "ASC")
+            self.is_asc = False
+        else:
+            rows = order_by(self.cursor, self.table_name, column, "DESC")
+            self.is_asc = True
+
+        self.fill_table_selected(rows)
+
+    def delete_selected(self):
+
+        try:
+            selected_column_data = self.expenses_table.selectedItems()
+            if selected_column_data:
+                for i in range(0, len(selected_column_data)):
+                    selected_cell = selected_column_data[i]
+                    row = selected_cell.row()
+                    column = selected_cell.column()
+                    selected_cell_id = self.expenses_table.item(row, 0).text()
+                    if selected_cell_id.isdigit():
+                        selected_cell_id = int(selected_cell_id)
+                        delete_entry(self.cursor, self.table_name, "id", selected_cell_id)
+            else:
+                self.write_log("def delete_selected : There is nothing selected")
+        except Exception as e:
+            self.write_log(f"def delete_selected : something went wrong deleting selected items : {e}")
+
+        try:
+            self.db_connection.commit()
+            self.fill_table()
+        except Exception as e:
+            self.write_log(f"def delete_selected : something went wrong during filling the table : {e}")
+
+    def delete_all(self):
+        try:
+            delete_table(self.cursor, self.table_name)
+            self.db_connection.commit()
+            self.fill_table()
+        except Exception as e:
+            self.write_log(f"Something went wrong deleting table : {e}")
+
+    def refresh(self):
+        self.fill_table()
+
+    def update_selected(self):
+        clicked_cell = self.expenses_table.selectedItems()[0]
+        row = clicked_cell.row()
+        column = clicked_cell.column()
+        column_search = "id"
+        keyword_search = self.expenses_table.item(row, 0).text()
+        column_update = self.expenses_table.horizontalHeaderItem(column).text().lower()
+        keyword_update = self.expenses_table.item(row, column).text()
+        update_entry(self.cursor, self.table_name, column_search, keyword_search, column_update, keyword_update)
+        print(column_search, keyword_search, column_update, keyword_update)
+        self.db_connection.commit()
+        if self.previous_operation == 1:
+            self.fill_table()
+        elif self.previous_operation == 2:
+            self.filter_selected()
+
+    def exit(self):
+        sys.exit(0)
+
+    # Logging and printing warning messages ****************************************************************
+    def write_log_init(self):
+        with open(self.log_file, "a", encoding = "utf-8") as log_file:
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
+            log_file.write("\n")
+            log_file.write(f"{timestamp} *****************************************************************************")
+            log_file.write("\n")
+
+    def write_log(self, text):
+        with open(self.log_file, "a", encoding = "utf-8") as log_file:
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S - ")
+            log_file.write(f"{timestamp}{text}")
+            log_file.write("\n")
+
+    def print_warning_message(self, title, text):
+        try:
+            QMessageBox.warning(self, title, text)
+        except Exception as e:
+            self.write_log(f"def print_warning_message exception : {e}")
+
+    # Filling the table ************************************************************************************
     def fill_table(self):
         self.expenses_table.blockSignals(True)
         try:
@@ -699,92 +804,7 @@ class MainWindow(QMainWindow):
         self.count_prices()
         self.expenses_table.blockSignals(False)
 
-    def order_table(self, index):
-        # self.expenses_table.horizontalHeader().sectionClicked.connect(self.order_table) - automatically passes
-        # the column index
-        column = self.expenses_table.horizontalHeaderItem(index).text().lower()
-        if self.is_asc:
-            rows = order_by(self.cursor, self.table_name, column, "ASC")
-            self.is_asc = False
-        else:
-            rows = order_by(self.cursor, self.table_name, column, "DESC")
-            self.is_asc = True
-
-        self.fill_table_selected(rows)
-
-    def delete_selected(self):
-
-        try:
-            selected_column_data = self.expenses_table.selectedItems()
-            if selected_column_data:
-                for i in range(0, len(selected_column_data)):
-                    selected_cell = selected_column_data[i]
-                    row = selected_cell.row()
-                    column = selected_cell.column()
-                    selected_cell_id = self.expenses_table.item(row, 0).text()
-                    if selected_cell_id.isdigit():
-                        selected_cell_id = int(selected_cell_id)
-                        delete_entry(self.cursor, self.table_name, "id", selected_cell_id)
-            else:
-                self.write_log("def delete_selected : There is nothing selected")
-        except Exception as e:
-            self.write_log(f"def delete_selected : something went wrong deleting selected items : {e}")
-
-        try:
-            self.db_connection.commit()
-            self.fill_table()
-        except Exception as e:
-            self.write_log(f"def delete_selected : something went wrong during filling the table : {e}")
-
-
-    def delete_all(self):
-        try:
-            delete_table(self.cursor, self.table_name)
-            self.db_connection.commit()
-            self.fill_table()
-        except Exception as e:
-            self.write_log(f"Something went wrong deleting table : {e}")
-
-    def refresh(self):
-        self.fill_table()
-
-    def update_selected(self):
-        # TODO - Fix the bug, after changing the value, the whole table is printed
-        clicked_cell = self.expenses_table.selectedItems()[0]
-        row = clicked_cell.row()
-        column = clicked_cell.column()
-        column_search = "id"
-        keyword_search = self.expenses_table.item(row, 0).text()
-        column_update = self.expenses_table.horizontalHeaderItem(column).text().lower()
-        keyword_update = self.expenses_table.item(row, column).text()
-        update_entry(self.cursor, self.table_name, column_search, keyword_search, column_update, keyword_update)
-        print(column_search, keyword_search, column_update, keyword_update)
-        self.db_connection.commit()
-        if self.previous_operation == 1:
-            self.fill_table()
-        elif self.previous_operation == 2:
-            self.filter_selected()
-
-    # Resource path
-    def resource_path(self, relative_path):
-        if hasattr(sys, "_MEIPASS"):
-            return os.path.join(sys._MEIPASS, relative_path) # In case of exe return the absolute path
-        else:
-            return os.path.join(os.path.abspath("."), relative_path) # In case of IDE return the relative path
-
-    def write_log_init(self):
-        with open(self.log_file, "a", encoding = "utf-8") as log_file:
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
-            log_file.write("\n")
-            log_file.write(f"{timestamp} *****************************************************************************")
-            log_file.write("\n")
-
-    def write_log(self, text):
-        with open(self.log_file, "a", encoding = "utf-8") as log_file:
-            timestamp = datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S - ")
-            log_file.write(f"{timestamp}{text}")
-            log_file.write("\n")
-
+    # Files and directories ********************************************************************************
     def create_file_dir(self, file_path):
         try:
             dir_name = os.path.dirname(file_path)
@@ -795,7 +815,13 @@ class MainWindow(QMainWindow):
 
         return file_path
 
-    # Replacing widgets and layouts during runtime
+    def resource_path(self, relative_path):
+        if hasattr(sys, "_MEIPASS"):
+            return os.path.join(sys._MEIPASS, relative_path) # In case of exe return the absolute path
+        else:
+            return os.path.join(os.path.abspath("."), relative_path) # In case of IDE return the relative path
+
+    # Replacing widgets and layouts during runtime *********************************************************
     def replace_widget(self, layout, index, new_widget):
         item = layout.itemAt(index)
         if item is None:
@@ -832,14 +858,7 @@ class MainWindow(QMainWindow):
             if child_layout is not None:
                 self.remove_layout(child_layout)
 
-    # Print warning
-    def print_warning_message(self, title, text):
-        try:
-            QMessageBox.warning(self, title, text)
-        except Exception as e:
-            self.write_log(f"def print_warning_message exception : {e}")
-
-    # Date validator
+    # Validators
     def is_valid_date(self, date):
         try:
             datetime.datetime.strptime(date, "%Y-%m-%d")
@@ -847,14 +866,7 @@ class MainWindow(QMainWindow):
         except ValueError:
             return False
 
-    # Showing the sum of prices
-    def count_prices(self):
-        sum: float = 0
-        for i in range(0, self.expenses_table.rowCount()):
-            cell = self.expenses_table.item(i, 3).text()
-            sum += float(cell)
-        self.sum_label.setText(f"Total : {sum:.2f}")
-
+    # Other helper functions ******************************************************************************
     def get_years(self):
         years = []
         current_year = self.today.year
@@ -863,3 +875,10 @@ class MainWindow(QMainWindow):
             years.append(str(1990 + i))
 
         return years
+
+    def count_prices(self):
+        sum: float = 0
+        for i in range(0, self.expenses_table.rowCount()):
+            cell = self.expenses_table.item(i, 3).text()
+            sum += float(cell)
+        self.sum_label.setText(f"Total : {sum:.2f}")
