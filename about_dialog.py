@@ -24,7 +24,7 @@ class AboutDialog(QDialog):
             where your .exe file is located, under Log\\log.txt.<br><br>
             If you like my app and you feel that way, you can support me in my work,<br>
             I would be really grateful and appreciate any amount of donation.<br>
-            You can do it via support me button, or IBAN account transfer,<br>
+            You can do it via support me button, or IBAN account transfer.<br>
             IBAN account number : SK90 0900 0000 0051 2726 1825<br><br>
             Thank you very much!<br>
             Peter</p>
