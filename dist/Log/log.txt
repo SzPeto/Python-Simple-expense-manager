@@ -22,3 +22,30 @@
 2025-06-04, 15:32:08 - Table expenses created
 2025-06-04, 15:32:08 - Entries inserted : abc, Groceries, 11.11, 2025-06-04
 2025-06-04, 15:32:08 - Table expenses created
+
+2025-06-04, 15:43:54 *****************************************************************************
+2025-06-04, 15:43:54 - Database connection : Databases\main.db established
+2025-06-04, 15:43:54 - Table expenses created
+2025-06-04, 15:43:54 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI148682\icon.png
+2025-06-04, 15:43:54 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI148682\add.png
+2025-06-04, 15:43:54 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI148682\filter.png
+2025-06-04, 15:43:56 - Table expenses created
+2025-06-04, 15:43:56 - Table expenses created
+2025-06-04, 15:43:56 - Table expenses created
+
+2025-06-04, 15:44:06 *****************************************************************************
+2025-06-04, 15:44:06 - Database connection : Databases\main.db established
+2025-06-04, 15:44:06 - Table expenses created
+2025-06-04, 15:44:06 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI102242\icon.png
+2025-06-04, 15:44:06 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI102242\add.png
+2025-06-04, 15:44:06 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI102242\filter.png
+2025-06-04, 15:44:07 - Table expenses created
+2025-06-04, 15:44:07 - Table expenses created
+2025-06-04, 15:44:07 - Table expenses created
+2025-06-04, 15:44:12 - Table expenses created
+2025-06-04, 15:44:12 - Entries inserted : dth, Groceries, 44.0, 2025-06-04
+2025-06-04, 15:44:12 - Table expenses created
+2025-06-04, 15:44:18 - Table expenses created
+2025-06-04, 15:44:18 - Entries inserted : esrdgfh, Groceries, 14.44, 2025-06-04
+2025-06-04, 15:44:18 - Table expenses created
+2025-06-04, 15:44:28 - Table expenses created

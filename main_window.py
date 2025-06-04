@@ -664,36 +664,51 @@ class MainWindow(QMainWindow):
         self.fill_table_selected(rows)
 
     def delete_selected(self):
+        reply = QMessageBox.question(
+            self,
+            "Are you sure?",
+            "Are you sure you want to delete selected entries?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply == QMessageBox.Yes:
+            try:
+                selected_column_data = self.expenses_table.selectedItems()
+                if selected_column_data:
+                    for i in range(0, len(selected_column_data)):
+                        selected_cell = selected_column_data[i]
+                        row = selected_cell.row()
+                        column = selected_cell.column()
+                        selected_cell_id = self.expenses_table.item(row, 0).text()
+                        if selected_cell_id.isdigit():
+                            selected_cell_id = int(selected_cell_id)
+                            delete_entry(self.cursor, self.table_name, "id", selected_cell_id)
+                else:
+                    self.write_log("def delete_selected : There is nothing selected")
+            except Exception as e:
+                self.write_log(f"def delete_selected : something went wrong deleting selected items : {e}")
 
-        try:
-            selected_column_data = self.expenses_table.selectedItems()
-            if selected_column_data:
-                for i in range(0, len(selected_column_data)):
-                    selected_cell = selected_column_data[i]
-                    row = selected_cell.row()
-                    column = selected_cell.column()
-                    selected_cell_id = self.expenses_table.item(row, 0).text()
-                    if selected_cell_id.isdigit():
-                        selected_cell_id = int(selected_cell_id)
-                        delete_entry(self.cursor, self.table_name, "id", selected_cell_id)
-            else:
-                self.write_log("def delete_selected : There is nothing selected")
-        except Exception as e:
-            self.write_log(f"def delete_selected : something went wrong deleting selected items : {e}")
-
-        try:
-            self.db_connection.commit()
-            self.fill_table()
-        except Exception as e:
-            self.write_log(f"def delete_selected : something went wrong during filling the table : {e}")
+            try:
+                self.db_connection.commit()
+                self.fill_table()
+            except Exception as e:
+                self.write_log(f"def delete_selected : something went wrong during filling the table : {e}")
 
     def delete_all(self):
-        try:
-            delete_table(self.cursor, self.table_name)
-            self.db_connection.commit()
-            self.fill_table()
-        except Exception as e:
-            self.write_log(f"Something went wrong deleting table : {e}")
+        reply = QMessageBox.question(
+            self,
+            "Are you sure?",
+            "Are you sure you want to delete ALL entries?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+        if reply == QMessageBox.Yes:
+            try:
+                delete_table(self.cursor, self.table_name)
+                self.db_connection.commit()
+                self.fill_table()
+            except Exception as e:
+                self.write_log(f"Something went wrong deleting table : {e}")
 
     def refresh(self):
         self.fill_table()

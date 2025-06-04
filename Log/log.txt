@@ -3169,3 +3169,48 @@
 2025-06-04, 15:40:20 - Entry of id : 19 deleted
 2025-06-04, 15:40:20 - Table expenses created
 2025-06-04, 15:41:13 - Table expenses created
+
+2025-06-04, 16:07:43 *****************************************************************************
+2025-06-04, 16:07:43 - Database connection : Databases\main.db established
+2025-06-04, 16:07:43 - Table expenses created
+2025-06-04, 16:07:43 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-04, 16:07:43 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-04, 16:07:43 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-04, 16:07:45 - Table expenses created
+2025-06-04, 16:07:45 - Table expenses created
+2025-06-04, 16:07:45 - Table expenses created
+2025-06-04, 16:09:13 - Table expenses created
+
+2025-06-04, 16:24:32 *****************************************************************************
+2025-06-04, 16:24:32 - Database connection : Databases\main.db established
+2025-06-04, 16:24:32 - Table expenses created
+2025-06-04, 16:24:32 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-04, 16:24:32 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-04, 16:24:32 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-04, 16:24:34 - Table expenses created
+2025-06-04, 16:24:34 - Table expenses created
+2025-06-04, 16:24:34 - Table expenses created
+
+2025-06-04, 16:26:06 *****************************************************************************
+2025-06-04, 16:26:06 - Database connection : Databases\main.db established
+2025-06-04, 16:26:06 - Table expenses created
+2025-06-04, 16:26:06 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\icon.png
+2025-06-04, 16:26:06 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\add.png
+2025-06-04, 16:26:06 - Resource path : C:\Users\szjan\PycharmProjects\Other\Other - 13 - Simple budget app\filter.png
+2025-06-04, 16:26:07 - Table expenses created
+2025-06-04, 16:26:07 - Table expenses created
+2025-06-04, 16:26:07 - Table expenses created
+2025-06-04, 16:26:12 - Entry of id : 18 deleted
+2025-06-04, 16:26:12 - Entry of id : 17 deleted
+2025-06-04, 16:26:12 - Table expenses created
+2025-06-04, 16:26:22 - Entry of id : 5 deleted
+2025-06-04, 16:26:22 - Entry of id : 12 deleted
+2025-06-04, 16:26:22 - Entry of id : 13 deleted
+2025-06-04, 16:26:22 - Entry of id : 14 deleted
+2025-06-04, 16:26:22 - Entry of id : 15 deleted
+2025-06-04, 16:26:22 - Table expenses created
+2025-06-04, 16:26:29 - Table expenses created
+2025-06-04, 16:26:33 - Table expenses created
+2025-06-04, 16:26:40 - Table expenses created
+2025-06-04, 16:26:45 - Table expenses was deleted
+2025-06-04, 16:26:45 - Table expenses created
