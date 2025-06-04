@@ -49,6 +49,10 @@
   ('_threading_local',
    'C:\\Users\\szjan\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\_threading_local.py',
    'PYMODULE'),
+  ('about_dialog',
+   'C:\\Users\\szjan\\PycharmProjects\\Other\\Other - 13 - Simple budget '
+   'app\\about_dialog.py',
+   'PYMODULE'),
   ('argparse',
    'C:\\Users\\szjan\\AppData\\Local\\Programs\\Python\\Python313\\Lib\\argparse.py',
    'PYMODULE'),

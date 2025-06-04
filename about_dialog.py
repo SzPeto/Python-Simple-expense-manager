@@ -13,7 +13,7 @@ class AboutDialog(QDialog):
         text = QTextEdit()
         text.setReadOnly(True)
 
-        about_text = ("""
+        self.about_text = ("""
             <h2>📊 Simple expense manager app created by Peter Szepesi, Slovakia</h2><br>
             <p>&nbsp;• You can sort by any column by simply clicking the column name, clicking multiple times<br>
                &nbsp;&nbsp;&nbsp;&nbsp;changes the order, either ascending or descending<br>
@@ -30,7 +30,7 @@ class AboutDialog(QDialog):
             Peter</p>
         """)
 
-        text.setHtml(about_text)
+        text.setHtml(self.about_text)
         v_box_layout.addWidget(text)
         self.setLayout(v_box_layout)
 
