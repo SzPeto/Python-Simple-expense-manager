@@ -301,7 +301,7 @@ class MainWindow(QMainWindow):
         self.year_line_edit.setText(str(self.today_date.year))
         self.month_line_edit.setText(str(f"{self.today_date.month:02}"))
         self.day_line_edit.setText(str(f"{self.today_date.day:02}"))
-        self.price_decimal_line_edit.setText("00")
+        self.price_decimal_line_edit.setPlaceholderText("00")
         self.filter_price_from.setPlaceholderText("Price FROM")
         self.filter_price_to.setPlaceholderText("Price TO")
         self.filter_date_day_from.setText("01")
@@ -548,7 +548,8 @@ class MainWindow(QMainWindow):
             self.fill_table()
             self.description_line_edit.setText("")
             self.price_line_edit.setText("")
-            self.price_decimal_line_edit.setText("00")
+            self.price_decimal_line_edit.setText("")
+            self.price_decimal_line_edit.setPlaceholderText("00")
         except Exception as e:
             self.write_log(f"Something went wrong during adding entry : {e}")
 
