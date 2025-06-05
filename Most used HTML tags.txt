@@ -1,0 +1,144 @@
+📄 BASIC HTML PAGE STRUCTURE
+
+        <html>
+            ← Root of every HTML document
+            <head>
+                ← Contains meta info (not visible on page)
+                <title>My Page</title>
+                        ← Title shown in browser tab
+                <meta charset="UTF-8">
+                        ← Character encoding
+                <style>...</style>
+                        ← Internal CSS styles (optional)
+            </head>
+            <body>
+                ← Main content visible to users
+                ... your page content goes here ...
+            </body>
+        </html>
+
+-------------------------------------------------------
+
+🖋️ TEXT FORMATTING TAGS
+
+        <p>Paragraph text</p>
+                ← Creates a paragraph block
+        <br>
+                ← Line break (new line inside paragraph)
+        <b> or <strong>Bold text</strong> or </b>
+                ← Makes text bold
+        <i> or <em>Italic text</em> or </i>
+                ← Makes text italic
+        <code>monospace</code>
+                ← Used for inline code
+        <hr>
+                ← Horizontal line break (divider)
+
+-------------------------------------------------------
+
+🔗 LINKS AND IMAGES
+
+        <a href="https://example.com">Click me</a>
+                ← Creates a clickable hyperlink
+        <a href="https://example.com" target="_blank">New tab</a>
+                ← Opens the link in a new tab
+        <img src="image.jpg" alt="Description" width="200">
+                ← Displays an image with optional width
+
+-------------------------------------------------------
+
+📋 LISTS
+
+        <ul>
+                ← Unordered list (bullet points)
+                <li>Item 1</li>
+                <li>Item 2</li>
+        </ul>
+        <ol>
+                ← Ordered list (numbered)
+                <li>Step 1</li>
+                <li>Step 2</li>
+        </ol>
+
+-------------------------------------------------------
+
+🔤 HEADINGS (USED FOR TITLES)
+
+        <h1>Main Title</h1>
+                ← Largest heading (only one per page)
+        <h2>Section Title</h2>
+        <h3>Subsection</h3>
+        <h4>...</h4>
+        <h5>...</h5>
+        <h6>Smallest heading</h6>
+
+-------------------------------------------------------
+
+📦 DIVIDERS AND SECTIONS
+
+        <div>
+                ← General-purpose container (no meaning)
+        <section>
+                ← Defines a meaningful section
+        <article>
+                ← Self-contained content (like a blog post)
+        <aside>
+                ← Sidebar or complementary info
+        <header>
+                ← Top area (often with logo/title)
+        <footer>
+                ← Bottom area (credits, contact)
+
+-------------------------------------------------------
+
+📨 FORMS AND INPUT FIELDS
+
+        <form action="/submit" method="post">
+                ← Used for collecting user input; submit sends it to server
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+
+                <input type="submit" value="Send">
+        </form>
+
+-------------------------------------------------------
+
+📊 TABLES
+
+        <table>
+                ← Starts a table
+                <tr>
+                        ← Table row
+                        <th>Name</th>
+                        <th>Score</th>
+                </tr>
+                <tr>
+                        ← Another row
+                        <td>Peter</td>
+                        <td>100</td>
+                </tr>
+        </table>
+
+-------------------------------------------------------
+
+🔠 CHARACTER ENTITIES (INVISIBLE CHARACTERS)
+
+        &nbsp;
+                ← Non-breaking space (used for extra spacing)
+        &lt;
+                ← Less than (<)
+        &gt;
+                ← Greater than (>)
+        &copy;
+                ← Copyright ©
+        &quot;
+                ← Quotation mark (")
+
+-------------------------------------------------------
+
+✅ COMMENTS IN HTML
+
+        <!-- This is a comment, it won't be displayed -->

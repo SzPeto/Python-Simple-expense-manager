@@ -49,3 +49,17 @@
 2025-06-04, 15:44:18 - Entries inserted : esrdgfh, Groceries, 14.44, 2025-06-04
 2025-06-04, 15:44:18 - Table expenses created
 2025-06-04, 15:44:28 - Table expenses created
+
+2025-06-04, 16:34:58 *****************************************************************************
+2025-06-04, 16:34:58 - Database connection : Databases\main.db established
+2025-06-04, 16:34:58 - Table expenses created
+2025-06-04, 16:34:58 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI10002\icon.png
+2025-06-04, 16:34:58 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI10002\add.png
+2025-06-04, 16:34:58 - Resource path : C:\Users\szjan\AppData\Local\Temp\_MEI10002\filter.png
+2025-06-04, 16:35:01 - Table expenses created
+2025-06-04, 16:35:01 - Table expenses created
+2025-06-04, 16:35:01 - Table expenses created
+2025-06-04, 16:35:14 - def delete_selected : There is nothing selected
+2025-06-04, 16:35:14 - Table expenses created
+2025-06-04, 16:35:22 - def delete_selected : There is nothing selected
+2025-06-04, 16:35:22 - Table expenses created

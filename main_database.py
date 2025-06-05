@@ -126,6 +126,17 @@ def order_by(cursor: sqlite3.Cursor, table_name, column, direction):
 
     return rows
 
+def group_by(cursor: sqlite3.Cursor, table_name, function_name, function_argument, show_column, group_by):
+    query = f"""
+        SELECT {show_column}, {function_name}({function_argument})
+        FROM {table_name}
+        GROUP BY {group_by}
+    """
+    cursor.execute(query)
+    data = cursor.fetchall()
+    for i in range(0, len(data)):
+        print(data[i])
+
 # Deleting functions
 def delete_entry(cursor: sqlite3.Cursor, table_name, column, keyword):
     query = f"DELETE FROM {table_name} WHERE {column} = ?"

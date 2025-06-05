@@ -1,0 +1,191 @@
+==============================
+1. MOST USED SQL COMMANDS
+==============================
+
+    CREATE TABLE – Defines a new table
+        Example: CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(100));
+        Example: CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100)); # INTEGER PRIMARY KEY is
+                                                                                                 a standalone command
+
+    INSERT INTO – Adds records to a table (with placeholders)
+        Example: cursor.execute("INSERT INTO users (id, name) VALUES (?, ?)", (id, name))
+
+    SELECT – Retrieves data from a table
+        Example: cursor.execute("SELECT * FROM users WHERE id = ?", (id,))
+
+    UPDATE – Modifies existing records (with placeholders)
+        Example: cursor.execute("UPDATE users SET name = ? WHERE id = ?", (new_name, user_id))
+
+    DELETE – Removes records from a table (with placeholders)
+        Example: cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
+
+    ALTER TABLE – Modifies table structure
+        Example: ALTER TABLE users ADD COLUMN age INT;
+
+    DROP TABLE – Deletes a table
+        Example: DROP TABLE users;
+
+
+==============================
+2. MOST USED SQL DATA TYPES
+==============================
+
+    INT – Integer value
+        Example: age INT
+
+    VARCHAR(n) – Variable-length string (max n characters)
+        Example: name VARCHAR(100)
+
+    DATE (stored as TEXT in SQLite) – Stores date values
+        Example: birthdate TEXT     # Use "YYYY-MM-DD" format
+
+    FLOAT – Stores decimal numbers
+        Example: price FLOAT
+
+    BOOLEAN (as INTEGER 0/1) – Stores true or false values
+        Example: is_active INTEGER     # Use 1 for True, 0 for False
+
+    TEXT – Large text storage
+        Example: description TEXT
+
+
+==============================
+3. LOGICAL OPERATORS
+==============================
+
+    AND – Returns true if both conditions are met
+        Example: cursor.execute("SELECT * FROM users WHERE age > ? AND is_active = ?", (18, 1))
+
+    OR – Returns true if at least one condition is met
+        Example: cursor.execute("SELECT * FROM users WHERE age < ? OR is_active = ?", (18, 1))
+
+    NOT – Reverses the condition
+        Example: cursor.execute("SELECT * FROM users WHERE NOT is_active")
+
+    BETWEEN – Checks if value is within a range
+        Example: cursor.execute("SELECT * FROM users WHERE age BETWEEN ? AND ?", (20, 30))
+
+    LIKE – Matches patterns in text
+        Example: cursor.execute("SELECT * FROM users WHERE name LIKE ?", ("A%",))
+
+    IN – Checks if value is in a list
+        Example: cursor.execute("SELECT * FROM users WHERE age IN (?, ?, ?)", (20, 25, 30))
+
+    Comparison operators :
+        <, >, =, <=, >=, not eqaual to <>, !=
+
+
+==============================
+4. OTHER USEFUL COMMANDS
+==============================
+
+    ORDER BY – Sorts query results
+        Example: cursor.execute("SELECT * FROM users ORDER BY name ASC")
+
+    GROUP BY – Groups results by a column
+        Example: cursor.execute("SELECT age, COUNT(*) FROM users GROUP BY age")
+
+    HAVING – Filters grouped results (with placeholders)
+        Example: cursor.execute("SELECT age, COUNT(*) FROM users GROUP BY age HAVING COUNT(*) > ?", (5,))
+
+    JOIN – Combines data from multiple tables
+        Example: cursor.execute("SELECT users.name, orders.product FROM users JOIN orders ON users.id = orders.user_id")
+
+    UNION – Combines results from multiple queries
+        Example: cursor.execute("SELECT name FROM users UNION SELECT name FROM employees")
+
+    DISTINCT – Removes duplicate values
+        Example: cursor.execute("SELECT DISTINCT name FROM users")
+
+*****************************************************************************************************************
+==============================
+MUST-KNOW SQL FOR JUNIOR DEVS
+==============================
+
+1. CORE SQL COMMANDS
+   ---------------------
+   - SELECT         → Retrieve data from a table
+   - INSERT         → Add new data into a table
+   - UPDATE         → Modify existing records
+   - DELETE         → Remove records
+
+   - WHERE          → Filter rows based on conditions
+   - ORDER BY       → Sort results by column(s)
+   - LIMIT          → Restrict the number of rows returned
+   - DISTINCT       → Return only unique values
+
+   Filtering Operators:
+     - AND / OR / NOT
+     - IN            → e.g. WHERE country IN ('USA', 'UK')
+     - LIKE          → e.g. WHERE name LIKE 'J%'
+
+2. UNDERSTANDING TABLE STRUCTURE
+   -------------------------------
+   - CREATE TABLE   → Define a new table
+   - DROP TABLE     → Delete a table
+   - ALTER TABLE    → Modify an existing table
+
+   Common Data Types:
+     - INTEGER /INT
+     - TEXT / VARCHAR
+     - REAL / FLOAT / DOUBLE
+     - DATE / DATETIME
+     - BOOLEAN
+
+   Keys and Constraints:
+     - PRIMARY KEY   → Uniquely identifies each row
+     - AUTOINCREMENT → Automatically increases numeric ID
+
+3. SIMPLE JOINS
+   ----------------
+   - INNER JOIN     → Only matching rows from both tables
+   - LEFT JOIN      → All rows from left table, + matches from right
+   - RIGHT JOIN     → All rows from right table, + matches from left
+
+   Example:
+     SELECT * FROM orders
+     INNER JOIN customers ON orders.customer_id = customers.id;
+
+4. SIMPLE AGGREGATION
+   ---------------------
+   Aggregate Functions:
+     - COUNT()       → Total number of rows
+     - SUM()         → Total sum of values
+     - AVG()         → Average of values
+     - MIN()         → Smallest value
+     - MAX()         → Largest value
+
+   - GROUP BY        → Groups rows by one or more columns
+   - HAVING          → Filters groups (like WHERE but for grouped data)
+
+   Example:
+        SELECT category, SUM(price)
+        FROM expenses
+        GROUP BY category;
+
+5. USING SQL IN CODE (Python)
+   ----------------------------
+   Connecting to a database:
+     - SQLite:
+         import sqlite3
+         conn = sqlite3.connect("database.db")
+     - MySQL:
+         import mysql.connector
+         conn = mysql.connector.connect(
+             host="localhost",
+             user="your_user",
+             password="your_pass",
+             database="your_db"
+         )
+
+   Executing queries:
+     cursor = conn.cursor()
+     cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
+     results = cursor.fetchall()
+
+   Preventing SQL Injection:
+     - Always use parameterized queries (placeholders + tuple of values)
+     - NEVER concatenate raw input into SQL strings
+
+   Safe Example:
+     cursor.execute("INSERT INTO users (name) VALUES (?)", (name,))
